@@ -7,11 +7,24 @@ gameBoard = new Array(VERT_TILES);
 for(var y = 0; y < VERT_TILES; y++) {
   gameBoard[y] = new Array(HORIZ_TILES);
   for(var x = 0; x < HORIZ_TILES; x++) {
-    gameBoard[y][x] = 0;
+    gameBoard[y][x] = "";
   }
 }
 
 var canvas, context;
+
+var drawObject = function(args) {
+  args.context.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+  args.context.fillStyle = args.color;
+
+  args.objectArr.forEach(function(row, rIndex) {
+    row.forEach(function(col, cIndex) {
+      if(col == 1) {
+        args.context.fillRect(args.x + cIndex, args.y + rIndex, 1, 1);
+      }
+    });
+  });
+}
 
 var ready = function(fun) {
   if(document.readyState != "loading") {
@@ -32,4 +45,12 @@ var ready = function(fun) {
 ready(function() {
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
+
+  drawObject({
+    x: 80,
+    y: 80,
+    objectArr: charset["A"],
+    color: "#FFF",
+    context: context
+  });
 });
