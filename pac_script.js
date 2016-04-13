@@ -11,7 +11,7 @@ for(var y = 0; y < VERT_TILES; y++) {
   }
 }
 
-var canvas, context;
+var canvas, context, canvasData;
 
 var drawObject = function(args) {
   var width = args.objectArr.length;
@@ -47,6 +47,7 @@ var ready = function(fun) {
 ready(function() {
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
+  canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
 
   var x = 8;
   var y = 8;
