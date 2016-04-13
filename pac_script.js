@@ -13,6 +13,15 @@ for(var y = 0; y < VERT_TILES; y++) {
 
 var canvas, context, canvasData;
 
+var drawPixel = function(args) {
+  var index = ((x + y) * canvasWidth) * 4;
+
+  canvasData.data[index + 0] = r;
+  canvasData.data[index + 1] = g;
+  canvasData.data[index + 2] = b;
+  canvasData.data[index + 3] = a;
+}
+
 var drawObject = function(args) {
   var width = args.objectArr.length;
   var height = args.objectArr[0].length;
@@ -48,7 +57,7 @@ ready(function() {
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
   canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
-
+  
   var x = 8;
   var y = 8;
   for(var prop in charset) {
