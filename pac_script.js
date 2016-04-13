@@ -48,11 +48,20 @@ ready(function() {
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
 
-  drawObject({
-    x: 80,
-    y: 80,
-    objectArr: charset["A"],
-    color: "#FFF",
-    context: context
-  });
+  var x = 8;
+  var y = 8;
+  for(var prop in charset) {
+    drawObject({
+      x: x,
+      y: y,
+      objectArr: charset[prop],
+      color: "#FFF",
+      context: context
+    });
+    x += 8;
+    if(x + 8 > BOARD_WIDTH) {
+      x = 8;
+      y += 8;
+    }
+  }
 });
