@@ -42,7 +42,6 @@ var drawObject = function(args) {
       }
     });
   });
-  context.putImageData(canvasData, 0, 0);
 }
 
 var ready = function(fun) {
@@ -81,4 +80,5 @@ ready(function() {
       y += 8;
     }
   }
+  context.putImageData(canvasData, 0, 0);
 });
