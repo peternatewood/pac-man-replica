@@ -14,27 +14,35 @@ for(var y = 0; y < VERT_TILES; y++) {
 var canvas, context, canvasData;
 
 var drawPixel = function(args) {
-  var index = ((x + y) * canvasWidth) * 4;
+  var index = (args.x + args.y * canvas.width) * 4;
 
-  canvasData.data[index + 0] = r;
-  canvasData.data[index + 1] = g;
-  canvasData.data[index + 2] = b;
-  canvasData.data[index + 3] = a;
+  canvasData.data[index + 0] = args.r;
+  canvasData.data[index + 1] = args.g;
+  canvasData.data[index + 2] = args.b;
+  canvasData.data[index + 3] = args.a;
 }
 
 var drawObject = function(args) {
   var width = args.objectArr.length;
   var height = args.objectArr[0].length;
-  context.clearRect(x, y, width, height);
+  context.clearRect(args.x, args.y, width, height);
   context.fillStyle = args.color;
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       if(col == 1) {
-        context.fillRect(args.x + cIndex, args.y + rIndex, 1, 1);
+        drawPixel({
+          x: args.x + cIndex,
+          y: args.y + rIndex,
+          r: args.color.r,
+          g: args.color.g,
+          b: args.color.b,
+          a: args.color.a
+        });
       }
     });
   });
+  context.putImageData(canvasData, 0, 0);
 }
 
 var ready = function(fun) {
@@ -57,7 +65,7 @@ ready(function() {
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
   canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
-  
+
   var x = 8;
   var y = 8;
   for(var prop in charset) {
@@ -65,7 +73,7 @@ ready(function() {
       x: x,
       y: y,
       objectArr: charset[prop],
-      color: "#FFF"
+      color: {r: 255, g: 255, b: 255, a: 255}
     });
     x += 8;
     if(x + 8 > BOARD_WIDTH) {
