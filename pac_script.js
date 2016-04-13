@@ -10,3 +10,19 @@ for(var y = 0; y < VERT_TILES; y++) {
     gameBoard[y][x] = 0;
   }
 }
+
+var ready = function(fun) {
+  if(document.readyState != "loading") {
+    fun();
+  }
+  else if(document.addEventListener) {
+    document.addEventListener("DOMContentLoaded", fun);
+  }
+  else {
+    document.attachEvent("onreadystatechange", function() {
+      if(document.readyState != "loading") {
+        fun();
+      }
+    });
+  }
+}
