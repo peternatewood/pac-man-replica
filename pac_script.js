@@ -14,7 +14,9 @@ for(var y = 0; y < VERT_TILES; y++) {
 var canvas, context;
 
 var drawObject = function(args) {
-  args.context.clearRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+  var width = args.objectArr.length;
+  var height = args.objectArr[0].length;
+  args.context.clearRect(x, y, width, height);
   args.context.fillStyle = args.color;
 
   args.objectArr.forEach(function(row, rIndex) {
