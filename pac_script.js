@@ -16,13 +16,13 @@ var canvas, context, canvasData;
 var drawObject = function(args) {
   var width = args.objectArr.length;
   var height = args.objectArr[0].length;
-  args.context.clearRect(x, y, width, height);
-  args.context.fillStyle = args.color;
+  context.clearRect(x, y, width, height);
+  context.fillStyle = args.color;
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       if(col == 1) {
-        args.context.fillRect(args.x + cIndex, args.y + rIndex, 1, 1);
+        context.fillRect(args.x + cIndex, args.y + rIndex, 1, 1);
       }
     });
   });
@@ -56,8 +56,7 @@ ready(function() {
       x: x,
       y: y,
       objectArr: charset[prop],
-      color: "#FFF",
-      context: context
+      color: "#FFF"
     });
     x += 8;
     if(x + 8 > BOARD_WIDTH) {
