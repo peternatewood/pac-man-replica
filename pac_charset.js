@@ -10,3 +10,11 @@ var charset = {
     "11000011"
   ]
 }
+
+for(var prop in charset) {
+  if(charset.hasOwnProperty(prop)) {
+    charset[prop] = charset[prop].map(function(row) {
+      return row.split("");
+    });
+  }
+}
