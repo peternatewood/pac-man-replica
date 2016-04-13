@@ -11,6 +11,8 @@ for(var y = 0; y < VERT_TILES; y++) {
   }
 }
 
+var canvas, context;
+
 var ready = function(fun) {
   if(document.readyState != "loading") {
     fun();
@@ -26,3 +28,8 @@ var ready = function(fun) {
     });
   }
 }
+
+ready(function() {
+  canvas = document.getElementById("board");
+  context = canvas.getContext("2d");
+});
