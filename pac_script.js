@@ -44,6 +44,15 @@ var drawObject = function(args) {
   });
 }
 
+var drawPac = function(x, y) {
+  context.fillStyle = "#FF0";
+  context.beginPath();
+  context.arc(x, y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
+  context.lineTo(x, y);
+  context.closePath();
+  context.fill();
+}
+
 var ready = function(fun) {
   if(document.readyState != "loading") {
     fun();
