@@ -8,3 +8,14 @@ canvas {
   border-radius: 12px;
   margin: 3em;
 }
+
+#debug {
+  background-color: #000;
+  color: #FFF;
+  font-family: monospace;
+  height: 100px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100px;
+}
