@@ -104,6 +104,8 @@ ready(function() {
   context = canvas.getContext("2d");
   canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
 
+  var debugDisp = document.getElementById("debug");
+
   var x = 8;
   var y = 8;
   for(var prop in charset) {
