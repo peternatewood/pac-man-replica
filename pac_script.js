@@ -75,6 +75,14 @@ var initAudio = function() {
   pacModGain.gain.value = 100;
 }
 
+var startPacAudio = function(seconds) {
+  var runSeconds = seconds || 2;
+  pacOsc.start();
+  pacModOsc.start();
+  pacOsc.stop(runSeconds);
+  pacModOsc.stop(runSeconds);
+}
+
 var ready = function(fun) {
   if(document.readyState != "loading") {
     fun();
