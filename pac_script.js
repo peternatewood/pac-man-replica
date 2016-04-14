@@ -30,7 +30,7 @@ var drawObject = function(args) {
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
-      if(col == 1) {
+      if(col == "x") {
         drawPixel({
           x: args.x + cIndex,
           y: args.y + rIndex,
