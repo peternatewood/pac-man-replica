@@ -26,7 +26,6 @@ var drawObject = function(args) {
   var width = args.objectArr.length;
   var height = args.objectArr[0].length;
   context.clearRect(args.x, args.y, width, height);
-  context.fillStyle = args.color;
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
@@ -42,6 +41,121 @@ var drawObject = function(args) {
       }
     });
   });
+}
+
+var drawBorders = function() {
+  var x = 0.5;
+  var y = 31.5;
+
+  context.strokeStyle = "#6800FF";
+  context.lineWidth = 1;
+
+  // Outer border
+  context.beginPath();
+  context.moveTo(x, y);
+  context.quadraticCurveTo(x, y -= 8, x += 8, y);
+  context.lineTo(x += 207, y);
+  context.quadraticCurveTo(x += 8, y, x, y += 8);
+  context.lineTo(x, y += 64);
+  context.quadraticCurveTo(x, y += 8, x -= 8, y);
+  context.lineTo(x -= 32, y);
+  context.moveTo(--x, ++y);
+  context.lineTo(x, y += 24);
+  context.moveTo(++x, ++y);
+  context.lineTo(x += 40, y);
+  context.moveTo(x, y += 22);
+  context.lineTo(x -= 40, y);
+  context.moveTo(--x, ++y);
+  context.lineTo(x, y += 24);
+  context.moveTo(++x, ++y);
+  context.lineTo(x += 32, y);
+  context.quadraticCurveTo(x += 8, y, x, y += 8);
+  context.lineTo(x, y += 80);
+  context.quadraticCurveTo(x, y += 8, x -= 8, y);
+  context.lineTo(x -= 207, y);
+  context.quadraticCurveTo(x -= 8, y, x, y -= 8);
+  context.lineTo(x, y -= 80);
+  context.quadraticCurveTo(x, y -= 8, x += 8, y);
+  context.lineTo(x += 32, y);
+  context.moveTo(++x, --y);
+  context.lineTo(x, y -= 24);
+  context.moveTo(--x, --y);
+  context.lineTo(x -= 40, y);
+  context.moveTo(x, y -= 22);
+  context.lineTo(x += 40, y);
+  context.moveTo(++x, --y);
+  context.lineTo(x, y -= 24);
+  context.moveTo(--x, --y);
+  context.lineTo(x -= 32, y);
+  context.quadraticCurveTo(x -= 8, y, x, y -= 8);
+  context.lineTo(x, y -= 64);
+
+  // Inner border
+  x += 3;
+  context.moveTo(x, y);
+  context.lineTo(x, y -= 3);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 100, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 29);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 4, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 29);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 100, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 70);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 37, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 28);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 42, y);
+  context.moveTo(x, y += 16);
+  context.lineTo(x -= 42, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 28);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 37, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 37);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 14, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 4);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 14, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 37);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 212, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 37);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 14, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 4);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 14, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 37);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 37, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 28);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 42, y);
+  context.moveTo(x, y -= 16);
+  context.lineTo(x += 42, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 28);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 37, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 70);
+
+  context.stroke();
 }
 
 var drawPac = function(x, y) {
@@ -121,5 +235,8 @@ ready(function() {
       y += 8;
     }
   }
+
   context.putImageData(canvasData, 0, 0);
+
+  drawBorders();
 });
