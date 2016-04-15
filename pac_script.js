@@ -180,6 +180,25 @@ var drawPac = function(x, y) {
   context.closePath();
   context.fill();
 }
+var drawGhost = function(x, y, color) {
+  context.fillStyle = color;
+  context.beginPath();
+  context.arc(x, y, 6, Math.PI, 0, false);
+  context.lineTo(x + 7, y);
+  context.lineTo(x + 7, y + 9);
+  context.lineTo(x + 5, y + 7);
+  context.lineTo(x + 3, y + 9);
+  context.lineTo(x + 1, y + 9);
+  context.lineTo(x + 1, y + 7);
+  context.lineTo(x - 1, y + 7);
+  context.lineTo(x - 1, y + 9);
+  context.lineTo(x - 3, y + 9);
+  context.lineTo(x - 5, y + 7);
+  context.lineTo(x - 7, y + 9);
+  context.lineTo(x - 7, y);
+  context.closePath();
+  context.fill();
+}
 
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
@@ -254,6 +273,7 @@ ready(function() {
 
   drawBorders();
   drawPac(114, 208);
+  drawGhost(32, 139, "#F00");
 
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
