@@ -45,7 +45,7 @@ var drawObject = function(args) {
 
 var drawBorders = function() {
   var x = 0.5;
-  var y = 31.5;
+  var y = 32.5;
 
   context.strokeStyle = "#6800FF";
   context.lineWidth = 1;
@@ -56,70 +56,69 @@ var drawBorders = function() {
   context.quadraticCurveTo(x, y -= 8, x += 8, y);
   context.lineTo(x += 207, y);
   context.quadraticCurveTo(x += 8, y, x, y += 8);
-  context.lineTo(x, y += 64);
+  context.lineTo(x, y += 63);
   context.quadraticCurveTo(x, y += 8, x -= 8, y);
-  context.lineTo(x -= 32, y);
+  context.lineTo(x -= 31, y);
   context.moveTo(--x, ++y);
-  context.lineTo(x, y += 24);
+  context.lineTo(x, y += 23);
   context.moveTo(++x, ++y);
   context.lineTo(x += 40, y);
-  context.moveTo(x, y += 22);
+  context.moveTo(x, y += 23);
   context.lineTo(x -= 40, y);
   context.moveTo(--x, ++y);
-  context.lineTo(x, y += 24);
+  context.lineTo(x, y += 23);
   context.moveTo(++x, ++y);
-  context.lineTo(x += 32, y);
+  context.lineTo(x += 31, y);
   context.quadraticCurveTo(x += 8, y, x, y += 8);
-  context.lineTo(x, y += 80);
+  context.lineTo(x, y += 79);
   context.quadraticCurveTo(x, y += 8, x -= 8, y);
   context.lineTo(x -= 207, y);
   context.quadraticCurveTo(x -= 8, y, x, y -= 8);
-  context.lineTo(x, y -= 80);
+  context.lineTo(x, y -= 79);
   context.quadraticCurveTo(x, y -= 8, x += 8, y);
   context.lineTo(x += 32, y);
   context.moveTo(++x, --y);
-  context.lineTo(x, y -= 24);
+  context.lineTo(x, y -= 23);
   context.moveTo(--x, --y);
   context.lineTo(x -= 40, y);
-  context.moveTo(x, y -= 22);
+  context.moveTo(x, y -= 23);
   context.lineTo(x += 40, y);
   context.moveTo(++x, --y);
-  context.lineTo(x, y -= 24);
+  context.lineTo(x, y -= 23);
   context.moveTo(--x, --y);
   context.lineTo(x -= 32, y);
   context.quadraticCurveTo(x -= 8, y, x, y -= 8);
-  context.lineTo(x, y -= 64);
+  context.lineTo(x, y -= 63);
 
   // Inner border
-  x += 3;
-  context.moveTo(x, y);
+  context.moveTo(x += 3, y);
   context.lineTo(x, y -= 3);
   context.lineTo(x += 2, y -= 2);
   context.lineTo(x += 100, y);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x, y += 29);
+  context.lineTo(x, y += 28);
   context.lineTo(x += 2, y += 2);
   context.lineTo(x += 4, y);
   context.lineTo(x += 2, y -= 2);
-  context.lineTo(x, y -= 29);
+  context.lineTo(x, y -= 28);
   context.lineTo(x += 2, y -= 2);
-  context.lineTo(x += 100, y);
+  context.lineTo(x += 101, y);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x, y += 70);
+  context.lineTo(x, y += 69);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x -= 37, y);
+  context.lineTo(x -= 36, y);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x, y += 28);
+  context.lineTo(x, y += 27);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x += 42, y);
-  context.moveTo(x, y += 16);
-  context.lineTo(x -= 42, y);
+  context.lineTo(x += 41, y);
+  context.moveTo(x, y += 17);
+  context.lineTo(x -= 41, y);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x, y += 28);
+  context.lineTo(x, y += 27);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x += 37, y);
+  context.lineTo(x += 36, y);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x, y += 37);
+  context.lineTo(x, y += 36);
   context.lineTo(x -= 2, y += 2);
   context.lineTo(x -= 14, y);
   context.lineTo(x -= 2, y += 2);
@@ -129,7 +128,7 @@ var drawBorders = function() {
   context.lineTo(x += 2, y += 2);
   context.lineTo(x, y += 37);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x -= 212, y);
+  context.lineTo(x -= 213, y);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 37);
   context.lineTo(x += 2, y -= 2);
@@ -139,21 +138,36 @@ var drawBorders = function() {
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x -= 14, y);
   context.lineTo(x -= 2, y -= 2);
-  context.lineTo(x, y -= 37);
+  context.lineTo(x, y -= 36);
   context.lineTo(x += 2, y -= 2);
   context.lineTo(x += 37, y);
   context.lineTo(x += 2, y -= 2);
-  context.lineTo(x, y -= 28);
+  context.lineTo(x, y -= 27);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x -= 42, y);
-  context.moveTo(x, y -= 16);
+  context.moveTo(x, y -= 17);
   context.lineTo(x += 42, y);
   context.lineTo(x += 2, y -= 2);
-  context.lineTo(x, y -= 28);
+  context.lineTo(x, y -= 27);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x -= 37, y);
   context.lineTo(x -= 2, y -= 2);
-  context.lineTo(x, y -= 70);
+  context.lineTo(x, y -= 69);
+
+  // Ghost house
+  context.moveTo(x += 81, y += 96);
+  context.lineTo(x += 19, y);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 16, y);
+  context.lineTo(x, y += 26);
+  context.lineTo(x += 50, y);
+  context.lineTo(x, y -= 26);
+  context.lineTo(x -= 16, y);
+  context.lineTo(x, y -= 3);
+  context.lineTo(x += 19, y);
+  context.lineTo(x, y += 32);
+  context.lineTo(x -= 56, y);
+  context.lineTo(x, y -= 32);
 
   context.stroke();
 }
@@ -239,4 +253,13 @@ ready(function() {
   context.putImageData(canvasData, 0, 0);
 
   drawBorders();
+  drawPac(114, 208);
+
+  // context.fillStyle = "#080";
+  // for(var x = 0; x < BOARD_WIDTH; x += 8) {
+  //   context.fillRect(x, 0, 1, BOARD_HEIGHT);
+  // }
+  // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
+  //   context.fillRect(0, y, BOARD_WIDTH, 1);
+  // }
 });
