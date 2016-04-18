@@ -182,24 +182,8 @@ var drawGhostTendrils = function(ghostX, ghostY, step) {
   context.fill();
 }
 
-var detectStaticCollision = function(actorX, actorY) {
-  var x = actorX / 8;
-  var y = (actorY / 8) - 3;
-  var collideType = "none";
-
-  if(gameBoard[y][x] == "x") {
-    collideType = "wall";
-  }
-  else if(gameboard[y][x] == "-") {
-    collideType = "door";
-  }
-  else if(gameboard[y][x] == ".") {
-    collideType = "pellet";
-  }
-  else if(gameboard[y][x] == "o") {
-    collideType = "powerPellet";
-  }
-  return collideType;
+var handleInput = function(keyPressed) {
+  console.log("Key pressed", keyPressed);
 }
 
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
@@ -249,6 +233,14 @@ var ready = function(fun) {
 }
 
 ready(function() {
+  addEventListener("keydown", function(event) {
+    var keyPressed = keyCodes[event.keyCode];
+    if(keyPressed) {
+      event.preventDefault();
+      handleInput(keyPressed);
+    }
+  });
+
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
   canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
