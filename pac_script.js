@@ -51,7 +51,7 @@ var drawPac = function(x, y) {
   context.closePath();
   context.fill();
 }
-var drawGhost = function(xPos, yPos, color, direction) {
+var drawGhost = function(xPos, yPos, color, direction, step) {
   context.fillStyle = color;
   var x = new Number(xPos);
   var y = new Number(yPos);
@@ -60,22 +60,13 @@ var drawGhost = function(xPos, yPos, color, direction) {
   context.beginPath();
   context.arc(x, y, 6, Math.PI, 0, false);
   context.moveTo(x += 7, y);
-  context.lineTo(x, y += 8);
-  context.lineTo(x -= 1, y);
-  context.lineTo(x -= 2, y -= 2.5);
-  context.lineTo(x -= 2, y += 2.5);
-  context.lineTo(x -= 1, y);
-  context.lineTo(x, y -= 2);
-  context.lineTo(x -= 2, y);
-  context.lineTo(x, y += 2);
-  context.lineTo(x -= 1, y);
-  context.lineTo(x -= 2, y -= 2.5);
-  context.lineTo(x -= 2, y += 2.5);
-  context.lineTo(x -= 1, y);
-  context.lineTo(x, y -= 8);
+  context.lineTo(x, y += 5);
+  context.lineTo(x -= 14, y);
+  context.lineTo(x, y -= 5);
   context.closePath();
   context.fill();
 
+  drawGhostTendrils(xPos, yPos, step);
   drawGhostEyes(xPos, yPos, direction);
 }
 var drawGhostEyes = function(ghostX, ghostY, direction) {
@@ -134,6 +125,43 @@ var drawGhostEyes = function(ghostX, ghostY, direction) {
   context.fillStyle = "#22F";
   context.fillRect(x, y, 2, 2);
   context.fillRect(x += 6, y, 2, 2);
+}
+var drawGhostTendrils = function(ghostX, ghostY, step) {
+  var x = ghostX + 7;
+  var y = ghostY + 5;
+
+  context.moveTo(x, y);
+  switch(step) {
+    case 0:
+      context.lineTo(x, y += 3);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x -= 2, y -= 2.5);
+      context.lineTo(x -= 2, y += 2.5);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x, y -= 2);
+      context.lineTo(x -= 2, y);
+      context.lineTo(x, y += 2);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x -= 2, y -= 2.5);
+      context.lineTo(x -= 2, y += 2.5);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x, y -= 3);
+    break;
+    case 1:
+      context.lineTo(x, y += 1);
+      context.lineTo(x -= 2, y += 2.5);
+      context.lineTo(x -= 2, y -= 2.5);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x -= 2, y += 2.5);
+      context.lineTo(x -= 2, y -= 2.5);
+      context.lineTo(x -= 1, y);
+      context.lineTo(x -= 2, y += 2.5);
+      context.lineTo(x -= 2, y -= 2.5);
+      context.lineTo(x, y -= 1);
+    break;
+  }
+  context.closePath();
+  context.fill();
 }
 
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
@@ -209,10 +237,10 @@ ready(function() {
 
   drawBorders();
   drawPac(113, 212);
-  drawGhost(112, 115, "#F00", "left");
-  drawGhost(96, 139, "#4FF", "up");
-  drawGhost(112, 139, "#FCF", "right");
-  drawGhost(128, 139, "#FA6", "down");
+  drawGhost(112, 115, "#F00", "left", 1);
+  drawGhost(96, 139, "#4FF", "up", 0);
+  drawGhost(112, 139, "#FCF", "right", 1);
+  drawGhost(128, 139, "#FA6", "down", 0);
 
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
