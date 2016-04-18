@@ -3,14 +3,6 @@ var BOARD_WIDTH = 224;
 var VERT_TILES = BOARD_HEIGHT / 8;
 var HORIZ_TILES = BOARD_WIDTH / 8;
 
-gameBoard = new Array(VERT_TILES);
-for(var y = 0; y < VERT_TILES; y++) {
-  gameBoard[y] = new Array(HORIZ_TILES);
-  for(var x = 0; x < HORIZ_TILES; x++) {
-    gameBoard[y][x] = "";
-  }
-}
-
 var canvas, context, canvasData;
 
 var drawPixel = function(args) {
@@ -38,6 +30,27 @@ var drawObject = function(args) {
           b: args.color.b,
           a: args.color.a
         });
+      }
+    });
+  });
+}
+
+var drawPellets = function() {
+  context.fillStyle = "#FCF";
+
+  gameBoard.forEach(function(row, rIndex) {
+    row.forEach(function(col, cIndex) {
+      if(col == ".") {
+        context.fillRect((8 * cIndex) + 3, (8 * rIndex) + 27, 2, 2);
+      }
+      else if(col == "o") {
+        context.beginPath();
+        context.arc((8 * cIndex) + 4, (8 * rIndex) + 28, 4, 0, 2 * Math.PI, false);
+        context.closePath();
+        context.fill();
+      }
+      else if(col == "-") {
+        context.fillRect((8 * cIndex), (8 * rIndex) + 29, 8, 2);
       }
     });
   });
@@ -241,6 +254,7 @@ ready(function() {
   context.putImageData(canvasData, 0, 0);
 
   drawBorders();
+  drawPellets();
 
   // Green grid to delineate 8 x 8 tiles
   // context.fillStyle = "#080";
