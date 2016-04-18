@@ -61,17 +61,17 @@ var drawGhost = function(xPos, yPos, color) {
   context.arc(x, y, 6, Math.PI, 0, false);
   context.moveTo(x += 7, y);
   context.lineTo(x, y += 9);
-  context.lineTo(x -= 2, y -= 2);
   context.lineTo(x -= 1, y);
-  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 2, y -= 2.5);
+  context.lineTo(x -= 2, y += 2.5);
   context.lineTo(x -= 1, y);
   context.lineTo(x, y -= 2);
   context.lineTo(x -= 2, y);
   context.lineTo(x, y += 2);
   context.lineTo(x -= 1, y);
-  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 2, y -= 2.5);
+  context.lineTo(x -= 2, y += 2.5);
   context.lineTo(x -= 1, y);
-  context.lineTo(x -= 2, y += 2);
   context.lineTo(x, y -= 9);
   context.closePath();
   context.fill();
@@ -149,8 +149,8 @@ ready(function() {
   context.putImageData(canvasData, 0, 0);
 
   drawBorders();
-  drawPac(114, 212);
-  drawGhost(32, 139, "#F00");
+  drawPac(113, 212);
+  drawGhost(112, 115, "#F00");
 
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
