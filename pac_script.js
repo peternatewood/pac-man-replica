@@ -44,6 +44,8 @@ var drawObject = function(args) {
 }
 
 var drawPac = function(x, y) {
+  context.clearRect(x - 7, y - 7, 14, 14);
+
   context.fillStyle = "#FF0";
   context.beginPath();
   context.arc(x, y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
@@ -51,6 +53,7 @@ var drawPac = function(x, y) {
   context.closePath();
   context.fill();
 }
+
 var drawGhost = function(xPos, yPos, color, direction, step) {
   context.clearRect(xPos - 7, yPos - 7, 14, 16);
 
