@@ -51,22 +51,28 @@ var drawPac = function(x, y) {
   context.closePath();
   context.fill();
 }
-var drawGhost = function(x, y, color) {
+var drawGhost = function(xPos, yPos, color) {
   context.fillStyle = color;
+  var x = xPos;
+  var y = yPos;
+
+  // body
   context.beginPath();
   context.arc(x, y, 6, Math.PI, 0, false);
-  context.lineTo(x + 7, y);
-  context.lineTo(x + 7, y + 9);
-  context.lineTo(x + 5, y + 7);
-  context.lineTo(x + 3, y + 9);
-  context.lineTo(x + 1, y + 9);
-  context.lineTo(x + 1, y + 7);
-  context.lineTo(x - 1, y + 7);
-  context.lineTo(x - 1, y + 9);
-  context.lineTo(x - 3, y + 9);
-  context.lineTo(x - 5, y + 7);
-  context.lineTo(x - 7, y + 9);
-  context.lineTo(x - 7, y);
+  context.moveTo(x += 7, y);
+  context.lineTo(x, y += 9);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x -= 2, y);
+  context.lineTo(x, y += 2);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y -= 9);
   context.closePath();
   context.fill();
 }
@@ -143,14 +149,14 @@ ready(function() {
   context.putImageData(canvasData, 0, 0);
 
   drawBorders();
-  drawPac(114, 208);
+  drawPac(114, 212);
   drawGhost(32, 139, "#F00");
 
-  context.fillStyle = "#080";
-  for(var x = 0; x < BOARD_WIDTH; x += 8) {
-    context.fillRect(x, 0, 1, BOARD_HEIGHT);
-  }
-  for(var y = 0; y < BOARD_HEIGHT; y += 8) {
-    context.fillRect(0, y, BOARD_WIDTH, 1);
-  }
+  // context.fillStyle = "#080";
+  // for(var x = 0; x < BOARD_WIDTH; x += 8) {
+  //   context.fillRect(x, 0, 1, BOARD_HEIGHT);
+  // }
+  // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
+  //   context.fillRect(0, y, BOARD_WIDTH, 1);
+  // }
 });
