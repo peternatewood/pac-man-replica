@@ -2,7 +2,7 @@ var drawBorders = function() {
   var x = 0.5;
   var y = 32.5;
 
-  context.strokeStyle = "#6800FF";
+  context.strokeStyle = "#00F";
   context.lineWidth = 1;
 
   // Outer border
@@ -110,6 +110,7 @@ var drawBorders = function() {
   context.lineTo(x, y -= 69);
 
   // Internal obstacles
+  // 4 x 3 box
   context.moveTo(x += 17, y += 19);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
@@ -120,7 +121,7 @@ var drawBorders = function() {
   context.lineTo(x -= 19, y);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 11);
-
+  // 5 x 3 box
   context.moveTo(x += 40, y += 2);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
@@ -131,7 +132,7 @@ var drawBorders = function() {
   context.lineTo(x -= 27, y);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 11);
-
+  // 5 x 3 box
   context.moveTo(x += 72, y += 2);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
@@ -142,7 +143,7 @@ var drawBorders = function() {
   context.lineTo(x -= 27, y);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 11);
-
+  // 4 x 3 box
   context.moveTo(x += 48, y += 2);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
@@ -153,21 +154,250 @@ var drawBorders = function() {
   context.lineTo(x -= 19, y);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 11);
+  // 4 x 2 box
+  context.moveTo(x -= 160, y += 34);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 19, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 19, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // Right facing T
+  context.moveTo(x += 40, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 20, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 49);
+  // T shaped block
+  context.moveTo(x += 24, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 51, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // Left facing T
+  context.moveTo(x += 72, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 51);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 3);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 20, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 18);
+  // 4 x 2 box
+  context.moveTo(x += 24, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 19, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 19, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // 2 x 5 box
+  context.moveTo(x -= 120, y += 72);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 27);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 27);
+  // T shaped box
+  context.moveTo(x += 24, y += 26);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 48, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // 2 x 5 box
+  context.moveTo(x += 72, y -= 24);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 27);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 27);
+  // 180 rotated L box
+  context.moveTo(x -= 136, y += 50);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 19, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 27);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 19);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 12, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // 5 x 2 box
+  context.moveTo(x += 40, y -= 1);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 27, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 27, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // 5 x 2 box
+  context.moveTo(x += 72, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 27, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 27, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // Vertically flipped L box
+  context.moveTo(x += 48, y);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 19, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 12, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 27);
+  // Lower left box
+  context.moveTo(x -= 152, y += 50);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 28, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 20, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 59, y);
+  context.lineTo(x -= 2, y -= 2);
+  // T shaped box
+  context.moveTo(x += 56, y -= 25);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 48, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 3, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x -= 20, y);
+  context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
+  // Lower left box
+  context.moveTo(x += 48, y += 24);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 20, y);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x, y -= 20);
+  context.lineTo(x += 2, y -= 2);
+  context.lineTo(x += 3, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 20);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x += 28, y);
+  context.lineTo(x += 2, y += 2);
+  context.lineTo(x, y += 3);
+  context.lineTo(x -= 2, y += 2);
+  context.lineTo(x -= 59, y);
+  context.lineTo(x -= 2, y -= 2);
 
   // Ghost house
   context.moveTo(x = 84.5, y = 124.5);
   context.lineTo(x += 19, y);
   context.lineTo(x, y += 3);
   context.lineTo(x -= 16, y);
-  context.lineTo(x, y += 26);
-  context.lineTo(x += 50, y);
-  context.lineTo(x, y -= 26);
+  context.lineTo(x, y += 25);
+  context.lineTo(x += 49, y);
+  context.lineTo(x, y -= 25);
   context.lineTo(x -= 16, y);
   context.lineTo(x, y -= 3);
   context.lineTo(x += 19, y);
-  context.lineTo(x, y += 32);
-  context.lineTo(x -= 56, y);
-  context.lineTo(x, y -= 32);
+  context.lineTo(x, y += 31);
+  context.lineTo(x -= 55, y);
+  context.lineTo(x, y -= 31);
 
   context.stroke();
 }
