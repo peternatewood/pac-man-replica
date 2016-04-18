@@ -256,3 +256,10 @@ var START_BOARD = [
 gameBoard = START_BOARD.map(function(row) {
   return row.split("");
 });
+
+var keyCodes = {
+  37: "left",
+  38: "up",
+  39: "right",
+  40: "down"
+}
