@@ -76,7 +76,6 @@ var drawGhost = function(xPos, yPos, color) {
   context.closePath();
   context.fill();
 }
-
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
@@ -151,6 +150,9 @@ ready(function() {
   drawBorders();
   drawPac(113, 212);
   drawGhost(112, 115, "#F00");
+  drawGhost(96, 139, "#4FF");
+  drawGhost(112, 139, "#FCF");
+  drawGhost(128, 139, "#FA6");
 
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
