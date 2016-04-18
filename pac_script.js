@@ -60,7 +60,7 @@ var drawGhost = function(xPos, yPos, color, direction) {
   context.beginPath();
   context.arc(x, y, 6, Math.PI, 0, false);
   context.moveTo(x += 7, y);
-  context.lineTo(x, y += 9);
+  context.lineTo(x, y += 8);
   context.lineTo(x -= 1, y);
   context.lineTo(x -= 2, y -= 2.5);
   context.lineTo(x -= 2, y += 2.5);
@@ -72,7 +72,7 @@ var drawGhost = function(xPos, yPos, color, direction) {
   context.lineTo(x -= 2, y -= 2.5);
   context.lineTo(x -= 2, y += 2.5);
   context.lineTo(x -= 1, y);
-  context.lineTo(x, y -= 9);
+  context.lineTo(x, y -= 8);
   context.closePath();
   context.fill();
 
@@ -85,7 +85,7 @@ var drawGhostEyes = function(ghostX, ghostY, direction) {
 
   switch(direction) {
     case "up": y -= 2; break;
-    case "down": y += 2; break;
+    case "down": y += 1; break;
     case "left": x--; break;
     case "right": x++; break;
   }
@@ -119,7 +119,7 @@ var drawGhostEyes = function(ghostX, ghostY, direction) {
     break;
     case "down":
       x = ghostX - 1;
-      y = ghostY + 5;
+      y = ghostY + 4;
     break;
     case "left":
       x = ghostX - 3;
