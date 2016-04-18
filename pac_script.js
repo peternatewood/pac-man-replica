@@ -52,6 +52,8 @@ var drawPac = function(x, y) {
   context.fill();
 }
 var drawGhost = function(xPos, yPos, color, direction, step) {
+  context.clearRect(xPos - 7, yPos - 7, 14, 16);
+
   context.fillStyle = color;
   var x = new Number(xPos);
   var y = new Number(yPos);
@@ -236,12 +238,8 @@ ready(function() {
   context.putImageData(canvasData, 0, 0);
 
   drawBorders();
-  drawPac(113, 212);
-  drawGhost(112, 115, "#F00", "left", 1);
-  drawGhost(96, 139, "#4FF", "up", 0);
-  drawGhost(112, 139, "#FCF", "right", 1);
-  drawGhost(128, 139, "#FA6", "down", 0);
 
+  // Green grid to delineate 8 x 8 tiles
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
   //   context.fillRect(x, 0, 1, BOARD_HEIGHT);
@@ -249,4 +247,17 @@ ready(function() {
   // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
   //   context.fillRect(0, y, BOARD_WIDTH, 1);
   // }
+
+  drawPac(113, 212);
+
+  var step = 0;
+  setInterval(function() {
+    if(step == 0) step = 1;
+    else step = 0;
+
+    drawGhost(112, 115, "#F00", "left", step);
+    drawGhost(96, 139, "#4FF", "up", step);
+    drawGhost(112, 139, "#FCF", "right", step);
+    drawGhost(128, 139, "#FA6", "down", step);
+  }, 250);
 });
