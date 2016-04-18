@@ -51,10 +51,10 @@ var drawPac = function(x, y) {
   context.closePath();
   context.fill();
 }
-var drawGhost = function(xPos, yPos, color) {
+var drawGhost = function(xPos, yPos, color, direction) {
   context.fillStyle = color;
-  var x = xPos;
-  var y = yPos;
+  var x = new Number(xPos);
+  var y = new Number(yPos);
 
   // body
   context.beginPath();
@@ -75,7 +75,67 @@ var drawGhost = function(xPos, yPos, color) {
   context.lineTo(x, y -= 9);
   context.closePath();
   context.fill();
+
+  drawGhostEyes(xPos, yPos, direction);
 }
+var drawGhostEyes = function(ghostX, ghostY, direction) {
+  context.fillStyle = "#FFF";
+  var x = ghostX -= 3;
+  var y = ghostY -= 3;
+
+  switch(direction) {
+    case "up": y -= 2; break;
+    case "down": y += 2; break;
+    case "left": x--; break;
+    case "right": x++; break;
+  }
+
+  // Whites of eyes
+  context.beginPath();
+  context.moveTo(x, y);
+  context.lineTo(x += 0.5, y);
+  context.lineTo(x += 1.5, y += 1.5);
+  context.lineTo(x, y += 2);
+  context.lineTo(x -= 1.5, y += 1.5);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x -= 1.5, y -= 1.5);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 1.5, y -= 1.5);
+  context.moveTo(x += 6.5, y);
+  context.lineTo(x += 0.5, y);
+  context.lineTo(x += 1.5, y += 1.5);
+  context.lineTo(x, y += 2);
+  context.lineTo(x -= 1.5, y += 1.5);
+  context.lineTo(x -= 1, y);
+  context.lineTo(x -= 1.5, y -= 1.5);
+  context.lineTo(x, y -= 2);
+  context.lineTo(x += 1.5, y -= 1.5);
+  context.fill();
+
+  switch(direction) {
+    case "up":
+      x = ghostX - 1;
+      y = ghostY - 2;
+    break;
+    case "down":
+      x = ghostX - 1;
+      y = ghostY + 5;
+    break;
+    case "left":
+      x = ghostX - 3;
+      y = ghostY + 2;
+    break;
+    case "right":
+      x = ghostX + 1;
+      y = ghostY + 2;
+    break;
+  }
+
+  context.fillStyle = "#22F";
+  context.fillRect(x, y, 2, 2);
+  context.fillRect(x += 6, y, 2, 2);
+}
+
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
@@ -149,10 +209,10 @@ ready(function() {
 
   drawBorders();
   drawPac(113, 212);
-  drawGhost(112, 115, "#F00");
-  drawGhost(96, 139, "#4FF");
-  drawGhost(112, 139, "#FCF");
-  drawGhost(128, 139, "#FA6");
+  drawGhost(112, 115, "#F00", "left");
+  drawGhost(96, 139, "#4FF", "up");
+  drawGhost(112, 139, "#FCF", "right");
+  drawGhost(128, 139, "#FA6", "down");
 
   // context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
