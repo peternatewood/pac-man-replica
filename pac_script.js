@@ -182,6 +182,26 @@ var drawGhostTendrils = function(ghostX, ghostY, step) {
   context.fill();
 }
 
+var detectStaticCollision = function(actorX, actorY) {
+  var x = actorX / 8;
+  var y = (actorY / 8) - 3;
+  var collideType = "none";
+
+  if(gameBoard[y][x] == "x") {
+    collideType = "wall";
+  }
+  else if(gameboard[y][x] == "-") {
+    collideType = "door";
+  }
+  else if(gameboard[y][x] == ".") {
+    collideType = "pellet";
+  }
+  else if(gameboard[y][x] == "o") {
+    collideType = "powerPellet";
+  }
+  return collideType;
+}
+
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
