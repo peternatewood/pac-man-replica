@@ -56,10 +56,30 @@ var drawPellets = function() {
   });
 }
 
+var Actor = function(startX, startY, name) {
+  this.x = startX;
+  this.y = startY;
+  this.name = name;
+  this.radius = 8;
+}
+Actor.prototype.render = function() {
+  context.clearRect(this.x - 8, this.y - 8, 16, 16);
+  context.fillStyle= nameToColor[this.name];
+  context.beginPath();
+
+  if(this.name == "m") {
+    context.arc(this.x, this.y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
+    context.lineTo(this.x, this.y);
+  }
+
+  context.closePath();
+  context.fill();
+}
+
 var drawPac = function(x, y) {
   context.clearRect(x - 7, y - 7, 14, 14);
 
-  context.fillStyle = "#FF0";
+  context.fillStyle = nameToColor["m"];
   context.beginPath();
   context.arc(x, y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
   context.lineTo(x, y);
@@ -182,10 +202,6 @@ var drawGhostTendrils = function(ghostX, ghostY, step) {
   context.fill();
 }
 
-var handleInput = function(keyPressed) {
-  console.log("Key pressed", keyPressed);
-}
-
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
@@ -277,16 +293,17 @@ ready(function() {
   //   context.fillRect(0, y, BOARD_WIDTH, 1);
   // }
 
-  drawPac(113, 212);
+  var pac = new Actor(113, 212, "m");
+  pac.render();
 
   var step = 0;
   setInterval(function() {
     if(step == 0) step = 1;
     else step = 0;
 
-    drawGhost(112, 115, "#F00", "left", step);
-    drawGhost(96, 139, "#4FF", "up", step);
-    drawGhost(112, 139, "#FCF", "right", step);
-    drawGhost(128, 139, "#FA6", "down", step);
+    drawGhost(112, 115, nameToColor["b"], "left", step);
+    drawGhost(96, 139, nameToColor["i"], "up", step);
+    drawGhost(112, 139, nameToColor["p"], "right", step);
+    drawGhost(128, 139, nameToColor["c"], "down", step);
   }, 250);
 });
