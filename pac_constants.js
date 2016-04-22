@@ -263,3 +263,11 @@ var keyCodes = {
   39: "right",
   40: "down"
 }
+
+var nameToColor = {
+  b: "#F00",
+  i: "#4FF",
+  p: "#FCF",
+  c: "#FA6",
+  m: "#FF0"
+}
