@@ -60,11 +60,11 @@ var Actor = function(startX, startY, name) {
   this.x = startX;
   this.y = startY;
   this.name = name;
-  this.radius = 7;
+  this.radius = 4;
 }
 Actor.prototype.render = function() {
-  context.clearRect(this.x - 8, this.y - 8, 16, 16);
-  context.fillStyle= nameToColor[this.name];
+  context.clearRect(this.x - 7, this.y - 7, 14, 14);
+  context.fillStyle = nameToColor[this.name];
   context.beginPath();
 
   if(this.name == "m") {
@@ -75,29 +75,30 @@ Actor.prototype.render = function() {
   context.closePath();
   context.fill();
 };
-Actor.prototype.detectCollision = function(direction) {
-  var col = Math.floor(this.x / 8);
-  var row = Math.floor(this.y / 8) - 3;
-  var cell;
-  switch(direction) {
-    case "up": cell = gameBoard[--row][col]; break;
-    case "down": cell = gameBoard[++row][col]; break;
-    case "left": cell = gameBoard[row][--col]; break;
-    case "right": cell = gameBoard[row][++col]; break;
-  }
-
+Actor.prototype.detectCollision = function() {
   var collision = "none";
-  if(cell == "x") {
-    collision = "wall";
-  }
-  else if(cell == ".") {
-    collision = "pellet";
-  }
-  else if(cell == "o") {
-    collision = "powerPellet";
-  }
-  else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
-    collision = "ghost";
+  var edges = [
+    {col: Math.floor((this.x - this.radius) / 8), row: Math.floor(this.y / 8) - 3},
+    {col: Math.floor(this.x / 8), row: Math.floor((this.y + this.radius - 1) / 8) - 3},
+    {col: Math.floor((this.x + this.radius - 1) / 8), row: Math.floor(this.y / 8) - 3},
+    {col: Math.floor(this.x / 8), row: Math.floor((this.y - this.radius) / 8) - 3}
+  ];
+
+  for(var edge = 0; collision != "wall" && edge < 4; edge++) {
+    var cell = gameBoard[edges[edge].row][edges[edge].col];
+    // console.log(edges[edge], cell);
+    if(cell == "x") {
+      collision = "wall";
+    }
+    else if(cell == ".") {
+      collision = "pellet";
+    }
+    else if(cell == "o") {
+      collision = "powerPellet";
+    }
+    else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
+      collision = "ghost";
+    }
   }
   return collision;
 };
@@ -279,7 +280,7 @@ ready(function() {
     var keyPressed = keyCodes[event.keyCode];
     if(keyPressed) {
       event.preventDefault();
-      handleInput(keyPressed);
+      pac.handleInput(keyPressed);
     }
   });
 
