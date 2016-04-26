@@ -62,12 +62,25 @@ var Actor = function(startX, startY, name) {
   this.name = name;
   this.radius = 4;
 }
+Actor.prototype.clear = function() {
+  context.fillStyle = "#000";
+  context.beginPath();
+
+  if(this.name == "m") {
+    context.arc(this.x, this.y, 7, 0.20 * Math.PI, 1.8 * Math.PI, false);
+    context.lineTo(this.x + 1, this.y);
+  }
+
+  context.closePath();
+  context.fill();
+}
 Actor.prototype.render = function() {
   context.fillStyle = nameToColor[this.name];
   context.beginPath();
 
   if(this.name == "m") {
-    drawPac(this.x, this.y);
+    context.arc(this.x, this.y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
+    context.lineTo(this.x, this.y);
   }
 
   context.closePath();
@@ -108,6 +121,7 @@ Actor.prototype.move = function(direction) {
   }
 };
 Actor.prototype.handleInput = function(keyPressed) {
+  this.clear();
   this.move(keyPressed);
   if(this.detectCollision() == "wall") {
     var reverse;
@@ -120,14 +134,7 @@ Actor.prototype.handleInput = function(keyPressed) {
     this.move(reverse);
   }
   this.render();
-}
-
-var drawPac = function(x, y) {
-  context.clearRect(x - 7, y - 7, 14, 14);
-
-  context.arc(x, y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
-  context.lineTo(x, y);
-}
+};
 
 var drawGhost = function(xPos, yPos, color, direction, step) {
   context.clearRect(xPos - 7, yPos - 7, 14, 16);
