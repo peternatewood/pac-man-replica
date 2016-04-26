@@ -63,13 +63,11 @@ var Actor = function(startX, startY, name) {
   this.radius = 4;
 }
 Actor.prototype.render = function() {
-  context.clearRect(this.x - 7, this.y - 7, 14, 14);
   context.fillStyle = nameToColor[this.name];
   context.beginPath();
 
   if(this.name == "m") {
-    context.arc(this.x, this.y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
-    context.lineTo(this.x, this.y);
+    drawPac(this.x, this.y);
   }
 
   context.closePath();
@@ -129,12 +127,8 @@ Actor.prototype.handleInput = function(keyPressed) {
 var drawPac = function(x, y) {
   context.clearRect(x - 7, y - 7, 14, 14);
 
-  context.fillStyle = nameToColor["m"];
-  context.beginPath();
   context.arc(x, y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
   context.lineTo(x, y);
-  context.closePath();
-  context.fill();
 }
 
 var drawGhost = function(xPos, yPos, color, direction, step) {
