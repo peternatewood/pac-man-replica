@@ -82,9 +82,8 @@ Actor.prototype.detectCollision = function() {
     {col: Math.floor(this.x / 8), row: Math.floor((this.y - this.radius) / 8) - 3}
   ];
 
-  for(var edge = 0; collision != "wall" && edge < 4; edge++) {
+  for(var edge = 0; collision == "none" && edge < 4; edge++) {
     var cell = gameBoard[edges[edge].row][edges[edge].col];
-    // console.log(edges[edge], cell);
     if(cell == "x") {
       collision = "wall";
     }
@@ -110,7 +109,6 @@ Actor.prototype.move = function(direction) {
 };
 Actor.prototype.handleInput = function(keyPressed) {
   this.move(keyPressed);
-  console.log(this.detectCollision());
   if(this.detectCollision() == "wall") {
     var reverse;
     switch(keyPressed) {
