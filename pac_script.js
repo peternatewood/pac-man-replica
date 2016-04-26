@@ -102,7 +102,14 @@ Actor.prototype.detectCollision = function() {
   }
   return collision;
 };
-
+Actor.prototype.move = function(direction) {
+  switch(direction) {
+    case "up": this.y--; break;
+    case "down": this.y++; break;
+    case "left": this.x--; break;
+    case "right": this.x++; break;
+  }
+};
 var drawPac = function(x, y) {
   context.clearRect(x - 7, y - 7, 14, 14);
 
