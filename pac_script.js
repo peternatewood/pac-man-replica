@@ -110,6 +110,22 @@ Actor.prototype.move = function(direction) {
     case "right": this.x++; break;
   }
 };
+Actor.prototype.handleInput = function(keyPressed) {
+  this.move(keyPressed);
+  console.log(this.detectCollision());
+  if(this.detectCollision() == "wall") {
+    var reverse;
+    switch(keyPressed) {
+      case "up": reverse = "down"; break;
+      case "down": reverse = "up"; break;
+      case "left": reverse = "right"; break;
+      case "right": reverse = "left"; break;
+    }
+    this.move(reverse);
+  }
+  this.render();
+}
+
 var drawPac = function(x, y) {
   context.clearRect(x - 7, y - 7, 14, 14);
 
