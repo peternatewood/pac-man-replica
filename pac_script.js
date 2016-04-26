@@ -95,7 +95,7 @@ Actor.prototype.detectCollision = function() {
     {col: Math.floor(this.x / 8), row: Math.floor((this.y - this.radius) / 8) - 3}
   ];
 
-  for(var edge = 0; collision == "none" && edge < 4; edge++) {
+  for(var edge = 0; collision != "wall" && collision != "ghost" && edge < 4; edge++) {
     var cell = gameBoard[edges[edge].row][edges[edge].col];
     if(cell == "x") {
       collision = "wall";
