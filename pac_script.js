@@ -113,8 +113,8 @@ Actor.prototype.detectCollision = function() {
   }
   return collision;
 };
-Actor.prototype.move = function(direction) {
-  switch(direction) {
+Actor.prototype.move = function() {
+  switch(this.direction) {
     case "up": this.y--; break;
     case "down": this.y++; break;
     case "left": this.x--; break;
@@ -123,7 +123,8 @@ Actor.prototype.move = function(direction) {
 };
 Actor.prototype.handleInput = function(keyPressed) {
   this.clear();
-  this.move(keyPressed);
+  this.direction = keyPressed;
+  this.move();
   if(this.detectCollision() == "wall") {
     var reverse;
     switch(keyPressed) {
@@ -132,7 +133,8 @@ Actor.prototype.handleInput = function(keyPressed) {
       case "left": reverse = "right"; break;
       case "right": reverse = "left"; break;
     }
-    this.move(reverse);
+    this.direction = reverse;
+    this.move();
   }
   this.render();
 };
