@@ -56,11 +56,12 @@ var drawPellets = function() {
   });
 }
 
-var Actor = function(startX, startY, name) {
+var Actor = function(startX, startY, name, direction) {
   this.x = startX;
   this.y = startY;
   this.name = name;
   this.radius = 4;
+  this.direction = direction;
 }
 Actor.prototype.clear = function() {
   context.fillStyle = "#000";
@@ -342,7 +343,7 @@ ready(function() {
   //   context.fillRect(0, y, BOARD_WIDTH, 1);
   // }
 
-  window.pac = new Actor(113, 212, "m");
+  window.pac = new Actor(113, 212, "m", "right");
   pac.render();
 
   var step = 0;
