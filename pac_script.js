@@ -89,28 +89,31 @@ Actor.prototype.render = function() {
 };
 Actor.prototype.detectCollision = function() {
   var collision = "none";
-  var edges = [
-    {col: Math.floor((this.x - this.radius) / 8), row: Math.floor(this.y / 8) - 3},
-    {col: Math.floor(this.x / 8), row: Math.floor((this.y + this.radius - 1) / 8) - 3},
-    {col: Math.floor((this.x + this.radius - 1) / 8), row: Math.floor(this.y / 8) - 3},
-    {col: Math.floor(this.x / 8), row: Math.floor((this.y - this.radius) / 8) - 3}
-  ];
-
-  for(var edge = 0; collision != "wall" && collision != "ghost" && edge < 4; edge++) {
-    var cell = gameBoard[edges[edge].row][edges[edge].col];
-    if(cell == "x") {
-      collision = "wall";
-    }
-    else if(cell == ".") {
-      collision = "pellet";
-    }
-    else if(cell == "o") {
-      collision = "powerPellet";
-    }
-    else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
-      collision = "ghost";
-    }
+  var xMod, yMod;
+  switch(this.direction) {
+    case "up": xMod = 0; yMod = -1; break;
+    case "down": xMod = 0; yMod = 1; break;
+    case "left": xMod = -1; yMod = 0; break;
+    case "right": xMod = 1; yMod = 0; break;
   }
+  var x = Math.floor(this.x / 8);
+  var y = Math.floor(this.y / 8) - 3;
+
+  var cell = gameBoard[y + yMod][x + xMod];
+  if(cell == "x") {
+    collision = "wall";
+  }
+  else if(cell == ".") {
+    collision = "pellet";
+  }
+  else if(cell == "o") {
+    collision = "powerPellet";
+  }
+  else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
+    collision = "ghost";
+  }
+  console.log(this.direction, collision, x, y);
+
   return collision;
 };
 Actor.prototype.move = function() {
@@ -124,16 +127,15 @@ Actor.prototype.move = function() {
 Actor.prototype.handleInput = function(keyPressed) {
   this.clear();
   this.direction = keyPressed;
-  this.move();
   if(this.detectCollision() == "wall") {
-    var reverse;
     switch(keyPressed) {
       case "up": reverse = "down"; break;
       case "down": reverse = "up"; break;
       case "left": reverse = "right"; break;
       case "right": reverse = "left"; break;
     }
-    this.direction = reverse;
+  }
+  else {
     this.move();
   }
   this.render();
