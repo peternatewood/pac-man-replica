@@ -328,10 +328,10 @@ var drawBorders = function() {
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x, y -= 27);
   // Lower left box
-  context.moveTo(x -= 152, y += 50);
+  context.moveTo(x -= 160, y += 50);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
-  context.lineTo(x += 28, y);
+  context.lineTo(x += 36, y);
   context.lineTo(x += 2, y -= 2);
   context.lineTo(x, y -= 20);
   context.lineTo(x += 2, y -= 2);
@@ -343,10 +343,10 @@ var drawBorders = function() {
   context.lineTo(x += 2, y += 2);
   context.lineTo(x, y += 3);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x -= 59, y);
+  context.lineTo(x -= 67, y);
   context.lineTo(x -= 2, y -= 2);
   // T shaped box
-  context.moveTo(x += 56, y -= 25);
+  context.moveTo(x += 64, y -= 25);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
   context.lineTo(x += 3, y);
@@ -377,11 +377,11 @@ var drawBorders = function() {
   context.lineTo(x += 2, y += 2);
   context.lineTo(x, y += 20);
   context.lineTo(x += 2, y += 2);
-  context.lineTo(x += 28, y);
+  context.lineTo(x += 36, y);
   context.lineTo(x += 2, y += 2);
   context.lineTo(x, y += 3);
   context.lineTo(x -= 2, y += 2);
-  context.lineTo(x -= 59, y);
+  context.lineTo(x -= 67, y);
   context.lineTo(x -= 2, y -= 2);
 
   // Ghost house
