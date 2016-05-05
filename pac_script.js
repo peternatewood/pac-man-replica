@@ -2,6 +2,7 @@ var BOARD_HEIGHT = 288;
 var BOARD_WIDTH = 224;
 var VERT_TILES = BOARD_HEIGHT / 8;
 var HORIZ_TILES = BOARD_WIDTH / 8;
+var PAC_MOVE_DELAY = 20;
 
 var canvas, context, canvasData;
 
@@ -62,6 +63,14 @@ var Actor = function(startX, startY, name, direction) {
   this.name = name;
   this.radius = 4;
   this.direction = direction;
+  this.speed = PAC_MOVE_DELAY;
+  this.isMoving = false;
+  this.keyStates = {
+    up: false,
+    down: false,
+    left: false,
+    right: false
+  }
 }
 Actor.prototype.clear = function() {
   context.fillStyle = "#000";
@@ -86,55 +95,101 @@ Actor.prototype.render = function() {
 
   context.closePath();
   context.fill();
+
+  // Used to update debug display in upper left
+  // document.getElementById("debug-x").innerHTML = this.x;
+  // document.getElementById("debug-y").innerHTML = this.y;
+  // document.getElementById("debug-direction").innerHTML = this.direction;
+  // document.getElementById("debug-is-moving").innerHTML = this.isMoving;
+  // document.getElementById("debug-key-up").innerHTML = this.keyStates.up;
+  // document.getElementById("debug-key-down").innerHTML = this.keyStates.down;
+  // document.getElementById("debug-key-left").innerHTML = this.keyStates.left;
+  // document.getElementById("debug-key-right").innerHTML = this.keyStates.right;
 };
 Actor.prototype.detectCollision = function() {
   var collision = "none";
-  var edges = [
-    {col: Math.floor((this.x - this.radius) / 8), row: Math.floor(this.y / 8) - 3},
-    {col: Math.floor(this.x / 8), row: Math.floor((this.y + this.radius - 1) / 8) - 3},
-    {col: Math.floor((this.x + this.radius - 1) / 8), row: Math.floor(this.y / 8) - 3},
-    {col: Math.floor(this.x / 8), row: Math.floor((this.y - this.radius) / 8) - 3}
-  ];
-
-  for(var edge = 0; collision != "wall" && collision != "ghost" && edge < 4; edge++) {
-    var cell = gameBoard[edges[edge].row][edges[edge].col];
-    if(cell == "x") {
-      collision = "wall";
-    }
-    else if(cell == ".") {
-      collision = "pellet";
-    }
-    else if(cell == "o") {
-      collision = "powerPellet";
-    }
-    else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
-      collision = "ghost";
-    }
+  var xMod, yMod;
+  switch(this.direction) {
+    case "up": xMod = 0; yMod = -1; break;
+    case "down": xMod = 0; yMod = 1; break;
+    case "left": xMod = -1; yMod = 0; break;
+    case "right": xMod = 1; yMod = 0; break;
   }
+  var x = Math.floor(this.x / 8);
+  var y = Math.floor(this.y / 8) - 3;
+
+  var cell = gameBoard[y + yMod][x + xMod];
+  if(cell == "x") {
+    collision = "wall";
+  }
+  else if(cell == ".") {
+    collision = "pellet";
+  }
+  else if(cell == "o") {
+    collision = "powerPellet";
+  }
+  else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
+    collision = "ghost";
+  }
+
   return collision;
 };
-Actor.prototype.move = function(direction) {
-  switch(direction) {
+Actor.prototype.move = function() {
+  this.clear();
+  switch(this.direction) {
     case "up": this.y--; break;
     case "down": this.y++; break;
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-};
-Actor.prototype.handleInput = function(keyPressed) {
-  this.clear();
-  this.move(keyPressed);
-  if(this.detectCollision() == "wall") {
-    var reverse;
-    switch(keyPressed) {
-      case "up": reverse = "down"; break;
-      case "down": reverse = "up"; break;
-      case "left": reverse = "right"; break;
-      case "right": reverse = "left"; break;
+  if(this.x % 8 == 4 && this.y % 8 == 4) {
+    if(this.keyStates[this.direction] === false || this.detectCollision() == "wall") {
+      var newDirection = false;
+      for(var prop in this.keyStates) {
+        if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
+          newDirection = prop;
+          break;
+        }
+      }
+      if(newDirection) {
+        this.direction = newDirection;
+        if(this.detectCollision() == "wall") {
+          this.isMoving = false;
+          clearInterval(this.moveIntervalID);
+        }
+      }
+      else {
+        this.isMoving = false;
+        clearInterval(this.moveIntervalID);
+      }
     }
-    this.move(reverse);
   }
   this.render();
+};
+Actor.prototype.handleKeyDown = function(event) {
+  var keyPressed = keyCodes[event.keyCode];
+  if(keyPressed) {
+    this.keyStates[keyPressed] = true;
+    if(this.isMoving === false) {
+      event.preventDefault();
+      this.direction = keyPressed;
+      if(this.detectCollision() == "wall") {
+        this.isMoving = false;
+      }
+      else {
+        this.isMoving = true;
+        this.clear();
+        this.moveIntervalID = setInterval(this.move.bind(this), this.speed);
+        this.render();
+      }
+    }
+  }
+};
+Actor.prototype.handleKeyUp = function(event) {
+  var keyPressed = keyCodes[event.keyCode];
+  if(keyPressed) {
+    this.keyStates[keyPressed] = false;
+  }
 };
 
 var drawGhost = function(xPos, yPos, color, direction, step) {
@@ -299,13 +354,10 @@ var ready = function(fun) {
 }
 
 ready(function() {
-  addEventListener("keydown", function(event) {
-    var keyPressed = keyCodes[event.keyCode];
-    if(keyPressed) {
-      event.preventDefault();
-      pac.handleInput(keyPressed);
-    }
-  });
+  window.pac = new Actor(113, 212, "m", "right");
+
+  addEventListener("keydown", pac.handleKeyDown.bind(pac));
+  addEventListener("keyup", pac.handleKeyUp.bind(pac));
 
   canvas = document.getElementById("board");
   context = canvas.getContext("2d");
@@ -343,7 +395,6 @@ ready(function() {
   //   context.fillRect(0, y, BOARD_WIDTH, 1);
   // }
 
-  window.pac = new Actor(113, 212, "m", "right");
   pac.render();
 
   var step = 0;

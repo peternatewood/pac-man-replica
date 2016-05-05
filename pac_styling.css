@@ -12,10 +12,13 @@ canvas {
 #debug {
   background-color: #000;
   color: #FFF;
+  display: none;
   font-family: monospace;
-  height: 100px;
+  height: 180px;
   left: 0px;
+  padding: 1em;
   position: absolute;
+  text-align: left;
   top: 0px;
-  width: 100px;
+  width: 180px;
 }
