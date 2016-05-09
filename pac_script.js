@@ -72,10 +72,11 @@ Actor.prototype.render = function() {
   this.context.closePath();
   this.context.fill();
 };
-Actor.prototype.detectCollision = function() {
+Actor.prototype.detectCollision = function(keyPressed) {
   var collision = "none";
   var xMod, yMod;
-  switch(this.direction) {
+  var direction = keyPressed ? keyPressed : this.direction
+  switch(direction) {
     case "up": xMod = 0; yMod = -1; break;
     case "down": xMod = 0; yMod = 1; break;
     case "left": xMod = -1; yMod = 0; break;
@@ -139,11 +140,11 @@ Actor.prototype.handleKeyDown = function(event) {
     if(this.isMoving === false) {
       event.preventDefault();
       this.clear();
-      this.direction = keyPressed;
-      if(this.detectCollision() == "wall") {
+      if(this.detectCollision(keyPressed) == "wall") {
         this.isMoving = false;
       }
       else {
+        this.direction = keyPressed;
         this.isMoving = true;
         this.moveIntervalID = setInterval(this.move.bind(this), this.speed);
       }
