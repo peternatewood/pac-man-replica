@@ -1,4 +1,4 @@
-var drawBorders = function() {
+var drawBorders = function(context) {
   var x = 0.5;
   var y = 32.5;
 
