@@ -1,36 +1,6 @@
-var canvas, context, canvasData;
+var actorCanvas, boardCanvas, pelletCanvas;
 
-var drawPixel = function(args) {
-  var index = (args.x + args.y * canvas.width) * 4;
-
-  canvasData.data[index + 0] = args.r;
-  canvasData.data[index + 1] = args.g;
-  canvasData.data[index + 2] = args.b;
-  canvasData.data[index + 3] = args.a;
-}
-
-var drawObject = function(args) {
-  var width = args.objectArr.length;
-  var height = args.objectArr[0].length;
-  context.clearRect(args.x, args.y, width, height);
-
-  args.objectArr.forEach(function(row, rIndex) {
-    row.forEach(function(col, cIndex) {
-      if(col == "x") {
-        drawPixel({
-          x: args.x + cIndex,
-          y: args.y + rIndex,
-          r: args.color.r,
-          g: args.color.g,
-          b: args.color.b,
-          a: args.color.a
-        });
-      }
-    });
-  });
-}
-
-var drawPellets = function() {
+var drawPellets = function(context) {
   context.fillStyle = "#FCF";
 
   gameBoard.forEach(function(row, rIndex) {
@@ -51,12 +21,13 @@ var drawPellets = function() {
   });
 }
 
-var Actor = function(startX, startY, name, direction) {
-  this.x = startX;
-  this.y = startY;
-  this.name = name;
+var Actor = function(args) {
+  this.context = args.context;
+  this.x = args.startX;
+  this.y = args.startY;
+  this.name = args.name;
   this.radius = 4;
-  this.direction = direction;
+  this.direction = args.direction;
   this.speed = PAC_MOVE_DELAY;
   this.isMoving = false;
   this.keyStates = {
@@ -67,8 +38,8 @@ var Actor = function(startX, startY, name, direction) {
   }
 }
 Actor.prototype.clear = function() {
-  context.fillStyle = "#000";
-  context.beginPath();
+  this.context.fillStyle = "#000";
+  this.context.beginPath();
 
   var arcStart, arcEnd;
   switch(this.direction) {
@@ -91,16 +62,16 @@ Actor.prototype.clear = function() {
   }
 
   if(this.name == "m") {
-    context.arc(this.x, this.y, 7, arcStart, arcEnd, false);
-    context.lineTo(this.x + 1, this.y);
+    this.context.arc(this.x, this.y, 7, arcStart, arcEnd, false);
+    this.context.lineTo(this.x + 1, this.y);
   }
 
-  context.closePath();
-  context.fill();
+  this.context.closePath();
+  this.context.fill();
 }
 Actor.prototype.render = function() {
-  context.fillStyle = nameToColor[this.name];
-  context.beginPath();
+  this.context.fillStyle = nameToColor[this.name];
+  this.context.beginPath();
 
   var arcStart, arcEnd;
   switch(this.direction) {
@@ -123,22 +94,12 @@ Actor.prototype.render = function() {
   }
 
   if(this.name == "m") {
-    context.arc(this.x, this.y, 6, arcStart, arcEnd, false);
-    context.lineTo(this.x, this.y);
+    this.context.arc(this.x, this.y, 6, arcStart, arcEnd, false);
+    this.context.lineTo(this.x, this.y);
   }
 
-  context.closePath();
-  context.fill();
-
-  // Used to update debug display in upper left
-  // document.getElementById("debug-x").innerHTML = this.x;
-  // document.getElementById("debug-y").innerHTML = this.y;
-  // document.getElementById("debug-direction").innerHTML = this.direction;
-  // document.getElementById("debug-is-moving").innerHTML = this.isMoving;
-  // document.getElementById("debug-key-up").innerHTML = this.keyStates.up;
-  // document.getElementById("debug-key-down").innerHTML = this.keyStates.down;
-  // document.getElementById("debug-key-left").innerHTML = this.keyStates.left;
-  // document.getElementById("debug-key-right").innerHTML = this.keyStates.right;
+  this.context.closePath();
+  this.context.fill();
 };
 Actor.prototype.detectCollision = function() {
   var collision = "none";
@@ -226,7 +187,7 @@ Actor.prototype.handleKeyUp = function(event) {
   }
 };
 
-var drawGhost = function(xPos, yPos, color, direction, step) {
+var drawGhost = function(context, xPos, yPos, color, direction, step) {
   context.clearRect(xPos - 7, yPos - 7, 14, 16);
 
   context.fillStyle = color;
@@ -243,10 +204,10 @@ var drawGhost = function(xPos, yPos, color, direction, step) {
   context.closePath();
   context.fill();
 
-  drawGhostTendrils(xPos, yPos, step);
-  drawGhostEyes(xPos, yPos, direction);
+  drawGhostTendrils(context, xPos, yPos, step);
+  drawGhostEyes(context, xPos, yPos, direction);
 }
-var drawGhostEyes = function(ghostX, ghostY, direction) {
+var drawGhostEyes = function(context, ghostX, ghostY, direction) {
   context.fillStyle = "#FFF";
   var x = ghostX -= 3;
   var y = ghostY -= 3;
@@ -303,7 +264,7 @@ var drawGhostEyes = function(ghostX, ghostY, direction) {
   context.fillRect(x, y, 2, 2);
   context.fillRect(x += 6, y, 2, 2);
 }
-var drawGhostTendrils = function(ghostX, ghostY, step) {
+var drawGhostTendrils = function(context, ghostX, ghostY, step) {
   var x = ghostX + 7;
   var y = ghostY + 5;
 
@@ -388,33 +349,38 @@ var ready = function(fun) {
 }
 
 ready(function() {
-  var actorCanvas = document.getElementById("actors");
-  var boardCanvas = document.getElementById("board");
-  var pelletCanvas = document.getElementById("pellets");
+  actorCanvas = new View("actors");
+  boardCanvas = new View("board");
+  pelletCanvas = new View("pellets");
 
-  var x = boardCanvas.offsetLeft + boardCanvas.clientLeft;
-  var y = boardCanvas.offsetTop + boardCanvas.clientTop;
+  var alignCanvases = function() {
+    var x = boardCanvas.canvas.offsetLeft + boardCanvas.canvas.clientLeft + "px";
+    var y = boardCanvas.canvas.offsetTop + boardCanvas.canvas.clientTop + "px";
 
-  actorCanvas.style["left"] = x + "px";
-  actorCanvas.style["top"] = y + "px";
-  pelletCanvas.style["left"] = x + "px";
-  pelletCanvas.style["top"] = y + "px";
+    actorCanvas.canvas.style["left"] = x;
+    actorCanvas.canvas.style["top"] = y;
+    pelletCanvas.canvas.style["left"] = x;
+    pelletCanvas.canvas.style["top"] = y;
+  }
+  alignCanvases();
 
-  window.pac = new Actor(113, 212, "m", "right");
+  window.pac = new Actor({
+    context: actorCanvas.context,
+    startX: 113,
+    startY: 212,
+    name: "m",
+    direction: "right"
+  });
 
   addEventListener("keydown", pac.handleKeyDown.bind(pac));
   addEventListener("keyup", pac.handleKeyUp.bind(pac));
-
-  canvas = document.getElementById("board");
-  context = canvas.getContext("2d");
-  canvasData = context.getImageData(0, 0, canvas.width, canvas.height);
 
   var debugDisp = document.getElementById("debug");
 
   var x = 8;
   var y = 8;
   for(var prop in charset) {
-    drawObject({
+    boardCanvas.drawObject({
       x: x,
       y: y,
       objectArr: charset[prop],
@@ -427,10 +393,10 @@ ready(function() {
     }
   }
 
-  context.putImageData(canvasData, 0, 0);
+  boardCanvas.context.putImageData(boardCanvas.canvasData, 0, 0);
 
-  drawBorders();
-  drawPellets();
+  drawBorders(boardCanvas.context);
+  drawPellets(pelletCanvas.context);
 
   // Green grid to delineate 8 x 8 tiles
   // context.fillStyle = "#080";
@@ -448,9 +414,20 @@ ready(function() {
     if(step == 0) step = 1;
     else step = 0;
 
-    drawGhost(112, 115, nameToColor["b"], "left", step);
-    drawGhost(96, 139, nameToColor["i"], "up", step);
-    drawGhost(112, 139, nameToColor["p"], "right", step);
-    drawGhost(128, 139, nameToColor["c"], "down", step);
+    drawGhost(actorCanvas.context, 112, 115, nameToColor["b"], "left", step);
+    drawGhost(actorCanvas.context, 96, 139, nameToColor["i"], "up", step);
+    drawGhost(actorCanvas.context, 112, 139, nameToColor["p"], "right", step);
+    drawGhost(actorCanvas.context, 128, 139, nameToColor["c"], "down", step);
+
+    // Used to update debug display in upper left
+    // document.getElementById("debug-x").innerHTML = this.x;
+    // document.getElementById("debug-y").innerHTML = this.y;
+    // document.getElementById("debug-direction").innerHTML = this.direction;
+    // document.getElementById("debug-is-moving").innerHTML = this.isMoving;
+    // document.getElementById("debug-key-up").innerHTML = this.keyStates.up;
+    // document.getElementById("debug-key-down").innerHTML = this.keyStates.down;
+    // document.getElementById("debug-key-left").innerHTML = this.keyStates.left;
+    // document.getElementById("debug-key-right").innerHTML = this.keyStates.right;
+
   }, 250);
 });
