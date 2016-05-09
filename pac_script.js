@@ -76,8 +76,28 @@ Actor.prototype.clear = function() {
   context.fillStyle = "#000";
   context.beginPath();
 
+  var arcStart, arcEnd;
+  switch(this.direction) {
+    case "up":
+      arcStart = 1.8 * Math.PI;
+      arcEnd = 1.2 * Math.PI;
+    break;
+    case "down":
+      arcStart = 0.8 * Math.PI;
+      arcEnd = 0.2 * Math.PI;
+    break;
+    case "left":
+      arcStart = 1.2 * Math.PI;
+      arcEnd = 0.8 * Math.PI;
+    break;
+    case "right":
+      arcStart = 0.2 * Math.PI;
+      arcEnd = 1.8 * Math.PI;
+    break;
+  }
+
   if(this.name == "m") {
-    context.arc(this.x, this.y, 7, 0.20 * Math.PI, 1.8 * Math.PI, false);
+    context.arc(this.x, this.y, 7, arcStart, arcEnd, false);
     context.lineTo(this.x + 1, this.y);
   }
 
@@ -88,8 +108,28 @@ Actor.prototype.render = function() {
   context.fillStyle = nameToColor[this.name];
   context.beginPath();
 
+  var arcStart, arcEnd;
+  switch(this.direction) {
+    case "up":
+      arcStart = 1.75 * Math.PI;
+      arcEnd = 1.25 * Math.PI;
+    break;
+    case "down":
+      arcStart = 0.75 * Math.PI;
+      arcEnd = 0.25 * Math.PI;
+    break;
+    case "left":
+      arcStart = 1.25 * Math.PI;
+      arcEnd = 0.75 * Math.PI;
+    break;
+    case "right":
+      arcStart = 0.25 * Math.PI;
+      arcEnd = 1.75 * Math.PI;
+    break;
+  }
+
   if(this.name == "m") {
-    context.arc(this.x, this.y, 6, 0.25 * Math.PI, 1.75 * Math.PI, false);
+    context.arc(this.x, this.y, 6, arcStart, arcEnd, false);
     context.lineTo(this.x, this.y);
   }
 
@@ -172,16 +212,16 @@ Actor.prototype.handleKeyDown = function(event) {
     this.keyStates[keyPressed] = true;
     if(this.isMoving === false) {
       event.preventDefault();
+      this.clear();
       this.direction = keyPressed;
       if(this.detectCollision() == "wall") {
         this.isMoving = false;
       }
       else {
         this.isMoving = true;
-        this.clear();
         this.moveIntervalID = setInterval(this.move.bind(this), this.speed);
-        this.render();
       }
+      this.render();
     }
   }
 };
@@ -354,6 +394,18 @@ var ready = function(fun) {
 }
 
 ready(function() {
+  var actorCanvas = document.getElementById("actors");
+  var boardCanvas = document.getElementById("board");
+  var pelletCanvas = document.getElementById("pellets");
+
+  var x = boardCanvas.offsetLeft + boardCanvas.clientLeft;
+  var y = boardCanvas.offsetTop + boardCanvas.clientTop;
+
+  actorCanvas.style["left"] = x + "px";
+  actorCanvas.style["top"] = y + "px";
+  pelletCanvas.style["left"] = x + "px";
+  pelletCanvas.style["top"] = y + "px";
+
   window.pac = new Actor(113, 212, "m", "right");
 
   addEventListener("keydown", pac.handleKeyDown.bind(pac));
