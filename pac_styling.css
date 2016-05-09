@@ -1,12 +1,25 @@
 body {
   background-color: #336;
+  position: relative;
   text-align: center;
 }
-canvas {
+canvas#board {
   background-color: #000;
   border: 4px solid #FF4;
   border-radius: 12px;
   margin: 3em;
+}
+
+#actors {
+  position: absolute;
+  z-index: 2;
+}
+#board {
+  z-index: 0;
+}
+#pellets {
+  position: absolute;
+  z-index: 1;
 }
 
 #debug {
