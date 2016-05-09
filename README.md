@@ -1,3 +1,3 @@
 # Pac-Alike
 
-A game much like Pac-Man, using functional JavaScript.
+A game much like Pac-Man, using Object-Oriented JavaScript.
