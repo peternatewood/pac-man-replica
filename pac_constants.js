@@ -271,3 +271,9 @@ var nameToColor = {
   c: "#FA6",
   m: "#FF0"
 }
+
+var BOARD_HEIGHT = 288;
+var BOARD_WIDTH = 224;
+var VERT_TILES = BOARD_HEIGHT / 8;
+var HORIZ_TILES = BOARD_WIDTH / 8;
+var PAC_MOVE_DELAY = 20;
