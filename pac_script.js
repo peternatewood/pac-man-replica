@@ -26,7 +26,7 @@ var Actor = function(args) {
   this.x = args.startX;
   this.y = args.startY;
   this.name = args.name;
-  this.radius = 4;
+  this.radius = 6;
   this.direction = args.direction;
   this.speed = PAC_MOVE_DELAY;
   this.isMoving = false;
@@ -38,36 +38,7 @@ var Actor = function(args) {
   }
 }
 Actor.prototype.clear = function() {
-  this.context.fillStyle = "#000";
-  this.context.beginPath();
-
-  var arcStart, arcEnd;
-  switch(this.direction) {
-    case "up":
-      arcStart = 1.8 * Math.PI;
-      arcEnd = 1.2 * Math.PI;
-    break;
-    case "down":
-      arcStart = 0.8 * Math.PI;
-      arcEnd = 0.2 * Math.PI;
-    break;
-    case "left":
-      arcStart = 1.2 * Math.PI;
-      arcEnd = 0.8 * Math.PI;
-    break;
-    case "right":
-      arcStart = 0.2 * Math.PI;
-      arcEnd = 1.8 * Math.PI;
-    break;
-  }
-
-  if(this.name == "m") {
-    this.context.arc(this.x, this.y, 7, arcStart, arcEnd, false);
-    this.context.lineTo(this.x + 1, this.y);
-  }
-
-  this.context.closePath();
-  this.context.fill();
+  this.context.clearRect(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
 }
 Actor.prototype.render = function() {
   this.context.fillStyle = nameToColor[this.name];
@@ -94,7 +65,7 @@ Actor.prototype.render = function() {
   }
 
   if(this.name == "m") {
-    this.context.arc(this.x, this.y, 6, arcStart, arcEnd, false);
+    this.context.arc(this.x, this.y, this.radius, arcStart, arcEnd, false);
     this.context.lineTo(this.x, this.y);
   }
 
