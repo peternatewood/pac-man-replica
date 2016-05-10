@@ -134,7 +134,7 @@ ready(function() {
     direction: "left",
     name: "b",
     startX: 112,
-    startY: 115
+    startY: 116
   });
   var inky = new Ghost({
     context: actorCanvas.context,
