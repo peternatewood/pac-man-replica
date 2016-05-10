@@ -62,7 +62,7 @@ Actor.prototype.detectCollision = function(keyPressed) {
   var x = Math.floor(this.x / 8);
   var y = Math.floor(this.y / 8) - 3;
 
-  var cell = gameBoard[y + yMod][x + xMod];
+  var cell = gameBoard.board[y + yMod][x + xMod];
   if(cell == "x") {
     collision = "wall";
   }
