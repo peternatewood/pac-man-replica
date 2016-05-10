@@ -27,3 +27,9 @@ Board.prototype.getEmptyTiles = function(tiles) {
   }
   return emptyTiles;
 };
+Board.prototype.getTileDistance = function(tile1, tile2) {
+  var width = tile1.x + tile2.x;
+  var height = tile1.y + tile2.y;
+
+  return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+};
