@@ -279,3 +279,12 @@ var HORIZ_TILES = BOARD_WIDTH / 8;
 var PAC_MOVE_DELAY = 20;
 var GHOST_MOVE_DELAY = 20;
 var GHOST_TENDRIL_DELAY = 200;
+
+var oppositeDirection = function(direction) {
+  switch(direction) {
+    case "up": return "down"; break;
+    case "down": return "up"; break;
+    case "left": return "right"; break;
+    case "right": return "left"; break;
+  }
+}
