@@ -33,3 +33,23 @@ Board.prototype.getTileDistance = function(tile1, tile2) {
 
   return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 };
+Board.prototype.getClosestTile = function(args) {
+  var tiles = args.tiles;
+  var target = {
+    x: Math.floor(args.target.x / 8),
+    y: Math.floor(args.target.y / 8) - 3
+  }
+  var closestTile;
+  for(var prop in tiles) {
+    if(tiles.hasOwnProperty(prop)) {
+      var currentDistance = this.getTileDistance(target, tiles[prop]);
+      if(closestTile) {
+        closestTile = currentDistance < this.getTileDistance(target, closestTile) ? tiles[prop] : closestTile;
+      }
+      else {
+        closestTile = tiles[prop];
+      }
+    }
+  }
+  return closestTile;
+};
