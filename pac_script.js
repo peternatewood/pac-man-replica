@@ -4,7 +4,7 @@ var gameBoard = new Board();
 var drawPellets = function(context) {
   context.fillStyle = "#FCF";
 
-  gameBoard.forEach(function(row, rIndex) {
+  gameBoard.board.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       if(col == ".") {
         context.fillRect((8 * cIndex) + 3, (8 * rIndex) + 27, 2, 2);
