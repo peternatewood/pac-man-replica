@@ -2,6 +2,7 @@ var Ghost = function(args) {
   this.x = args.startX;
   this.y = args.startY;
   this.direction = args.direction ? args.direction : "left";
+  this.nextDirection = this.direction;
   this.speed = GHOST_MOVE_DELAY;
   this.isMoving = false;
   this.context = args.context;
@@ -19,11 +20,12 @@ var Ghost = function(args) {
       case 0: this.animStep = 1; break;
       case 1: this.animStep = 0; break;
     }
-    this.render();
   }.bind(this), GHOST_TENDRIL_DELAY);
 }
-Ghost.prototype.render = function() {
+Ghost.prototype.clear = function() {
   this.context.clearRect(this.x - 7, this.y - 7, 14, 16);
+};
+Ghost.prototype.render = function() {
   this.context.fillStyle = this.color;
 
   var x = this.x;
@@ -137,10 +139,43 @@ Ghost.prototype.renderEyes = function() {
   this.context.fillRect(x += 6, y, 2, 2);
 };
 Ghost.prototype.move = function() {
+  this.clear();
   switch(this.direction){
     case "up": this.y--; break;
     case "down": this.y++; break;
     case "left": this.x--; break;
     case "right": this.x++; break;
+  }
+  if(this.x % 8 == 4 && this.y % 8 == 4) {
+    this.setNextDirection();
+    this.direction = this.nextDirection;
+  }
+  this.render();
+};
+Ghost.prototype.setNextDirection = function() {
+  var currentTile = {
+    x: Math.floor(this.x / 8),
+    y: Math.floor(this.y / 8) - 3
+  }
+  var adjacentTiles = gameBoard.getAdjacentTiles({x: this.x, y: this.y});
+  adjacentTiles[oppositeDirection(this.direction)] = undefined;
+
+  var emptyTiles = gameBoard.getEmptyTiles(adjacentTiles);
+  var nextTile = gameBoard.getClosestTile({
+    tiles: emptyTiles,
+    target: this.targetTile
+  });
+
+  if(nextTile.x < currentTile.x) {
+    this.nextDirection = "left";
+  }
+  else if(nextTile.x > currentTile.x) {
+    this.nextDirection = "right";
+  }
+  else if(nextTile.y < currentTile.y) {
+    this.nextDirection = "up";
+  }
+  else if(nextTile.y > currentTile.y) {
+    this.nextDirection = "down";
   }
 };
