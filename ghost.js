@@ -8,6 +8,11 @@ var Ghost = function(args) {
   this.name = args.name;
   this.color = nameToColor[args.name];
   this.animStep = 0;
+  this.movementMode = "scatter";
+  this.targetTile = {
+    x: 0,
+    y: 0
+  }
 
   setInterval(function() {
     switch(this.animStep) {
@@ -130,4 +135,4 @@ Ghost.prototype.renderEyes = function() {
   this.context.fillStyle = "#22F";
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
-}
+};
