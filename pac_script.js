@@ -118,15 +118,6 @@ ready(function() {
   drawBorders(boardCanvas.context);
   drawPellets(pelletCanvas.context);
 
-  // Green grid to delineate 8 x 8 tiles
-  // context.fillStyle = "#080";
-  // for(var x = 0; x < BOARD_WIDTH; x += 8) {
-  //   context.fillRect(x, 0, 1, BOARD_HEIGHT);
-  // }
-  // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
-  //   context.fillRect(0, y, BOARD_WIDTH, 1);
-  // }
-
   pac.render();
 
   var blinky = new Ghost({
@@ -157,4 +148,13 @@ ready(function() {
     startX: 128,
     startY: 139
   });
+
+  // Green grid to delineate 8 x 8 tiles
+  // pelletCanvas.context.fillStyle = "#080";
+  // for(var x = 0; x < BOARD_WIDTH; x += 8) {
+  //   pelletCanvas.context.fillRect(x, 0, 1, BOARD_HEIGHT);
+  // }
+  // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
+  //   pelletCanvas.context.fillRect(0, y, BOARD_WIDTH, 1);
+  // }
 });
