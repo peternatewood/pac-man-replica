@@ -1,4 +1,5 @@
 var actorCanvas, boardCanvas, pelletCanvas;
+var gameBoard = new Board();
 
 var drawPellets = function(context) {
   context.fillStyle = "#FCF";
