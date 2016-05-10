@@ -13,3 +13,17 @@ Board.prototype.getAdjacentTiles = function(args) {
     right: {y: y, x: x + 1}
   }
 };
+Board.prototype.getEmptyTiles = function(tiles) {
+  var emptyTiles = new Object;
+  for(var prop in tiles) {
+    if(tiles[prop] && tiles.hasOwnProperty(prop)) {
+      var x = tiles[prop].x;
+      var y = tiles[prop].y;
+      var currentTile = this.board[y][x];
+      if(currentTile != "x" && currentTile != "-") {
+        emptyTiles[prop] = tiles[prop];
+      }
+    }
+  }
+  return emptyTiles;
+};
