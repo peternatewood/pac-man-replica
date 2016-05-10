@@ -253,10 +253,6 @@ var START_BOARD = [
   "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ];
 
-gameBoard = START_BOARD.map(function(row) {
-  return row.split("");
-});
-
 var keyCodes = {
   37: "left",
   38: "up",
