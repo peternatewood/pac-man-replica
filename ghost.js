@@ -136,3 +136,11 @@ Ghost.prototype.renderEyes = function() {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
+Ghost.prototype.move = function() {
+  switch(this.direction){
+    case "up": this.y--; break;
+    case "down": this.y++; break;
+    case "left": this.x--; break;
+    case "right": this.x++; break;
+  }
+};
