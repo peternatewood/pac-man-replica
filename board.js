@@ -20,7 +20,7 @@ Board.prototype.getEmptyTiles = function(tiles) {
       var x = tiles[prop].x;
       var y = tiles[prop].y;
       var currentTile = this.board[y][x];
-      if(currentTile != "x" && currentTile != "-") {
+      if(currentTile == " " || currentTile == "." || currentTile == "o" || currentTile == "m") {
         emptyTiles[prop] = tiles[prop];
       }
     }
