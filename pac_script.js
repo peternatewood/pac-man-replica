@@ -109,25 +109,38 @@ Actor.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-  if(this.x % 8 == 4 && this.y % 8 == 4) {
-    if(this.keyStates[this.direction] === false || this.detectCollision() == "wall") {
-      var newDirection = false;
-      for(var prop in this.keyStates) {
-        if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
-          newDirection = prop;
-          break;
-        }
-      }
-      if(newDirection) {
+  var newDirection = false;
+  for(var prop in this.keyStates) {
+    if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
+      newDirection = prop;
+      break;
+    }
+  }
+  if(this.x + 8 <= 0) {
+    if(this.direction == "left") {
+      this.x = BOARD_WIDTH;
+    }
+  }
+  else if(this.x - 8 > BOARD_WIDTH) {
+    if(this.direction == "right") {
+      this.x = 0 - 8;
+    }
+  }
+  else if(this.x % 8 == 4 && this.y % 8 == 4) {
+    if(this.detectCollision() == "wall") {
+      if(newDirection && this.detectCollision(newDirection) != "wall") {
         this.direction = newDirection;
-        if(this.detectCollision() == "wall") {
-          this.isMoving = false;
-          clearInterval(this.moveIntervalID);
-        }
       }
       else {
         this.isMoving = false;
         clearInterval(this.moveIntervalID);
+      }
+    }
+    else if(this.keyStates[this.direction] === false) {
+      if(newDirection) {
+        if(this.detectCollision(newDirection) != "wall") {
+          this.direction = newDirection;
+        }
       }
     }
   }
@@ -381,25 +394,32 @@ ready(function() {
 
   pac.render();
 
-  var step = 0;
-  setInterval(function() {
-    if(step == 0) step = 1;
-    else step = 0;
-
-    drawGhost(actorCanvas.context, 112, 115, nameToColor["b"], "left", step);
-    drawGhost(actorCanvas.context, 96, 139, nameToColor["i"], "up", step);
-    drawGhost(actorCanvas.context, 112, 139, nameToColor["p"], "right", step);
-    drawGhost(actorCanvas.context, 128, 139, nameToColor["c"], "down", step);
-
-    // Used to update debug display in upper left
-    // document.getElementById("debug-x").innerHTML = this.x;
-    // document.getElementById("debug-y").innerHTML = this.y;
-    // document.getElementById("debug-direction").innerHTML = this.direction;
-    // document.getElementById("debug-is-moving").innerHTML = this.isMoving;
-    // document.getElementById("debug-key-up").innerHTML = this.keyStates.up;
-    // document.getElementById("debug-key-down").innerHTML = this.keyStates.down;
-    // document.getElementById("debug-key-left").innerHTML = this.keyStates.left;
-    // document.getElementById("debug-key-right").innerHTML = this.keyStates.right;
-
-  }, 250);
+  var blinky = new Ghost({
+    context: actorCanvas.context,
+    direction: "left",
+    name: "b",
+    startX: 112,
+    startY: 115
+  });
+  var inky = new Ghost({
+    context: actorCanvas.context,
+    direction: "up",
+    name: "i",
+    startX: 96,
+    startY: 139
+  });
+  var pinky = new Ghost({
+    context: actorCanvas.context,
+    direction: "right",
+    name: "p",
+    startX: 112,
+    startY: 139
+  });
+  var clyde = new Ghost({
+    context: actorCanvas.context,
+    direction: "down",
+    name: "c",
+    startX: 128,
+    startY: 139
+  });
 });
