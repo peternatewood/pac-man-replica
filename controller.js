@@ -36,3 +36,10 @@ var Controller = function(args) {
     startY: 139
   });
 }
+Controller.prototype.handleKeyDown = function(event) {
+  var keyPressed = keyCodes[event.keyCode];
+  if(keyPressed) {
+    event.preventDefault();
+    this.pac.handleKeyDown(keyPressed);
+  }
+}
