@@ -1,8 +1,15 @@
 var Board = function(args) {
-  this.board = START_BOARD.map(function(row) {
+  this.board = new Matrix;
+  this.board.matrix = START_BOARD.map(function(row) {
     return row.split("");
   });
 }
+Board.prototype.getCell = function(args) {
+  return this.board.matrix[args.y][args.x];
+};
+Board.prototype.setCell = function(args) {
+  this.board.matrix[args.y][args.x] = args.value;
+};
 Board.prototype.getAdjacentTiles = function(args) {
   var x = Math.floor(args.x / 8);
   var y = Math.floor(args.y / 8) - 3;
@@ -19,7 +26,7 @@ Board.prototype.getEmptyTiles = function(tiles) {
     if(tiles[prop] && tiles.hasOwnProperty(prop)) {
       var x = tiles[prop].x;
       var y = tiles[prop].y;
-      var currentTile = this.board[y][x];
+      var currentTile = this.getCell({x: x, y: y});
       if(currentTile == " " || currentTile == "." || currentTile == "o" || currentTile == "m") {
         emptyTiles[prop] = tiles[prop];
       }
