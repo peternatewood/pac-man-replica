@@ -31,3 +31,10 @@ View.prototype.drawObject = function(args) {
     }.bind(this));
   }.bind(this));
 };
+View.prototype.drawCircle = function(args) {
+  this.context.fillStyle = PELLET_COLOR;
+  this.context.beginPath();
+  this.context.arc(args.x, args.y, args.rad, 0, 2 * Math.PI, false);
+  this.context.closePath();
+  this.context.fill();
+};
