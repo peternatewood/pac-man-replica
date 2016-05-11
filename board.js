@@ -28,23 +28,19 @@ Board.prototype.getEmptyTiles = function(tiles) {
   return emptyTiles;
 };
 Board.prototype.getTileDistance = function(tile1, tile2) {
-  var width = tile1.x + tile2.x;
-  var height = tile1.y + tile2.y;
+  var width = Math.abs(tile1.x - tile2.x);
+  var height = Math.abs(tile1.y - tile2.y);
 
   return Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 };
 Board.prototype.getClosestTile = function(args) {
   var tiles = args.tiles;
-  var target = {
-    x: Math.floor(args.target.x / 8),
-    y: Math.floor(args.target.y / 8) - 3
-  }
   var closestTile;
   for(var prop in tiles) {
     if(tiles.hasOwnProperty(prop)) {
-      var currentDistance = this.getTileDistance(target, tiles[prop]);
+      var currentDistance = this.getTileDistance(args.target, tiles[prop]);
       if(closestTile) {
-        closestTile = currentDistance < this.getTileDistance(target, closestTile) ? tiles[prop] : closestTile;
+        closestTile = currentDistance < this.getTileDistance(args.target, closestTile) ? tiles[prop] : closestTile;
       }
       else {
         closestTile = tiles[prop];
