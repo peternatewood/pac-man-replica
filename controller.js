@@ -1,5 +1,8 @@
 var Controller = function(args) {
   this.actorCanvas = args.actorCanvas;
+  this.boardCanvas = args.boardCanvas;
+  this.pelletCanvas = args.pelletCanvas;
+
   this.pac = new Actor({
     context: this.actorCanvas.context,
     startX: 113,
