@@ -42,6 +42,35 @@ var Controller = function(args) {
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
 }
+Controller.prototype.drawPellets = function() {
+  gameBoard.board.matrix.forEach(function(row, rIndex) {
+    row.forEach(function(col, cIndex) {
+      if(col == ".") {
+        this.pelletCanvas.drawRect({
+          x: (8 * cIndex) + 3,
+          y: (8 * rIndex) + 27,
+          w: 2,
+          h: 2
+        });
+      }
+      else if(col == "o") {
+        this.pelletCanvas.drawCircle({
+          x: (8 * cIndex) + 4,
+          y: (8 * rIndex) + 28,
+          rad: 4
+        });
+      }
+      else if(col == "-") {
+        this.pelletCanvas.drawRect({
+          x: 8 * cIndex,
+          y: (8 * rIndex) + 29,
+          w: 8,
+          h: 2
+        });
+      }
+    });
+  });
+};
 Controller.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
