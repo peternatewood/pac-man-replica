@@ -62,7 +62,10 @@ Actor.prototype.detectCollision = function(keyPressed) {
   var x = Math.floor(this.x / 8);
   var y = Math.floor(this.y / 8) - 3;
 
-  var cell = gameBoard.board[y + yMod][x + xMod];
+  var cell = gameBoard.getCell({
+    x: x + xMod,
+    y: y + yMod
+  });
   if(cell == "x") {
     collision = "wall";
   }
@@ -123,12 +126,10 @@ Actor.prototype.move = function() {
   }
   this.render();
 };
-Actor.prototype.handleKeyDown = function(event) {
-  var keyPressed = keyCodes[event.keyCode];
+Actor.prototype.handleKeyDown = function(keyPressed) {
   if(keyPressed) {
     this.keyStates[keyPressed] = true;
     if(this.isMoving === false) {
-      event.preventDefault();
       this.clear();
       if(this.detectCollision(keyPressed) == "wall") {
         this.isMoving = false;
@@ -142,9 +143,6 @@ Actor.prototype.handleKeyDown = function(event) {
     }
   }
 };
-Actor.prototype.handleKeyUp = function(event) {
-  var keyPressed = keyCodes[event.keyCode];
-  if(keyPressed) {
-    this.keyStates[keyPressed] = false;
-  }
+Actor.prototype.handleKeyUp = function(keyPressed) {
+  this.keyStates[keyPressed] = false;
 };
