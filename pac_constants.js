@@ -276,6 +276,12 @@ var PAC_MOVE_DELAY = 20;
 var GHOST_MOVE_DELAY = 20;
 var GHOST_TENDRIL_DELAY = 200;
 
+var GHOST_MODES = [
+  "scatter",
+  "chase",
+  "frightened"
+];
+
 var oppositeDirection = function(direction) {
   switch(direction) {
     case "up": return "down"; break;
