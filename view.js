@@ -38,3 +38,7 @@ View.prototype.drawCircle = function(args) {
   this.context.closePath();
   this.context.fill();
 };
+View.prototype.drawRect = function(args) {
+  this.context.fillStyle = PELLET_COLOR;
+  this.context.fillRect(args.x, args.y, args.w, args.h);
+};
