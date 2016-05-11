@@ -38,6 +38,9 @@ var Controller = function(args) {
     startX: 128,
     startY: 139
   });
+
+  addEventListener("keydown", this.handleKeyDown.bind(this));
+  addEventListener("keyup", this.handleKeyUp.bind(this));
 }
 Controller.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
