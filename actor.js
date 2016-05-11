@@ -66,7 +66,7 @@ Actor.prototype.detectCollision = function(keyPressed) {
     x: x + xMod,
     y: y + yMod
   });
-  if(cell == "x") {
+  if(cell == "x" || cell == "-") {
     collision = "wall";
   }
   else if(cell == ".") {
