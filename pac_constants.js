@@ -276,6 +276,8 @@ var PAC_MOVE_DELAY = 20;
 var GHOST_MOVE_DELAY = 20;
 var GHOST_TENDRIL_DELAY = 200;
 
+var PELLET_COLOR = "#FCF";
+
 var GHOST_MODES = [
   "scatter",
   "chase",
