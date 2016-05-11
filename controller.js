@@ -42,4 +42,11 @@ Controller.prototype.handleKeyDown = function(event) {
     event.preventDefault();
     this.pac.handleKeyDown(keyPressed);
   }
-}
+};
+Controller.prototype.handleKeyUp = function(event) {
+  var keyPressed = keyCodes[event.keyCode];
+  if(keyPressed) {
+    event.preventDefault();
+    this.pac.handleKeyUp(keyPressed);
+  }
+};
