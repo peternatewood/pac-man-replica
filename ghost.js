@@ -126,14 +126,15 @@ Ghost.prototype.renderEyes = function() {
     break;
     case "left":
       x = this.x - 6;
-      y = this.y - 2;
+      y = this.y - 1;
     break;
     case "right":
       x = this.x - 2;
-      y = this.y - 2;
+      y = this.y - 1;
     break;
   }
 
+  // Pupils
   this.context.fillStyle = "#22F";
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
