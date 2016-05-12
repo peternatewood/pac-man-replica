@@ -39,6 +39,8 @@ var Controller = function(args) {
     startY: 139
   });
 
+  this.drawPellets();
+
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
 }
