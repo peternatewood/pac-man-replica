@@ -153,6 +153,11 @@ Ghost.prototype.move = function() {
   }
   this.render();
 };
+Ghost.prototype.setMode = function(modeName) {
+  if(GHOST_MODES.includes(modeName)) {
+    this.movementMode = modeName;
+  }
+};
 Ghost.prototype.setNextDirection = function() {
   var currentTile = {
     x: Math.floor(this.x / 8),
