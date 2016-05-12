@@ -268,6 +268,24 @@ var nameToColor = {
   m: "#FF0"
 }
 
+var noteToFreq = function(note, octave){
+  var letterToLowest = {
+    c: 16.35,
+    db: 17.32,
+    d: 18.35,
+    eb: 19.45,
+    e: 20.60,
+    f: 21.83,
+    gb: 23.12,
+    g: 24.50,
+    ab: 25.96,
+    a: 27.50,
+    bb: 29.14,
+    b: 30.87
+  }
+  return octave * letterToLowest[note];
+}
+
 var BOARD_HEIGHT = 288;
 var BOARD_WIDTH = 224;
 var VERT_TILES = BOARD_HEIGHT / 8;
