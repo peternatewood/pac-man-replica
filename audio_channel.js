@@ -3,15 +3,23 @@ var AudioChannel = function(args) {
   this.oscill = this.context.createOscillator();
   this.gain = this.context.createGain();
 
+  if(args) {
+    this.frequency = args.freq ? args.freq : 220;
+    this.wave = args.wave ? args.wave : "triangle";
+    this.volume = args.gain ? args.gain : 0.05;
+  }
+}
+AudioChannel.prototype.setNodes = function() {
+  this.oscill = this.context.createOscillator();
+  this.gain = this.context.createGain();
+
   this.oscill.connect(this.gain);
   this.gain.connect(this.context.destination);
 
-  if(args) {
-    this.oscill.frequency.value = args.freq ? args.freq : 220;
-    this.oscill.type = args.wave ? args.wave : "triangle";
-    this.gain.gain.value = args.gain ? args.gain : 0.05;
-  }
-}
+  this.oscill.frequency.value = this.frequency;
+  this.oscill.type = this.wave;
+  this.gain.gain.value = this.volume;
+};
 AudioChannel.prototype.playSong = function(song) {
   this.oscill.start();
   var playNextNote = function(song) {
@@ -26,4 +34,4 @@ AudioChannel.prototype.playSong = function(song) {
     }
   }.bind(this);
   playNextNote(song);
-}
+};
