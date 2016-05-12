@@ -283,7 +283,7 @@ var noteToFreq = function(note, octave){
     bb: 29.14,
     b: 30.87
   }
-  return octave * letterToLowest[note];
+  return Math.pow(2, octave) * letterToLowest[note];
 }
 
 var BOARD_HEIGHT = 288;
