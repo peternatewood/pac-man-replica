@@ -7,7 +7,7 @@ var AudioChannel = function(args) {
 
   this.frequency = args.freq ? args.freq : 220;
   this.wave = args.wave ? args.wave : "triangle";
-  this.volume = args.gain ? args.gain : 0.05;
+  this.volume = args.gain ? args.gain : 0.2;
 }
 AudioChannel.prototype.setNodes = function() {
   this.oscill = this.context.createOscillator();
@@ -30,7 +30,7 @@ AudioChannel.prototype.playSong = function(song) {
     }
     else {
       setTimeout(function() {
-        this.gain.gain.value = 0;
+        this.oscill.stop();
       }.bind(this), song[0].length);
     }
   }.bind(this);
