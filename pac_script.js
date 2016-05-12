@@ -58,17 +58,6 @@ ready(function() {
     pelletCanvas: pelletCanvas
   });
 
-  var alignCanvases = function() {
-    var x = boardCanvas.canvas.offsetLeft + boardCanvas.canvas.clientLeft + "px";
-    var y = boardCanvas.canvas.offsetTop + boardCanvas.canvas.clientTop + "px";
-
-    actorCanvas.canvas.style["left"] = x;
-    actorCanvas.canvas.style["top"] = y;
-    pelletCanvas.canvas.style["left"] = x;
-    pelletCanvas.canvas.style["top"] = y;
-  }
-  alignCanvases();
-
   var debugDisp = document.getElementById("debug");
 
   var x = 8;
