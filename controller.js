@@ -40,6 +40,7 @@ var Controller = function(args) {
   });
 
   this.drawPellets();
+  this.pac.render();
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
