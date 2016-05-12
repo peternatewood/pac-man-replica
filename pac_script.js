@@ -1,27 +1,6 @@
 var actorCanvas, boardCanvas, pelletCanvas;
 var gameBoard = new Board();
 
-var drawPellets = function(context) {
-  context.fillStyle = "#FCF";
-
-  gameBoard.board.forEach(function(row, rIndex) {
-    row.forEach(function(col, cIndex) {
-      if(col == ".") {
-        context.fillRect((8 * cIndex) + 3, (8 * rIndex) + 27, 2, 2);
-      }
-      else if(col == "o") {
-        context.beginPath();
-        context.arc((8 * cIndex) + 4, (8 * rIndex) + 28, 4, 0, 2 * Math.PI, false);
-        context.closePath();
-        context.fill();
-      }
-      else if(col == "-") {
-        context.fillRect((8 * cIndex), (8 * rIndex) + 29, 8, 2);
-      }
-    });
-  });
-}
-
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
@@ -73,6 +52,12 @@ ready(function() {
   boardCanvas = new View("board");
   pelletCanvas = new View("pellets");
 
+  var controller = new Controller({
+    actorCanvas: actorCanvas,
+    boardCanvas: boardCanvas,
+    pelletCanvas: pelletCanvas
+  });
+
   var alignCanvases = function() {
     var x = boardCanvas.canvas.offsetLeft + boardCanvas.canvas.clientLeft + "px";
     var y = boardCanvas.canvas.offsetTop + boardCanvas.canvas.clientTop + "px";
@@ -83,17 +68,6 @@ ready(function() {
     pelletCanvas.canvas.style["top"] = y;
   }
   alignCanvases();
-
-  window.pac = new Actor({
-    context: actorCanvas.context,
-    startX: 113,
-    startY: 212,
-    name: "m",
-    direction: "right"
-  });
-
-  addEventListener("keydown", pac.handleKeyDown.bind(pac));
-  addEventListener("keyup", pac.handleKeyUp.bind(pac));
 
   var debugDisp = document.getElementById("debug");
 
@@ -116,38 +90,6 @@ ready(function() {
   boardCanvas.context.putImageData(boardCanvas.canvasData, 0, 0);
 
   drawBorders(boardCanvas.context);
-  drawPellets(pelletCanvas.context);
-
-  pac.render();
-
-  var blinky = new Ghost({
-    context: actorCanvas.context,
-    direction: "left",
-    name: "b",
-    startX: 112,
-    startY: 116
-  });
-  var inky = new Ghost({
-    context: actorCanvas.context,
-    direction: "up",
-    name: "i",
-    startX: 96,
-    startY: 139
-  });
-  var pinky = new Ghost({
-    context: actorCanvas.context,
-    direction: "right",
-    name: "p",
-    startX: 112,
-    startY: 139
-  });
-  var clyde = new Ghost({
-    context: actorCanvas.context,
-    direction: "down",
-    name: "c",
-    startX: 128,
-    startY: 139
-  });
 
   // Green grid to delineate 8 x 8 tiles
   // pelletCanvas.context.fillStyle = "#080";
