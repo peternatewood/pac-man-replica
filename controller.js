@@ -44,6 +44,10 @@ var Controller = function(args) {
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
+
+  setInterval(function() {
+    this.blinky.move();
+  }.bind(this), GHOST_MOVE_DELAY);
 }
 Controller.prototype.drawPellets = function() {
   gameBoard.board.matrix.forEach(function(row, rIndex) {
