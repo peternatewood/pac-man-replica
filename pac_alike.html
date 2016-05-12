@@ -17,21 +17,13 @@
 
 <body>
   <div id="debug">
-    Pac x: <span id="debug-x"></span>
-    <br/>
-    Pac y: <span id="debug-y"></span>
-    <br/>
-    Direction: <span id="debug-direction"></span>
-    <br/>
-    isMoving: <span id="debug-is-moving"></span>
-    <br/>
-    keyState up: <span id="debug-key-up"></span>
-    <br/>
-    keyState down: <span id="debug-key-down"></span>
-    <br/>
-    keyState left: <span id="debug-key-left"></span>
-    <br/>
-    keyState right: <span id="debug-key-right"></span>
+    Pac Tile: <span id="pac-tile"></span>
+    <form id="update-data" method="post">
+      <label for="blinky-target">Blinky's Target</label>
+      <input id="blinky-target" type="text"/>
+
+      <input type="submit" value="Update"/>
+    </form>
   </div>
   <canvas id="pellets" height="288px" width="224px">
   </canvas>
