@@ -165,6 +165,22 @@ Ghost.prototype.move = function() {
   }
   this.render();
 };
+Ghost.prototype.exitHouse = function() {
+  this.setMode("exitting");
+  if(this.x < BOARD_WIDTH / 2) {
+    this.direction = "right";
+  }
+  else if(this.x > BOARD_WIDTH / 2) {
+    this.direction = "left";
+  }
+  else {
+    this.direction = "up";
+  }
+  if(this.y <= 116) {
+    this.setMode("scatter");
+    this.setNextDirection();
+  }
+};
 Ghost.prototype.setMode = function(modeName) {
   if(GHOST_MODES.includes(modeName)) {
     this.movementMode = modeName;
