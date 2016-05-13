@@ -15,28 +15,31 @@ var Controller = function(args) {
     direction: "left",
     name: "b",
     startX: 112,
-    startY: 116
+    startY: 116,
   });
   this.inky = new Ghost({
     context: this.actorCanvas.context,
     direction: "up",
+    mode: "house",
     name: "i",
     startX: 96,
-    startY: 139
+    startY: 139,
   });
   this.pinky = new Ghost({
     context: this.actorCanvas.context,
     direction: "right",
+    mode: "exitting",
     name: "p",
     startX: 112,
-    startY: 139
+    startY: 139,
   });
   this.clyde = new Ghost({
     context: this.actorCanvas.context,
     direction: "down",
+    mode: "house",
     name: "c",
     startX: 128,
-    startY: 139
+    startY: 139,
   });
 
   this.drawPellets();
@@ -47,7 +50,17 @@ var Controller = function(args) {
 
   setInterval(function() {
     this.blinky.move();
+    this.inky.move();
+    this.pinky.move();
+    this.clyde.move();
   }.bind(this), GHOST_MOVE_DELAY);
+
+  setTimeout(function() {
+    this.inky.setMode("exitting");
+  }.bind(this), INKY_EXIT_DELAY);
+  setTimeout(function() {
+    this.clyde.setMode("exitting");
+  }.bind(this), CLYDE_EXIT_DELAY);
 }
 Controller.prototype.drawPellets = function() {
   gameBoard.board.matrix.forEach(function(row, rIndex) {
