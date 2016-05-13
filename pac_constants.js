@@ -459,6 +459,7 @@ var PELLET_COLOR = "#FCF";
 
 var GHOST_MODES = [
   "house",
+  "exitting",
   "scatter",
   "chase",
   "frightened"
