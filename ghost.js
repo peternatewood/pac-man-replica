@@ -8,11 +8,8 @@ var Ghost = function(args) {
   this.name = args.name;
   this.color = nameToColor[args.name];
   this.animStep = 0;
-  this.movementMode = "scatter";
-  this.targetTile = {
-    x: 0,
-    y: 0
-  }
+  this.movementMode = args.mode ? args.mode : "scatter";
+  this.targetTile = args.target ? args.target : {x: 0, y: 0};
 
   setInterval(function() {
     switch(this.animStep) {
@@ -146,7 +143,15 @@ Ghost.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-  if(this.x % 8 == 4 && this.y % 8 == 4) {
+  if(this.movementMode == "house") {
+    if(this.willCollide()) {
+      this.direction = oppositeDirection(this.direction);
+    }
+  }
+  else if(this.movementMode == "exitting") {
+    this.exitHouse();
+  }
+  else if(this.x % 8 == 4 && this.y % 8 == 4) {
     this.setNextDirection();
   }
   this.render();
