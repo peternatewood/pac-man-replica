@@ -9,7 +9,7 @@ var Ghost = function(args) {
   this.color = nameToColor[args.name];
   this.animStep = 0;
   this.movementMode = args.mode ? args.mode : "scatter";
-  this.targetTile = args.target ? args.target : {x: 0, y: 0};
+  this.targetTile = GHOST_CORNERS[this.name];
 
   setInterval(function() {
     switch(this.animStep) {
