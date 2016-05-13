@@ -11,6 +11,9 @@ canvas {
   margin: 3em;
   position: absolute;
 }
+input {
+  max-width: 80%;
+}
 
 #actors {
   z-index: 2;
