@@ -7,6 +7,7 @@ var Actor = function(args) {
   this.direction = args.direction;
   this.speed = PAC_MOVE_DELAY;
   this.isMoving = false;
+  this.mouthPos = 0.25;
   this.keyStates = {
     up: false,
     down: false,
@@ -26,23 +27,23 @@ Actor.prototype.render = function() {
   var cheekY = 0;
   switch(this.direction) {
     case "up":
-      arcStart = 1.75 * Math.PI;
-      arcEnd = 1.25 * Math.PI;
+      arcStart = (1.5 + this.mouthPos) * Math.PI;
+      arcEnd = (3.5 - this.mouthPos) * Math.PI;
       cheekY = 2.5;
     break;
     case "down":
-      arcStart = 0.75 * Math.PI;
-      arcEnd = 0.25 * Math.PI;
+      arcStart = (0.5 + this.mouthPos) * Math.PI;
+      arcEnd = (2.5 - this.mouthPos) * Math.PI;
       cheekY = -2.5;
     break;
     case "left":
-      arcStart = 1.25 * Math.PI;
-      arcEnd = 0.75 * Math.PI;
+      arcStart = (1.0 + this.mouthPos) * Math.PI;
+      arcEnd = (3.0 - this.mouthPos) * Math.PI;
       cheekX = 2.5;
     break;
     case "right":
-      arcStart = 0.25 * Math.PI;
-      arcEnd = 1.75 * Math.PI;
+      arcStart = (0.0 + this.mouthPos) * Math.PI;
+      arcEnd = (2.0 - this.mouthPos) * Math.PI;
       cheekX = -2.5;
     break;
   }
