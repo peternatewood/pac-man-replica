@@ -2,7 +2,6 @@ var Ghost = function(args) {
   this.x = args.startX;
   this.y = args.startY;
   this.direction = args.direction ? args.direction : "left";
-  this.nextDirection = this.direction;
   this.speed = GHOST_MOVE_DELAY;
   this.isMoving = false;
   this.context = args.context;
@@ -149,7 +148,6 @@ Ghost.prototype.move = function() {
   }
   if(this.x % 8 == 4 && this.y % 8 == 4) {
     this.setNextDirection();
-    this.direction = this.nextDirection;
   }
   this.render();
 };
@@ -173,15 +171,15 @@ Ghost.prototype.setNextDirection = function() {
   });
 
   if(nextTile.x < currentTile.x) {
-    this.nextDirection = "left";
+    this.direction = "left";
   }
   else if(nextTile.x > currentTile.x) {
-    this.nextDirection = "right";
+    this.direction = "right";
   }
   else if(nextTile.y < currentTile.y) {
-    this.nextDirection = "up";
+    this.direction = "up";
   }
   else if(nextTile.y > currentTile.y) {
-    this.nextDirection = "down";
+    this.direction = "down";
   }
 };
