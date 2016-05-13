@@ -6,9 +6,9 @@ var Actor = function(args) {
   this.radius = 6;
   this.direction = args.direction;
   this.speed = PAC_MOVE_DELAY;
-  this.isMoving = false;
   this.mouthPos = 0.0;
   this.mouthIsOpening = true;
+  this.moveIntervalID = false;
   this.keyStates = {
     up: false,
     down: false,
@@ -18,7 +18,7 @@ var Actor = function(args) {
 }
 Actor.prototype.clear = function() {
   this.context.clearRect(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
-}
+};
 Actor.prototype.render = function() {
   this.context.fillStyle = nameToColor[this.name];
   this.context.beginPath();
@@ -98,12 +98,21 @@ Actor.prototype.move = function() {
   else if(this.mouthPos >= 0.5) {
     this.mouthIsOpening = false;
   }
+  var xInTile = this.x % 8;
+  var yInTile = this.y % 8;
   switch(this.direction) {
     case "up": this.y--; break;
     case "down": this.y++; break;
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
+  if((this.direction == "up" || this.direction == "down") && xInTile != 4) {
+    this.x += xInTile < 4 ? 1 : -1;
+  }
+  else if((this.direction == "left" || this.direction == "right") && yInTile != 4) {
+    this.y += yInTile < 4 ? 1 : -1;
+  }
+
   var newDirection = false;
   for(var prop in this.keyStates) {
     if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
@@ -111,6 +120,7 @@ Actor.prototype.move = function() {
       break;
     }
   }
+
   if(this.x + 8 <= 0) {
     if(this.direction == "left") {
       this.x = BOARD_WIDTH;
@@ -121,21 +131,21 @@ Actor.prototype.move = function() {
       this.x = 0 - 8;
     }
   }
-  else if(this.x % 8 == 4 && this.y % 8 == 4) {
-    if(this.detectCollision() == "wall") {
-      if(newDirection && this.detectCollision(newDirection) != "wall") {
-        this.direction = newDirection;
-      }
-      else {
-        this.isMoving = false;
-        clearInterval(this.moveIntervalID);
-      }
-    }
-    else if(this.keyStates[this.direction] === false) {
+  else {
+    if(this.keyStates[this.direction] === false) {
       if(newDirection) {
         if(this.detectCollision(newDirection) != "wall") {
           this.direction = newDirection;
         }
+      }
+    }
+    if(xInTile == 4 && yInTile == 4 && this.detectCollision() == "wall") {
+      if(newDirection && this.detectCollision(newDirection) != "wall") {
+        this.direction = newDirection;
+      }
+      else {
+        clearInterval(this.moveIntervalID);
+        this.moveIntervalID = false;
       }
     }
   }
@@ -143,15 +153,10 @@ Actor.prototype.move = function() {
 };
 Actor.prototype.handleKeyDown = function(keyPressed) {
   if(keyPressed) {
-    this.keyStates[keyPressed] = true;
-    if(this.isMoving === false) {
+    if(this.keyStates[keyPressed] === false) {
+      this.keyStates[keyPressed] = true;
       this.clear();
-      if(this.detectCollision(keyPressed) == "wall") {
-        this.isMoving = false;
-      }
-      else {
-        this.direction = keyPressed;
-        this.isMoving = true;
+      if(this.moveIntervalID === false && this.detectCollision(keyPressed) != "wall") {
         this.moveIntervalID = setInterval(this.move.bind(this), this.speed);
       }
       this.render();
