@@ -31,6 +31,29 @@ View.prototype.drawObject = function(args) {
     }.bind(this));
   }.bind(this));
 };
+View.prototype.drawText = function(args) {
+  var letters = args.text.split("");
+  var x = args.x ? args.x * 8 : 0;
+  var y = args.y ? args.y * 8 : 0;
+  letters.forEach(function(letter) {
+    if(charset[letter]) {
+      this.drawObject({
+        objectArr: charset[letter],
+        x: x,
+        y: y,
+        color: args.color
+      });
+    }
+    else if(letter == "\n") {
+      y += 8;
+    }
+    x += 8;
+    if(x + 8 > BOARD_WIDTH - 8) {
+      x = args.x ? args.x * 8 : 0;
+      y += 8 + (args.x ? args.x * 8 : 0);
+    }
+  }.bind(this));
+};
 View.prototype.drawCircle = function(args) {
   this.context.fillStyle = PELLET_COLOR;
   this.context.beginPath();
