@@ -389,8 +389,8 @@ var START_BOARD = [
   "x.xxxx.xx.xxxxxxxx.xx.xxxx.x",
   "x......xx....xx....xx......x",
   "xxxxxx.xxxxx xx xxxxx.xxxxxx",
-  "     x.xxxxx xx xxxxx.x     ",
-  "     x.xx    b     xx.x     ",
+  "     x.xxxxx/xx/xxxxx.x     ",
+  "     x.xx          xx.x     ",
   "     x.xx xxx--xxx xx.x     ",
   "xxxxxx.xx x      x xx.xxxxxx",
   "      .   xi p c x   .      ",
@@ -398,7 +398,7 @@ var START_BOARD = [
   "     x.xx xxxxxxxx xx.x     ",
   "     x.xx          xx.x     ",
   "     x.xx xxxxxxxx xx.x     ",
-  "xxxxxx.xx xxxxxxxx xx.xxxxxx",
+  "xxxxxx.xx/xxxxxxxx/xx.xxxxxx",
   "x............xx............x",
   "x.xxxx.xxxxx.xx.xxxxx.xxxx.x",
   "x.xxxx.xxxxx.xx.xxxxx.xxxx.x",
@@ -468,11 +468,13 @@ var GHOST_MODES = [
 ];
 
 var GHOST_CORNERS = {
-  b: {x: 27, y: 0},
+  b: {x: 22, y: 0},
   i: {x: 27, y: 35},
-  p: {x: 0, y: 0},
+  p: {x: 5, y: 0},
   c: {x: 0, y: 35}
 }
+
+var EMPTY_TILES = [" ", ".", "o", "m", "/"];
 
 var oppositeDirection = function(direction) {
   switch(direction) {
