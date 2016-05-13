@@ -7,7 +7,8 @@ var Actor = function(args) {
   this.direction = args.direction;
   this.speed = PAC_MOVE_DELAY;
   this.isMoving = false;
-  this.mouthPos = 0.25;
+  this.mouthPos = 0.0;
+  this.mouthIsOpening = true;
   this.keyStates = {
     up: false,
     down: false,
@@ -90,6 +91,13 @@ Actor.prototype.detectCollision = function(keyPressed) {
 };
 Actor.prototype.move = function() {
   this.clear();
+  this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.1)) * 10) / 10;
+  if(this.mouthPos <= 0) {
+    this.mouthIsOpening = true;
+  }
+  else if(this.mouthPos >= 0.5) {
+    this.mouthIsOpening = false;
+  }
   switch(this.direction) {
     case "up": this.y--; break;
     case "down": this.y++; break;
