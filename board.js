@@ -27,7 +27,7 @@ Board.prototype.getEmptyTiles = function(tiles) {
       var x = tiles[prop].x;
       var y = tiles[prop].y;
       var currentTile = this.getCell({x: x, y: y});
-      if(currentTile == " " || currentTile == "." || currentTile == "o" || currentTile == "m") {
+      if(!(prop == "up" && currentTile == "/") && EMPTY_TILES.includes(currentTile)) {
         emptyTiles[prop] = tiles[prop];
       }
     }
