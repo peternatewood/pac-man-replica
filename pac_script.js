@@ -60,22 +60,6 @@ ready(function() {
 
   var debugDisp = document.getElementById("debug");
 
-  var x = 8;
-  var y = 8;
-  for(var prop in charset) {
-    boardCanvas.drawObject({
-      x: x,
-      y: y,
-      objectArr: charset[prop],
-      color: {r: 255, g: 255, b: 255, a: 255}
-    });
-    x += 8;
-    if(x + 8 > BOARD_WIDTH) {
-      x = 8;
-      y += 8;
-    }
-  }
-
   boardCanvas.context.putImageData(boardCanvas.canvasData, 0, 0);
 
   drawBorders(boardCanvas.context);
