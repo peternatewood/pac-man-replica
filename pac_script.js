@@ -48,6 +48,17 @@ var ready = function(fun) {
 }
 
 ready(function() {
+  document.getElementById("update-data").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var blinkyTarget = document.getElementById("blinky-target").value.split(",");
+    if(blinkyTarget) {
+      controller.blinky.targetTile = {
+        x: blinkyTarget[0],
+        y: blinkyTarget[1]
+      }
+    }
+  });
+
   actorCanvas = new View("actors");
   boardCanvas = new View("board");
   pelletCanvas = new View("pellets");
