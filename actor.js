@@ -22,28 +22,34 @@ Actor.prototype.render = function() {
   this.context.beginPath();
 
   var arcStart, arcEnd;
+  var cheekX = 0;
+  var cheekY = 0;
   switch(this.direction) {
     case "up":
       arcStart = 1.75 * Math.PI;
       arcEnd = 1.25 * Math.PI;
+      cheekY = 2.5;
     break;
     case "down":
       arcStart = 0.75 * Math.PI;
       arcEnd = 0.25 * Math.PI;
+      cheekY = -2.5;
     break;
     case "left":
       arcStart = 1.25 * Math.PI;
       arcEnd = 0.75 * Math.PI;
+      cheekX = 2.5;
     break;
     case "right":
       arcStart = 0.25 * Math.PI;
       arcEnd = 1.75 * Math.PI;
+      cheekX = -2.5;
     break;
   }
 
   if(this.name == "m") {
     this.context.arc(this.x, this.y, this.radius, arcStart, arcEnd, false);
-    this.context.lineTo(this.x, this.y);
+    this.context.lineTo(this.x + cheekX, this.y + cheekY);
   }
 
   this.context.closePath();
