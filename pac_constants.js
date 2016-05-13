@@ -467,6 +467,13 @@ var GHOST_MODES = [
   "frightened"
 ];
 
+var GHOST_CORNERS = {
+  b: {x: 27, y: 0},
+  i: {x: 27, y: 35},
+  p: {x: 0, y: 0},
+  c: {x: 0, y: 35}
+}
+
 var oppositeDirection = function(direction) {
   switch(direction) {
     case "up": return "down"; break;
