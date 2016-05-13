@@ -109,6 +109,15 @@ var charset = {
     " xx   xx",
     "        "
   ],
+  B: [
+    " xxxxxx ",
+    " xx   xx",
+    " xx   xx",
+    " xxxxxx ",
+    " xx   xx",
+    " xx   xx",
+    " xxxxxx "
+  ],
   C: [
     "   xxxx ",
     "  xx  xx",
@@ -139,11 +148,21 @@ var charset = {
     "  xxxxxx",
     "        "
   ],
+  F: [
+    " xxxxxxx",
+    " xx     ",
+    " xx     ",
+    " xxxxxx ",
+    " xx     ",
+    " xx     ",
+    " xx     ",
+    "        "
+  ],
   G: [
     "   xxxxx",
     "  xx    ",
     " xx     ",
-    " xx   xx",
+    " xx  xxx",
     " xx   xx",
     "  xx  xx",
     "   xxxxx",
@@ -169,6 +188,56 @@ var charset = {
     "  xxxxxx",
     "        "
   ],
+  J: [
+    "      xx",
+    "      xx",
+    "      xx",
+    "      xx",
+    "      xx",
+    " xx   xx",
+    "  xxxxx ",
+    "        "
+  ],
+  K: [
+    " xx   xx",
+    " xx  xx ",
+    " xx xx  ",
+    " xxxx   ",
+    " xxxxx  ",
+    " xx xxx ",
+    " xx  xxx",
+    "        "
+  ],
+  L: [
+    " xx     ",
+    " xx     ",
+    " xx     ",
+    " xx     ",
+    " xx     ",
+    " xx     ",
+    " xxxxxxx",
+    "        "
+  ],
+  M: [
+    " xx   xx",
+    " xxx xxx",
+    " xxxxxxx",
+    " xxxxxxx",
+    " xx x xx",
+    " xx   xx",
+    " xx   xx",
+    "        "
+  ],
+  N: [
+    " xx   xx",
+    " xxx  xx",
+    " xxxx xx",
+    " xxxxxxx",
+    " xx xxxx",
+    " xx  xxx",
+    " xx   xx",
+    "        "
+  ],
   O: [
     "  xxxxx ",
     " xx   xx",
@@ -177,6 +246,26 @@ var charset = {
     " xx   xx",
     " xx   xx",
     "  xxxxx ",
+    "        "
+  ],
+  P: [
+    " xxxxxx ",
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xxxxxx ",
+    " xx     ",
+    " xx     ",
+    "        "
+  ],
+  Q: [
+    "  xxxxx ",
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xx xxxx",
+    " xx  xx ",
+    "  xxxx x",
     "        "
   ],
   R: [
@@ -189,6 +278,66 @@ var charset = {
     " xx  xxx",
     "        "
   ],
+  S: [
+    "  xxxx  ",
+    " xx  xx ",
+    " xx     ",
+    "  xxxxx ",
+    "      xx",
+    " xx   xx",
+    "  xxxxx ",
+    "        "
+  ],
+  T: [
+    " xxxxxx ",
+    "   xx   ",
+    "   xx   ",
+    "   xx   ",
+    "   xx   ",
+    "   xx   ",
+    "   xx   ",
+    "        "
+  ],
+  U: [
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    "  xxxxx ",
+    "        "
+  ],
+  V: [
+    " xx   xx",
+    " xx   xx",
+    " xx   xx",
+    " xxx xxx",
+    "  xxxxx ",
+    "   xxx  ",
+    "    x   ",
+    "        "
+  ],
+  W: [
+    " xx   xx",
+    " xx   xx",
+    " xx x xx",
+    " xxxxxxx",
+    " xxxxxxx",
+    " xxx xxx",
+    " xx   xx",
+    "        "
+  ],
+  X: [
+    " xx   xx",
+    " xxx xxx",
+    "  xxxxx ",
+    "   xxx  ",
+    "  xxxxx ",
+    " xxx xxx",
+    " xx   xx",
+    "        "
+  ],
   Y: [
     "  xx  xx",
     "  xx  xx",
@@ -198,6 +347,16 @@ var charset = {
     "    xx  ",
     "    xx  ",
     "        ",
+  ],
+  Z: [
+    " xxxxxxx",
+    "     xxx",
+    "    xxx ",
+    "   xxx  ",
+    "  xxx   ",
+    " xxx    ",
+    " xxxxxxx",
+    "        "
   ],
   "!": [
     "    xxx ",
