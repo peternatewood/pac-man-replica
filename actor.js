@@ -150,6 +150,7 @@ Actor.prototype.move = function() {
     }
   }
   this.render();
+  return this.detectCollision();
 };
 Actor.prototype.handleKeyDown = function(keyPressed) {
   if(keyPressed) {
