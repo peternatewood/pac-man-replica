@@ -59,9 +59,9 @@ ready(function() {
     }
   });
 
-  actorCanvas = new View("actors");
-  boardCanvas = new View("board");
-  pelletCanvas = new View("pellets");
+  actorCanvas = new BrowserView("actors");
+  boardCanvas = new BrowserView("board");
+  pelletCanvas = new BrowserView("pellets");
 
   var controller = new GameController({
     actorCanvas: actorCanvas,

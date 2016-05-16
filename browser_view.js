@@ -1,9 +1,9 @@
-var View = function(elementId) {
+var BrowserView = function(elementId) {
   this.canvas = document.getElementById(elementId);
   this.context = this.canvas.getContext("2d");
   this.canvasData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height);
 }
-View.prototype.drawPixel = function(args) {
+BrowserView.prototype.drawPixel = function(args) {
   var index = (args.x + args.y * this.canvas.width) * 4;
 
   this.canvasData.data[index + 0] = args.r;
@@ -11,7 +11,7 @@ View.prototype.drawPixel = function(args) {
   this.canvasData.data[index + 2] = args.b;
   this.canvasData.data[index + 3] = args.a;
 };
-View.prototype.drawObject = function(args) {
+BrowserView.prototype.drawObject = function(args) {
   var width = args.objectArr.length;
   var height = args.objectArr[0].length;
   this.context.clearRect(args.x, args.y, width, height);
@@ -31,7 +31,7 @@ View.prototype.drawObject = function(args) {
     }.bind(this));
   }.bind(this));
 };
-View.prototype.drawText = function(args) {
+BrowserView.prototype.drawText = function(args) {
   var letters = args.text.split("");
   var x = args.x ? args.x * 8 : 0;
   var y = args.y ? args.y * 8 : 0;
@@ -54,17 +54,17 @@ View.prototype.drawText = function(args) {
     }
   }.bind(this));
 };
-View.prototype.drawCircle = function(args) {
+BrowserView.prototype.drawCircle = function(args) {
   this.context.fillStyle = PELLET_COLOR;
   this.context.beginPath();
   this.context.arc(args.x, args.y, args.rad, 0, 2 * Math.PI, false);
   this.context.closePath();
   this.context.fill();
 };
-View.prototype.drawRect = function(args) {
+BrowserView.prototype.drawRect = function(args) {
   this.context.fillStyle = PELLET_COLOR;
   this.context.fillRect(args.x, args.y, args.w, args.h);
 };
-View.prototype.clearRect = function(args) {
+BrowserView.prototype.clearRect = function(args) {
   this.context.clearRect(args.x, args.y, args.w, args.h);
 };
