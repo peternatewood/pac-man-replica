@@ -63,7 +63,7 @@ ready(function() {
   boardCanvas = new View("board");
   pelletCanvas = new View("pellets");
 
-  var controller = new Controller({
+  var controller = new GameController({
     actorCanvas: actorCanvas,
     boardCanvas: boardCanvas,
     pelletCanvas: pelletCanvas

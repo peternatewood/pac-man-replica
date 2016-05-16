@@ -1,4 +1,4 @@
-var Controller = function(args) {
+var GameController = function(args) {
   this.actorCanvas = args.actorCanvas;
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
@@ -62,7 +62,7 @@ var Controller = function(args) {
     this.clyde.setMode("exitting");
   }.bind(this), CLYDE_EXIT_DELAY);
 }
-Controller.prototype.drawPellets = function() {
+GameController.prototype.drawPellets = function() {
   this.pelletCanvas.clearRect({
     x: 0,
     y: 0,
@@ -97,14 +97,14 @@ Controller.prototype.drawPellets = function() {
     });
   });
 };
-Controller.prototype.handleKeyDown = function(event) {
+GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
     this.pac.handleKeyDown(keyPressed);
   }
 };
-Controller.prototype.handleKeyUp = function(event) {
+GameController.prototype.handleKeyUp = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
