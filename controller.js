@@ -15,7 +15,7 @@ var Controller = function(args) {
     direction: "left",
     name: "b",
     startX: 112,
-    startY: 116,
+    startY: 116
   });
   this.inky = new Ghost({
     context: this.actorCanvas.context,
@@ -23,7 +23,7 @@ var Controller = function(args) {
     mode: "house",
     name: "i",
     startX: 96,
-    startY: 139,
+    startY: 139
   });
   this.pinky = new Ghost({
     context: this.actorCanvas.context,
@@ -31,7 +31,7 @@ var Controller = function(args) {
     mode: "exitting",
     name: "p",
     startX: 112,
-    startY: 139,
+    startY: 139
   });
   this.clyde = new Ghost({
     context: this.actorCanvas.context,
@@ -39,7 +39,7 @@ var Controller = function(args) {
     mode: "house",
     name: "c",
     startX: 128,
-    startY: 139,
+    startY: 139
   });
 
   this.drawPellets();
@@ -63,6 +63,12 @@ var Controller = function(args) {
   }.bind(this), CLYDE_EXIT_DELAY);
 }
 Controller.prototype.drawPellets = function() {
+  this.pelletCanvas.clearRect({
+    x: 0,
+    y: 0,
+    w: BOARD_WIDTH,
+    h: BOARD_HEIGHT
+  });
   gameBoard.board.matrix.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       if(col == ".") {
