@@ -145,7 +145,7 @@ Actor.prototype.move = function() {
     }
   }
   this.render();
-  return this.detectCollision();
+  return {x: this.x, y: this.y}
 };
 Actor.prototype.moveTowardCenter = function() {
   var xInTile = this.x % 8;
