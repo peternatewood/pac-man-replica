@@ -13,6 +13,20 @@ Board.prototype.setCell = function(args) {
 Board.prototype.find = function(value) {
   return this.board.find(value);
 };
+Board.prototype.detectCollision = function(coords) {
+  var tile = this.getCell({
+    x: Math.floor(coords.x / 8),
+    y: Math.floor(coords.y / 8) - 3
+  });
+  switch(tile) {
+    case "x": return "wall"; break;
+    case "-": return "door"; break;
+    case "o": return "powerPellet"; break;
+    case "/": return "ghostBlocker"; break;
+    case " ": return "none"; break;
+    default: return "none"; break;
+  }
+};
 Board.prototype.getAdjacentTiles = function(args) {
   var x = Math.floor(args.x / 8);
   var y = Math.floor(args.y / 8) - 3;
