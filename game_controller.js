@@ -1,4 +1,11 @@
 var GameController = function(args) {
+  this.keyStates = {
+    up: false,
+    down: false,
+    left: false,
+    right: false
+  }
+
   this.actorCanvas = args.actorCanvas;
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
