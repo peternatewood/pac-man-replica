@@ -106,12 +106,7 @@ Actor.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-  if((this.direction == "up" || this.direction == "down") && xInTile != 4) {
-    this.x += xInTile < 4 ? 1 : -1;
-  }
-  else if((this.direction == "left" || this.direction == "right") && yInTile != 4) {
-    this.y += yInTile < 4 ? 1 : -1;
-  }
+  this.moveTowardCenter();
 
   var newDirection = false;
   for(var prop in this.keyStates) {
@@ -151,6 +146,16 @@ Actor.prototype.move = function() {
   }
   this.render();
   return this.detectCollision();
+};
+Actor.prototype.moveTowardCenter = function() {
+  var xInTile = this.x % 8;
+  var yInTile = this.y % 8;
+  if((this.direction == "up" || this.direction == "down") && xInTile != 4) {
+    this.x += xInTile < 4 ? 1 : -1;
+  }
+  else if((this.direction == "left" || this.direction == "right") && yInTile != 4) {
+    this.y += yInTile < 4 ? 1 : -1;
+  }
 };
 Actor.prototype.handleKeyUp = function(keyPressed) {
   this.keyStates[keyPressed] = false;
