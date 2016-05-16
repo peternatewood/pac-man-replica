@@ -152,18 +152,6 @@ Actor.prototype.move = function() {
   this.render();
   return this.detectCollision();
 };
-Actor.prototype.handleKeyDown = function(keyPressed) {
-  if(keyPressed) {
-    if(this.keyStates[keyPressed] === false) {
-      this.keyStates[keyPressed] = true;
-      this.clear();
-      if(this.moveIntervalID === false && this.detectCollision(keyPressed) != "wall") {
-        this.moveIntervalID = setInterval(this.move.bind(this), this.speed);
-      }
-      this.render();
-    }
-  }
-};
 Actor.prototype.handleKeyUp = function(keyPressed) {
   this.keyStates[keyPressed] = false;
 };
