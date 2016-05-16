@@ -10,6 +10,9 @@ Board.prototype.getCell = function(args) {
 Board.prototype.setCell = function(args) {
   this.board.matrix[args.y][args.x] = args.value;
 };
+Board.prototype.find = function(value) {
+  return this.board.find(value);
+};
 Board.prototype.getAdjacentTiles = function(args) {
   var x = Math.floor(args.x / 8);
   var y = Math.floor(args.y / 8) - 3;
