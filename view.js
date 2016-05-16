@@ -65,3 +65,6 @@ View.prototype.drawRect = function(args) {
   this.context.fillStyle = PELLET_COLOR;
   this.context.fillRect(args.x, args.y, args.w, args.h);
 };
+View.prototype.clearRect = function(args) {
+  this.context.clearRect(args.x, args.y, args.w, args.h);
+};
