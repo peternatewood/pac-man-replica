@@ -91,11 +91,11 @@ Actor.prototype.detectCollision = function(keyPressed) {
 };
 Actor.prototype.move = function() {
   this.clear();
-  this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.1)) * 10) / 10;
+  this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.08)) * 100) / 100;
   if(this.mouthPos <= 0) {
     this.mouthIsOpening = true;
   }
-  else if(this.mouthPos >= 0.5) {
+  else if(this.mouthPos >= 0.4) {
     this.mouthIsOpening = false;
   }
   var xInTile = this.x % 8;
