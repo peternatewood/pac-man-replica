@@ -90,7 +90,6 @@ Actor.prototype.detectCollision = function(keyPressed) {
   return collision;
 };
 Actor.prototype.move = function() {
-  this.clear();
   this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.08)) * 100) / 100;
   if(this.mouthPos <= 0) {
     this.mouthIsOpening = true;
@@ -106,7 +105,6 @@ Actor.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-  this.moveTowardCenter();
 
   var newDirection = false;
   for(var prop in this.keyStates) {
@@ -144,7 +142,6 @@ Actor.prototype.move = function() {
       }
     }
   }
-  this.render();
   return {x: this.x, y: this.y}
 };
 Actor.prototype.moveTowardCenter = function() {
