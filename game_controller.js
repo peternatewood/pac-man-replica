@@ -104,11 +104,21 @@ GameController.prototype.drawPellets = function() {
     });
   });
 };
+GameController.prototype.moveActor = function() {
+  var collision = this.pac.move();
+};
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
-    this.pac.handleKeyDown(keyPressed);
+    if(this.pac.keyStates[keyPressed] === false) {
+      this.pac.keyStates[keyPressed] = true;
+      this.pac.clear();
+      if(this.pac.moveIntervalID === false && this.pac.detectCollision(keyPressed) != "wall") {
+        this.pac.moveIntervalID = setInterval(this.moveActor.bind(this), this.pac.speed);
+      }
+      this.pac.render();
+    }
   }
 };
 GameController.prototype.handleKeyUp = function(event) {
