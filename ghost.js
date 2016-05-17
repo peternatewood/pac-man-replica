@@ -145,7 +145,6 @@ Ghost.prototype.willCollide = function() {
   return false;
 };
 Ghost.prototype.move = function() {
-  this.clear();
   switch(this.direction){
     case "up": this.y--; break;
     case "down": this.y++; break;
@@ -163,7 +162,6 @@ Ghost.prototype.move = function() {
   else if(this.x % 8 == 4 && this.y % 8 == 4) {
     this.setNextDirection();
   }
-  this.render();
 };
 Ghost.prototype.exitHouse = function() {
   this.setMode("exitting");
