@@ -105,7 +105,7 @@ GameController.prototype.drawPellets = function() {
   });
 };
 GameController.prototype.moveActor = function() {
-  this.pac.clear();
+  this.actorCanvas.clearRect(this.pac.getClearDimensions());
   var coords = {
     x: this.pac.x,
     y: this.pac.y
