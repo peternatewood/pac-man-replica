@@ -17,7 +17,11 @@ var ready = function(fun) {
 ready(function() {
 
   var controller = new GameController({
-    actorCanvas: new BrowserView("actors"),
+    pacCanvas: new BrowserView("pac"),
+    blinkyCanvas: new BrowserView("blinky"),
+    inkyCanvas: new BrowserView("inky"),
+    pinkyCanvas: new BrowserView("pinky"),
+    clydeCanvas: new BrowserView("clyde"),
     boardCanvas: new BrowserView("board"),
     pelletCanvas: new BrowserView("pellets"),
     gameBoard: new Board(START_BOARD),

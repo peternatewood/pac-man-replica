@@ -7,7 +7,11 @@ var GameController = function(args) {
   }
   this.pacMoveInterval = false;
 
-  this.actorCanvas = args.actorCanvas;
+  this.pacCanvas = args.pacCanvas;
+  this.blinkyCanvas = args.blinkyCanvas;
+  this.inkyCanvas = args.inkyCanvas;
+  this.pinkyCanvas = args.pinkyCanvas;
+  this.clydeCanvas = args.clydeCanvas;
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
 
@@ -52,7 +56,7 @@ var GameController = function(args) {
   this.boardCanvas.finalizePerPixelRender();
   drawBorders(this.boardCanvas.context);
 
-  this.actorCanvas.renderPac(this.pac);
+  this.pacCanvas.renderPac(this.pac);
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
@@ -107,7 +111,7 @@ GameController.prototype.drawPellets = function() {
   }.bind(this));
 };
 GameController.prototype.moveActor = function() {
-  this.actorCanvas.clearRect(this.pac.getClearDimensions());
+  this.pacCanvas.clearRect(this.pac.getClearDimensions());
   var coords = {
     x: this.pac.x,
     y: this.pac.y
@@ -159,7 +163,7 @@ GameController.prototype.moveActor = function() {
   }
   this.pac.moveTowardCenter();
 
-  this.actorCanvas.renderPac(this.pac);
+  this.pacCanvas.renderPac(this.pac);
 };
 GameController.prototype.moveGhost = function(name) {
   var ghost;
@@ -169,7 +173,7 @@ GameController.prototype.moveGhost = function(name) {
     case "p": ghost = "pinky"; break;
     case "c": ghost = "clyde"; break;
   }
-  this.actorCanvas.clearRect(this[ghost].getClearDimensions());
+  this[ghost + "Canvas"].clearRect(this[ghost].getClearDimensions());
 
   switch(this[ghost].movementMode) {
     case "house":
@@ -220,7 +224,7 @@ GameController.prototype.moveGhost = function(name) {
   else if(this[ghost].x > BOARD_WIDTH) {
     this[ghost].x = 0;
   }
-  this.actorCanvas.renderGhost(this[ghost]);
+  this[ghost + "Canvas"].renderGhost(this[ghost]);
 };
 GameController.prototype.updateActorBoard = function(args) {
   if(args.coords.x != args.newCoords.x || args.coords.y != args.newCoords.y) {
