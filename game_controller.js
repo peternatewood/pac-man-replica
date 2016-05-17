@@ -170,21 +170,25 @@ GameController.prototype.moveGhost = function(name) {
   }
   this.actorCanvas.clearRect(this[ghost].getClearDimensions());
 
-  if(this[ghost].movementMode == "house") {
-    if(this[ghost].y + 8 >= HOUSE_BOTTOM || this[ghost].y - 5 <= HOUSE_TOP) {
-      this[ghost].direction = oppositeDirection(this[ghost].direction);
-    }
+  switch(this[ghost].movementMode) {
+    case "house":
+      if(this[ghost].y + 8 >= HOUSE_BOTTOM || this[ghost].y - 5 <= HOUSE_TOP) {
+        this[ghost].direction = oppositeDirection(this[ghost].direction);
+      }
+    break;
+    case "exitting":
+      this[ghost].exitHouse();
+      if(this[ghost].movementMode == "scatter") {
+        this.setNextDirection(ghost);
+      }
+    break;
+    case "scatter":
+      if(this[ghost].isCentered()) {
+        this.setNextDirection(ghost);
+      }
+    break;
   }
-  else if(this[ghost].movementMode == "exitting") {
-    this[ghost].exitHouse();
-    if(this[ghost].movementMode == "scatter") {
-      this.setNextDirection(ghost);
-    }
-  }
-  else if(this[ghost].isCentered()) {
-    this.setNextDirection(ghost);
-  }
-
+  
   this[ghost].move();
   this.actorCanvas.renderGhost(this[ghost]);
 };
