@@ -12,6 +12,14 @@ var Ghost = function(args) {
 Ghost.prototype.isCentered = function() {
   return this.x % 8 == 4 && this.y % 8 == 4;
 };
+Ghost.prototype.getClearDimensions = function() {
+  return {
+    x: this.x - 7,
+    y: this.y - 7,
+    w: 14,
+    h: 16
+  }
+};
 Ghost.prototype.move = function() {
   switch(this.direction){
     case "up": this.y--; break;
