@@ -51,10 +51,32 @@ ready(function() {
   document.getElementById("update-data").addEventListener("submit", function(event) {
     event.preventDefault();
     var blinkyTarget = document.getElementById("blinky-target").value.split(",");
+    var inkyTarget = document.getElementById("inky-target").value.split(",");
+    var pinkyTarget = document.getElementById("pinky-target").value.split(",");
+    var clydeTarget = document.getElementById("clyde-target").value.split(",");
+
     if(blinkyTarget) {
       controller.blinky.targetTile = {
         x: blinkyTarget[0],
         y: blinkyTarget[1]
+      }
+    }
+    if(inkyTarget) {
+      controller.inky.targetTile = {
+        x: inkyTarget[0],
+        y: inkyTarget[1]
+      }
+    }
+    if(pinkyTarget) {
+      controller.pinky.targetTile = {
+        x: pinkyTarget[0],
+        y: pinkyTarget[1]
+      }
+    }
+    if(clydeTarget) {
+      controller.clyde.targetTile = {
+        x: clydeTarget[0],
+        y: clydeTarget[1]
       }
     }
   });
@@ -69,7 +91,10 @@ ready(function() {
     pelletCanvas: pelletCanvas
   });
 
-  var debugDisp = document.getElementById("debug");
+  document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;
+  document.getElementById("inky-target").value = controller.inky.targetTile.x + "," + controller.inky.targetTile.y;
+  document.getElementById("pinky-target").value = controller.pinky.targetTile.x + "," + controller.pinky.targetTile.y;
+  document.getElementById("clyde-target").value = controller.clyde.targetTile.x + "," + controller.clyde.targetTile.y;
 
   boardCanvas.context.putImageData(boardCanvas.canvasData, 0, 0);
 
