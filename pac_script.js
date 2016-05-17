@@ -1,5 +1,3 @@
-var actorCanvas, boardCanvas, pelletCanvas;
-
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
 var initAudio = function() {
@@ -47,6 +45,19 @@ var ready = function(fun) {
 }
 
 ready(function() {
+
+  var controller = new GameController({
+    actorCanvas: new BrowserView("actors"),
+    boardCanvas: new BrowserView("board"),
+    pelletCanvas: new BrowserView("pellets"),
+    gameBoard: new Board(START_BOARD)
+  });
+
+  document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;
+  document.getElementById("inky-target").value = controller.inky.targetTile.x + "," + controller.inky.targetTile.y;
+  document.getElementById("pinky-target").value = controller.pinky.targetTile.x + "," + controller.pinky.targetTile.y;
+  document.getElementById("clyde-target").value = controller.clyde.targetTile.x + "," + controller.clyde.targetTile.y;
+
   document.getElementById("update-data").addEventListener("submit", function(event) {
     event.preventDefault();
     var blinkyTarget = document.getElementById("blinky-target").value.split(",");
@@ -79,25 +90,6 @@ ready(function() {
       }
     }
   });
-
-  actorCanvas = new BrowserView("actors");
-  boardCanvas = new BrowserView("board");
-  pelletCanvas = new BrowserView("pellets");
-  var gameBoard = new Board(START_BOARD);
-
-  var controller = new GameController({
-    actorCanvas: actorCanvas,
-    boardCanvas: boardCanvas,
-    pelletCanvas: pelletCanvas,
-    gameBoard: gameBoard
-  });
-
-  document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;
-  document.getElementById("inky-target").value = controller.inky.targetTile.x + "," + controller.inky.targetTile.y;
-  document.getElementById("pinky-target").value = controller.pinky.targetTile.x + "," + controller.pinky.targetTile.y;
-  document.getElementById("clyde-target").value = controller.clyde.targetTile.x + "," + controller.clyde.targetTile.y;
-
-  drawBorders(boardCanvas.context);
 
   // Green grid to delineate 8 x 8 tiles
   // pelletCanvas.context.fillStyle = "#080";

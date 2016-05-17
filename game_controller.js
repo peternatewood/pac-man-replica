@@ -54,6 +54,8 @@ var GameController = function(args) {
 
   this.drawPellets();
   this.boardCanvas.finalizePerPixelRender();
+  drawBorders(this.boardCanvas.context);
+  
   this.actorCanvas.renderPac(this.pac);
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
@@ -105,8 +107,8 @@ GameController.prototype.drawPellets = function() {
           h: 2
         });
       }
-    });
-  });
+    }.bind(this));
+  }.bind(this));
 };
 GameController.prototype.moveActor = function() {
   this.actorCanvas.clearRect(this.pac.getClearDimensions());
