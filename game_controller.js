@@ -5,6 +5,7 @@ var GameController = function(args) {
     left: false,
     right: false
   }
+  this.pacMoveInterval = false;
 
   this.actorCanvas = args.actorCanvas;
   this.boardCanvas = args.boardCanvas;
@@ -129,8 +130,8 @@ GameController.prototype.moveActor = function() {
 
   collision = gameBoard.detectCollision(coords, this.pac.direction);
   if(collision == "wall" || collision == "door") {
-    clearInterval(this.pac.moveIntervalID);
-    this.pac.moveIntervalID = false;
+    clearInterval(this.pacMoveInterval);
+    this.pacMoveInterval = false;
   }
   else {
     this.pac.move();
@@ -170,8 +171,8 @@ GameController.prototype.handleKeyDown = function(event) {
     event.preventDefault();
     if(this.pac.keyStates[keyPressed] === false) {
       this.pac.keyStates[keyPressed] = true;
-      if(this.pac.moveIntervalID === false) {
-        this.pac.moveIntervalID = setInterval(this.moveActor.bind(this), this.pac.speed);
+      if(this.pacMoveInterval === false) {
+        this.pacMoveInterval = setInterval(this.moveActor.bind(this), this.pac.speed);
       }
     }
   }
