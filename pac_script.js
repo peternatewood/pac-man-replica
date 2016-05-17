@@ -1,33 +1,3 @@
-var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
-
-var initAudio = function() {
-  aCxt = !!AudioContext ? new AudioContext() : new webkitAudioContext();
-  pacOsc = aCxt.createOscillator();
-  pacModOsc = aCxt.createOscillator();
-  pacGain = aCxt.createGain();
-  pacModGain = aCxt.createGain();
-
-  pacOsc.connect(pacGain);
-  pacGain.connect(aCxt.destination);
-  pacModOsc.connect(pacModGain);
-  pacModGain.connect(pacOsc.frequency);
-
-  pacModOsc.type = "triangle";
-  pacOsc.type = "triangle";
-  pacOsc.frequency.value = 415;
-  pacGain.gain.value = 0.1;
-  pacModOsc.frequency.value = 2.67;
-  pacModGain.gain.value = 100;
-}
-
-var startPacAudio = function(seconds) {
-  var runSeconds = seconds || 2;
-  pacOsc.start();
-  pacModOsc.start();
-  pacOsc.stop(runSeconds);
-  pacModOsc.stop(runSeconds);
-}
-
 var ready = function(fun) {
   if(document.readyState != "loading") {
     fun();
