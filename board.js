@@ -33,15 +33,7 @@ Board.prototype.predictCollision = function(coords, direction) {
     x: coords.x + xOffset,
     y: coords.y + yOffset
   }));
-  switch(tile) {
-    case "x": return "wall"; break;
-    case "-": return "door"; break;
-    case ".": return "pellet"; break;
-    case "o": return "powerPellet"; break;
-    case "/": return "ghostBlocker"; break;
-    case " ": return "none"; break;
-    default: return "none"; break;
-  }
+  return tileLetterToName[tile];
 };
 Board.prototype.getAdjacentTiles = function(args) {
   var coords = this.convertToTile({x: args.x, y: args.y});
