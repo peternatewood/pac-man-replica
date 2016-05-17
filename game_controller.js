@@ -56,10 +56,10 @@ var GameController = function(args) {
   addEventListener("keyup", this.handleKeyUp.bind(this));
 
   setInterval(function() {
-    this.blinky.move();
-    this.inky.move();
-    this.pinky.move();
-    this.clyde.move();
+    this.moveGhost("b");
+    this.moveGhost("i");
+    this.moveGhost("p");
+    this.moveGhost("c");
   }.bind(this), GHOST_MOVE_DELAY);
 
   setTimeout(function() {
@@ -138,6 +138,18 @@ GameController.prototype.moveActor = function() {
   this.pac.moveTowardCenter();
 
   this.pac.render();
+};
+GameController.prototype.moveGhost = function(name) {
+  var ghost;
+  switch(name) {
+    case "b": ghost = "blinky"; break;
+    case "i": ghost = "inky"; break;
+    case "p": ghost = "pinky"; break;
+    case "c": ghost = "clyde"; break;
+  }
+  this[ghost].clear();
+  this[ghost].move();
+  this[ghost].render();
 };
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
