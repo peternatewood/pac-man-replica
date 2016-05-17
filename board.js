@@ -29,10 +29,10 @@ Board.prototype.predictCollision = function(coords, direction) {
     case "right": xOffset += 4.5; break;
   }
 
-  var tile = this.getCell({
-    x: Math.floor((coords.x + xOffset) / 8),
-    y: Math.floor((coords.y + yOffset) / 8) - 3
-  });
+  var tile = this.getCell(this.convertToTile({
+    x: coords.x + xOffset,
+    y: coords.y + yOffset
+  }));
   switch(tile) {
     case "x": return "wall"; break;
     case "-": return "door"; break;
@@ -44,13 +44,12 @@ Board.prototype.predictCollision = function(coords, direction) {
   }
 };
 Board.prototype.getAdjacentTiles = function(args) {
-  var x = Math.floor(args.x / 8);
-  var y = Math.floor(args.y / 8) - 3;
+  var coords = this.convertToTile({x: args.x, y: args.y});
   return {
-    up: {y: y - 1, x: x},
-    down: {y: y + 1, x: x},
-    left: {y: y, x: x - 1},
-    right: {y: y, x: x + 1}
+    up: {y: coords.y - 1, x: coords.x},
+    down: {y: coords.y + 1, x: coords.x},
+    left: {y: coords.y, x: coords.x - 1},
+    right: {y: coords.y, x: coords.x + 1}
   }
 };
 Board.prototype.getEmptyTiles = function(tiles) {
