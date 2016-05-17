@@ -75,6 +75,42 @@ BrowserView.prototype.drawRect = function(args) {
 BrowserView.prototype.clearRect = function(args) {
   this.context.clearRect(args.x, args.y, args.w, args.h);
 };
+BrowserView.prototype.renderPac = function(args) {
+  this.context.fillStyle = args.color;
+  this.context.beginPath();
+
+  var arcStart, arcEnd;
+  var cheekX = 0;
+  var cheekY = 0;
+  switch(args.direction) {
+    case "up":
+      arcStart = (1.5 + args.mouthPos) * Math.PI;
+      arcEnd = (3.5 - args.mouthPos) * Math.PI;
+      cheekY = 2.5;
+    break;
+    case "down":
+      arcStart = (0.5 + args.mouthPos) * Math.PI;
+      arcEnd = (2.5 - args.mouthPos) * Math.PI;
+      cheekY = -2.5;
+    break;
+    case "left":
+      arcStart = (1.0 + args.mouthPos) * Math.PI;
+      arcEnd = (3.0 - args.mouthPos) * Math.PI;
+      cheekX = 2.5;
+    break;
+    case "right":
+      arcStart = (0.0 + args.mouthPos) * Math.PI;
+      arcEnd = (2.0 - args.mouthPos) * Math.PI;
+      cheekX = -2.5;
+    break;
+  }
+
+  this.context.arc(args.x, args.y, args.radius, arcStart, arcEnd, false);
+  this.context.lineTo(args.x + cheekX, args.y + cheekY);
+
+  this.context.closePath();
+  this.context.fill();
+};
 BrowserView.prototype.renderGhost = function(args) {
   this.context.fillStyle = args.color;
   var x = args.x;
