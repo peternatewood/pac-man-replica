@@ -15,15 +15,27 @@ input {
   max-width: 80%;
 }
 
-#actors {
-  z-index: 2;
-}
 #board {
   background-color: #000;
   z-index: 0;
 }
 #pellets {
   z-index: 1;
+}
+#pac {
+  z-index: 2;
+}
+#blinky {
+  z-index: 3;
+}
+#inky {
+  z-index: 4;
+}
+#pinky {
+  z-index: 5;
+}
+#clyde {
+  z-index: 6;
 }
 
 #debug {
