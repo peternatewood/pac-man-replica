@@ -41,7 +41,6 @@ Ghost.prototype.exitHouse = function() {
   }
   if(this.y <= 116) {
     this.setMode("scatter");
-    this.setNextDirection();
   }
 };
 Ghost.prototype.setMode = function(modeName) {
