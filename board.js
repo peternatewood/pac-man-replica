@@ -1,6 +1,6 @@
-var Board = function(args) {
+var Board = function(boardArray) {
   this.board = new Matrix;
-  this.board.matrix = START_BOARD.map(function(row) {
+  this.board.matrix = boardArray.map(function(row) {
     return row.split("");
   });
 }

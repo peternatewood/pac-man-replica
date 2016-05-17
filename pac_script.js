@@ -1,5 +1,4 @@
 var actorCanvas, boardCanvas, pelletCanvas;
-var gameBoard = new Board();
 
 var aCxt, pacOsc, pacGain, pacModOsc, pacModGain;
 
@@ -84,11 +83,13 @@ ready(function() {
   actorCanvas = new BrowserView("actors");
   boardCanvas = new BrowserView("board");
   pelletCanvas = new BrowserView("pellets");
+  var gameBoard = new Board(START_BOARD);
 
   var controller = new GameController({
     actorCanvas: actorCanvas,
     boardCanvas: boardCanvas,
-    pelletCanvas: pelletCanvas
+    pelletCanvas: pelletCanvas,
+    gameBoard: gameBoard
   });
 
   document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;
