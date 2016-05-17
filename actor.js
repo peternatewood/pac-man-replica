@@ -1,5 +1,4 @@
 var Actor = function(args) {
-  this.context = args.context;
   this.x = args.startX;
   this.y = args.startY;
   this.name = args.name;
