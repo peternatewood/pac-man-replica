@@ -50,6 +50,8 @@ var GameController = function(args) {
     startY: 139
   });
 
+  this.gameBoard = args.gameBoard;
+
   this.drawPellets();
   this.actorCanvas.renderPac(this.pac);
 
@@ -77,7 +79,7 @@ GameController.prototype.drawPellets = function() {
     w: BOARD_WIDTH,
     h: BOARD_HEIGHT
   });
-  gameBoard.board.matrix.forEach(function(row, rIndex) {
+  this.gameBoard.board.matrix.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       if(col == ".") {
         this.pelletCanvas.drawRect({
@@ -122,13 +124,13 @@ GameController.prototype.moveActor = function() {
 
   var collision;
   if(this.keyStates[this.pac.direction] === false && newDirection) {
-    collision = gameBoard.predictCollision(coords, newDirection);
+    collision = this.gameBoard.predictCollision(coords, newDirection);
     if(collision != "door" && collision != "wall") {
       this.pac.direction = newDirection;
     }
   }
 
-  collision = gameBoard.predictCollision(coords, this.pac.direction);
+  collision = this.gameBoard.predictCollision(coords, this.pac.direction);
   if(collision == "wall" || collision == "door") {
     clearInterval(this.pacMoveInterval);
     this.pacMoveInterval = false;
@@ -188,18 +190,18 @@ GameController.prototype.handleKeyUp = function(event) {
   }
 };
 GameController.prototype.setNextDirection = function(ghost) {
-  var currentTile = gameBoard.convertToTile({
+  var currentTile = this.gameBoard.convertToTile({
     x: this[ghost].x,
     y: this[ghost].y
   });
-  var adjacentTiles = gameBoard.getAdjacentTiles({
+  var adjacentTiles = this.gameBoard.getAdjacentTiles({
     x: this[ghost].x,
     y: this[ghost].y
   });
   adjacentTiles[oppositeDirection(this[ghost].direction)] = undefined;
 
-  var emptyTiles = gameBoard.getEmptyTiles(adjacentTiles);
-  var nextTile = gameBoard.getClosestTile({
+  var emptyTiles = this.gameBoard.getEmptyTiles(adjacentTiles);
+  var nextTile = this.gameBoard.getClosestTile({
     tiles: emptyTiles,
     target: this[ghost].targetTile
   });
