@@ -24,9 +24,6 @@ Actor.prototype.getClearDimensions = function() {
     h: 2 * this.radius
   }
 };
-Actor.prototype.clear = function() {
-  this.context.clearRect(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
-};
 Actor.prototype.render = function() {
   this.context.fillStyle = nameToColor[this.name];
   this.context.beginPath();
