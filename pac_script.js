@@ -62,6 +62,14 @@ ready(function() {
     }
   });
 
+  // Sets all ghosts to "chase" for debug purposes
+  // setTimeout(function(){
+  //   controller.blinky.movementMode = "chase";
+  //   controller.inky.movementMode = "chase";
+  //   controller.pinky.movementMode = "chase";
+  //   controller.clyde.movementMode = "chase";
+  // }, CLYDE_EXIT_DELAY + 2000);
+
   // Green grid to delineate 8 x 8 tiles
   // pelletCanvas.context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
