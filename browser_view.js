@@ -68,3 +68,18 @@ BrowserView.prototype.drawRect = function(args) {
 BrowserView.prototype.clearRect = function(args) {
   this.context.clearRect(args.x, args.y, args.w, args.h);
 };
+BrowserView.prototype.renderGhost = function(args) {
+  this.context.fillStyle = args.color;
+  var x = args.x;
+  var y = args.y;
+
+  // body
+  this.context.beginPath();
+  this.context.arc(x, y, 6, Math.PI, 0, false);
+  this.context.moveTo(x += 7, y);
+  this.context.lineTo(x, y += 5);
+  this.context.lineTo(x -= 14, y);
+  this.context.lineTo(x, y -= 5);
+  this.context.closePath();
+  this.context.fill();
+};
