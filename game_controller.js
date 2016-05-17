@@ -157,7 +157,7 @@ GameController.prototype.moveGhost = function(name) {
   else if(this[ghost].movementMode == "exitting") {
     this[ghost].exitHouse();
   }
-  else if(this[ghost].x % 8 == 4 && this[ghost].y % 8 == 4) {
+  else if(this[ghost].isCentered()) {
     this[ghost].setNextDirection();
   }
 
