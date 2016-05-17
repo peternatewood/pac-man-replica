@@ -97,8 +97,6 @@ ready(function() {
   document.getElementById("pinky-target").value = controller.pinky.targetTile.x + "," + controller.pinky.targetTile.y;
   document.getElementById("clyde-target").value = controller.clyde.targetTile.x + "," + controller.clyde.targetTile.y;
 
-  boardCanvas.context.putImageData(boardCanvas.canvasData, 0, 0);
-
   drawBorders(boardCanvas.context);
 
   // Green grid to delineate 8 x 8 tiles

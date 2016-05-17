@@ -53,6 +53,7 @@ var GameController = function(args) {
   this.gameBoard = args.gameBoard;
 
   this.drawPellets();
+  this.boardCanvas.finalizePerPixelRender();
   this.actorCanvas.renderPac(this.pac);
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
