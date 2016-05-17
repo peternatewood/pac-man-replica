@@ -105,7 +105,39 @@ GameController.prototype.drawPellets = function() {
   });
 };
 GameController.prototype.moveActor = function() {
-  var collision = this.pac.move();
+  this.pac.clear();
+  var coords = {
+    x: this.pac.x,
+    y: this.pac.y
+  }
+
+  var newDirection = false;
+  for(var prop in this.pac.keyStates) {
+    if(this.pac.keyStates.hasOwnProperty(prop) && this.pac.keyStates[prop]) {
+      newDirection = prop;
+      break;
+    }
+  }
+
+  var collision;
+  if(this.pac.keyStates[this.pac.direction] === false && newDirection) {
+    collision = gameBoard.detectCollision(coords, newDirection);
+    if(collision != "door" && collision != "wall") {
+      this.pac.direction = newDirection;
+    }
+  }
+
+  collision = gameBoard.detectCollision(coords, this.pac.direction);
+  if(collision == "wall" || collision == "door") {
+    clearInterval(this.pac.moveIntervalID);
+    this.pac.moveIntervalID = false;
+  }
+  else {
+    this.pac.move();
+  }
+  this.pac.moveTowardCenter();
+
+  this.pac.render();
 };
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
@@ -114,7 +146,7 @@ GameController.prototype.handleKeyDown = function(event) {
     if(this.pac.keyStates[keyPressed] === false) {
       this.pac.keyStates[keyPressed] = true;
       this.pac.clear();
-      if(this.pac.moveIntervalID === false && this.pac.detectCollision(keyPressed) != "wall") {
+      if(this.pac.moveIntervalID === false) {
         this.pac.moveIntervalID = setInterval(this.moveActor.bind(this), this.pac.speed);
       }
       this.pac.render();
