@@ -135,6 +135,9 @@ Ghost.prototype.renderEyes = function() {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
+Ghost.prototype.isCentered = function() {
+  return this.x % 8 == 4 && this.y % 8 == 4;
+};
 Ghost.prototype.move = function() {
   switch(this.direction){
     case "up": this.y--; break;
