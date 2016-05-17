@@ -113,15 +113,15 @@ GameController.prototype.moveActor = function() {
   }
 
   var newDirection = false;
-  for(var prop in this.pac.keyStates) {
-    if(this.pac.keyStates.hasOwnProperty(prop) && this.pac.keyStates[prop]) {
+  for(var prop in this.keyStates) {
+    if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
       newDirection = prop;
       break;
     }
   }
 
   var collision;
-  if(this.pac.keyStates[this.pac.direction] === false && newDirection) {
+  if(this.keyStates[this.pac.direction] === false && newDirection) {
     collision = gameBoard.detectCollision(coords, newDirection);
     if(collision != "door" && collision != "wall") {
       this.pac.direction = newDirection;
@@ -169,8 +169,8 @@ GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
-    if(this.pac.keyStates[keyPressed] === false) {
-      this.pac.keyStates[keyPressed] = true;
+    if(this.keyStates[keyPressed] === false) {
+      this.keyStates[keyPressed] = true;
       if(this.pacMoveInterval === false) {
         this.pacMoveInterval = setInterval(this.moveActor.bind(this), this.pac.speed);
       }
@@ -181,6 +181,6 @@ GameController.prototype.handleKeyUp = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
-    this.pac.handleKeyUp(keyPressed);
+    this.keyStates[keyPressed] = false;
   }
 };
