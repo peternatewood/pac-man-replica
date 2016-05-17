@@ -147,7 +147,12 @@ GameController.prototype.moveGhost = function(name) {
     case "p": ghost = "pinky"; break;
     case "c": ghost = "clyde"; break;
   }
-  this[ghost].clear();
+  this.actorCanvas.clearRect({
+    x: this[ghost].x - 7,
+    y: this[ghost].y - 7,
+    w: 14,
+    h: 16
+  });
 
   if(this[ghost].movementMode == "house") {
     if(this[ghost].y + 8 >= HOUSE_BOTTOM || this[ghost].y - 5 <= HOUSE_TOP) {
