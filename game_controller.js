@@ -1,4 +1,5 @@
 var GameController = function(args) {
+  this.pelletCount = 0;
   this.keyStates = {
     up: false,
     down: false,
@@ -162,6 +163,7 @@ GameController.prototype.moveActor = function() {
     });
   }
   this.pac.moveTowardCenter();
+  this.updatePellets();
 
   this.pacCanvas.renderPac(this.pac);
 };
@@ -289,5 +291,22 @@ GameController.prototype.setNextDirection = function(ghost) {
     else if(nextTile.y > currentTile.y) {
       this[ghost].direction = "down";
     }
+  }
+};
+GameController.prototype.updatePellets = function() {
+  var coords = Board.convertToTile({
+    x: this.pac.x,
+    y: this.pac.y
+  });
+  var tile = this.gameBoard.getCell(coords);
+
+  if(tile == "." || tile == "o") {
+    this.gameBoard.setCell({
+      x: coords.x,
+      y: coords.y,
+      value: " "
+    });
+    this.pelletCount++;
+    this.drawPellets();
   }
 };
