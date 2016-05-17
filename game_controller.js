@@ -140,7 +140,22 @@ GameController.prototype.moveActor = function() {
     this.pacMoveInterval = false;
   }
   else {
+    var coords = this.actorBoard.find("m");
+    this.actorBoard.setCell({
+      x: coords.x,
+      y: coords.y,
+      value: " "
+    });
     this.pac.move();
+    coords = this.actorBoard.convertToTile({
+      x: this.pac.x,
+      y: this.pac.y
+    });
+    this.actorBoard.setCell({
+      x: coords.x,
+      y: coords.y,
+      value: "m"
+    });
   }
   this.pac.moveTowardCenter();
 
