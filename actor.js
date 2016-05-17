@@ -97,21 +97,12 @@ Actor.prototype.move = function() {
   else if(this.mouthPos >= 0.4) {
     this.mouthIsOpening = false;
   }
-  var xInTile = this.x % 8;
-  var yInTile = this.y % 8;
+  
   switch(this.direction) {
     case "up": this.y--; break;
     case "down": this.y++; break;
     case "left": this.x--; break;
     case "right": this.x++; break;
-  }
-
-  var newDirection = false;
-  for(var prop in this.keyStates) {
-    if(this.keyStates.hasOwnProperty(prop) && this.keyStates[prop]) {
-      newDirection = prop;
-      break;
-    }
   }
 
   if(this.x + 8 <= 0) {
@@ -122,24 +113,6 @@ Actor.prototype.move = function() {
   else if(this.x - 8 > BOARD_WIDTH) {
     if(this.direction == "right") {
       this.x = 0 - 8;
-    }
-  }
-  else {
-    if(this.keyStates[this.direction] === false) {
-      if(newDirection) {
-        if(this.detectCollision(newDirection) != "wall") {
-          this.direction = newDirection;
-        }
-      }
-    }
-    if(xInTile == 4 && yInTile == 4 && this.detectCollision() == "wall") {
-      if(newDirection && this.detectCollision(newDirection) != "wall") {
-        this.direction = newDirection;
-      }
-      else {
-        clearInterval(this.moveIntervalID);
-        this.moveIntervalID = false;
-      }
     }
   }
   return {x: this.x, y: this.y}
