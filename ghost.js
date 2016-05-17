@@ -49,30 +49,3 @@ Ghost.prototype.setMode = function(modeName) {
     this.movementMode = modeName;
   }
 };
-Ghost.prototype.setNextDirection = function() {
-  var currentTile = {
-    x: Math.floor(this.x / 8),
-    y: Math.floor(this.y / 8) - 3
-  }
-  var adjacentTiles = gameBoard.getAdjacentTiles({x: this.x, y: this.y});
-  adjacentTiles[oppositeDirection(this.direction)] = undefined;
-
-  var emptyTiles = gameBoard.getEmptyTiles(adjacentTiles);
-  var nextTile = gameBoard.getClosestTile({
-    tiles: emptyTiles,
-    target: this.targetTile
-  });
-
-  if(nextTile.x < currentTile.x) {
-    this.direction = "left";
-  }
-  else if(nextTile.x > currentTile.x) {
-    this.direction = "right";
-  }
-  else if(nextTile.y < currentTile.y) {
-    this.direction = "up";
-  }
-  else if(nextTile.y > currentTile.y) {
-    this.direction = "down";
-  }
-};
