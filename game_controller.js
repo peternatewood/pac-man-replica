@@ -143,6 +143,12 @@ GameController.prototype.moveActor = function() {
     var coords = this.actorBoard.find("m");
 
     this.pac.move();
+    if(this.pac.x < 0) {
+      this.pac.x = BOARD_WIDTH;
+    }
+    else if(this.pac.x > BOARD_WIDTH) {
+      this.pac.x = 0;
+    }
 
     var newCoords = Board.convertToTile({
       x: this.pac.x,
