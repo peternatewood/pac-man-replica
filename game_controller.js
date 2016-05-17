@@ -184,3 +184,33 @@ GameController.prototype.handleKeyUp = function(event) {
     this.keyStates[keyPressed] = false;
   }
 };
+GameController.prototype.setNextDirection = function(ghost) {
+  var currentTile = {
+    x: Math.floor(this[ghost].x / 8),
+    y: Math.floor(this[ghost].y / 8) - 3
+  }
+  var adjacentTiles = gameBoard.getAdjacentTiles({
+    x: this[ghost].x,
+    y: this[ghost].y
+  });
+  adjacentTiles[oppositeDirection(this[ghost].direction)] = undefined;
+
+  var emptyTiles = gameBoard.getEmptyTiles(adjacentTiles);
+  var nextTile = gameBoard.getClosestTile({
+    tiles: emptyTiles,
+    target: this[ghost].targetTile
+  });
+
+  if(nextTile.x < currentTile.x) {
+    this[ghost].direction = "left";
+  }
+  else if(nextTile.x > currentTile.x) {
+    this[ghost].direction = "right";
+  }
+  else if(nextTile.y < currentTile.y) {
+    this[ghost].direction = "up";
+  }
+  else if(nextTile.y > currentTile.y) {
+    this[ghost].direction = "down";
+  }
+};
