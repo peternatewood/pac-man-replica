@@ -9,6 +9,12 @@ var Ghost = function(args) {
   this.movementMode = args.mode ? args.mode : "scatter";
   this.targetTile = GHOST_CORNERS[this.name];
 }
+Ghost.blinkyTarget = function(coords) {
+  return {
+    x: coords.x,
+    y: coords.y
+  }
+};
 Ghost.prototype.isCentered = function() {
   return this.x % 8 == 4 && this.y % 8 == 4;
 };
