@@ -427,6 +427,20 @@ var nameToColor = {
   m: "#FF0"
 }
 
+var tileLetterToName = {
+  "x": "wall",
+  "-": "door",
+  ".": "pellet",
+  "o": "powerPellet",
+  "/": "ghostBlocker",
+  "b": "blinky",
+  "i": "inky",
+  "p": "pinky",
+  "c": "clyde",
+  "m": "pac",
+  " ": "none"
+}
+
 var noteToFreq = function(note, octave){
   var letterToLowest = {
     c: 16.35,
