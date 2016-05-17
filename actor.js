@@ -16,6 +16,14 @@ var Actor = function(args) {
     right: false
   }
 }
+Actor.prototype.getClearDimensions = function() {
+  return {
+    x: this.x - this.radius,
+    y: this.y - this.radius,
+    w: 2 * this.radius,
+    h: 2 * this.radius
+  }
+};
 Actor.prototype.clear = function() {
   this.context.clearRect(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
 };
