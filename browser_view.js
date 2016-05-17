@@ -221,3 +221,6 @@ BrowserView.prototype.renderGhost = function(args) {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
+BrowserView.prototype.finalizePerPixelRender = function() {
+  this.context.putImageData(this.canvasData, 0, 0);
+};
