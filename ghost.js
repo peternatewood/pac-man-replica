@@ -15,6 +15,20 @@ Ghost.blinkyTarget = function(args) {
     y: args.coords.y
   }
 };
+Ghost.pinkyTarget = function(args) {
+  var xMod = 0;
+  var yMod = 0;
+  switch(args.direction) {
+    case "up": yMod -= 4; break;
+    case "down": yMod += 4; break;
+    case "left": xMod -= 4; break;
+    case "right": xMod += 4; break;
+  }
+  return {
+    x: args.coords.x + xMod,
+    y: args.coords.y + yMod
+  }
+};
 Ghost.prototype.isCentered = function() {
   return this.x % 8 == 4 && this.y % 8 == 4;
 };
