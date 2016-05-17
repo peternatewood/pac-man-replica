@@ -30,6 +30,7 @@ Board.prototype.predictCollision = function(coords, direction) {
   switch(tile) {
     case "x": return "wall"; break;
     case "-": return "door"; break;
+    case ".": return "pellet"; break;
     case "o": return "powerPellet"; break;
     case "/": return "ghostBlocker"; break;
     case " ": return "none"; break;
