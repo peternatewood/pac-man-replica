@@ -61,6 +61,3 @@ Actor.prototype.moveTowardCenter = function() {
     this.y += yInTile < 4 ? 1 : -1;
   }
 };
-Actor.prototype.handleKeyUp = function(keyPressed) {
-  this.keyStates[keyPressed] = false;
-};
