@@ -148,6 +148,17 @@ GameController.prototype.moveGhost = function(name) {
     case "c": ghost = "clyde"; break;
   }
   this[ghost].clear();
+
+  if(this[ghost].movementMode == "house" && this[ghost].willCollide()) {
+    this[ghost].direction = oppositeDirection(this[ghost].direction);
+  }
+  else if(this[ghost].movementMode == "exitting") {
+    this[ghost].exitHouse();
+  }
+  else if(this[ghost].x % 8 == 4 && this[ghost].y % 8 == 4) {
+    this[ghost].setNextDirection();
+  }
+
   this[ghost].move();
   this[ghost].render();
 };
