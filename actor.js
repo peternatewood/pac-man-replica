@@ -8,12 +8,6 @@ var Actor = function(args) {
   this.speed = PAC_MOVE_DELAY;
   this.mouthPos = 0.0;
   this.mouthIsOpening = true;
-  this.keyStates = {
-    up: false,
-    down: false,
-    left: false,
-    right: false
-  }
 }
 Actor.prototype.getClearDimensions = function() {
   return {
