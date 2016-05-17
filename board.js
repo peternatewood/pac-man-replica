@@ -13,6 +13,12 @@ Board.prototype.setCell = function(args) {
 Board.prototype.find = function(value) {
   return this.board.find(value);
 };
+Board.prototype.convertToTile = function(coords) {
+  return {
+    x: Math.floor(coords.x / 8),
+    y: Math.floor(coords.y / 8) - 3
+  }
+};
 Board.prototype.predictCollision = function(coords, direction) {
   var yOffset = 0;
   var xOffset = 0;
