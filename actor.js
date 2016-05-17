@@ -57,38 +57,6 @@ Actor.prototype.render = function() {
   this.context.closePath();
   this.context.fill();
 };
-Actor.prototype.detectCollision = function(keyPressed) {
-  var collision = "none";
-  var xMod, yMod;
-  var direction = keyPressed ? keyPressed : this.direction
-  switch(direction) {
-    case "up": xMod = 0; yMod = -1; break;
-    case "down": xMod = 0; yMod = 1; break;
-    case "left": xMod = -1; yMod = 0; break;
-    case "right": xMod = 1; yMod = 0; break;
-  }
-  var x = Math.floor(this.x / 8);
-  var y = Math.floor(this.y / 8) - 3;
-
-  var cell = gameBoard.getCell({
-    x: x + xMod,
-    y: y + yMod
-  });
-  if(cell == "x" || cell == "-") {
-    collision = "wall";
-  }
-  else if(cell == ".") {
-    collision = "pellet";
-  }
-  else if(cell == "o") {
-    collision = "powerPellet";
-  }
-  else if(cell == "b" || cell == "i" || cell == "p" || cell == "c") {
-    collision = "ghost";
-  }
-
-  return collision;
-};
 Actor.prototype.move = function() {
   this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.08)) * 100) / 100;
   if(this.mouthPos <= 0) {
