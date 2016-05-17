@@ -157,6 +157,9 @@ GameController.prototype.moveGhost = function(name) {
   }
   else if(this[ghost].movementMode == "exitting") {
     this[ghost].exitHouse();
+    if(this[ghost].movementMode == "scatter") {
+      this.setNextDirection(ghost);
+    }
   }
   else if(this[ghost].isCentered()) {
     this.setNextDirection(ghost);
