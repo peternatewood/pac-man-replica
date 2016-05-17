@@ -20,7 +20,8 @@ ready(function() {
     actorCanvas: new BrowserView("actors"),
     boardCanvas: new BrowserView("board"),
     pelletCanvas: new BrowserView("pellets"),
-    gameBoard: new Board(START_BOARD)
+    gameBoard: new Board(START_BOARD),
+    actorBoard: new Board(START_BOARD_ACTORS)
   });
 
   document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;

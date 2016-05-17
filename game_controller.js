@@ -51,11 +51,12 @@ var GameController = function(args) {
   });
 
   this.gameBoard = args.gameBoard;
+  this.actorBoard = args.actorBoard;
 
   this.drawPellets();
   this.boardCanvas.finalizePerPixelRender();
   drawBorders(this.boardCanvas.context);
-  
+
   this.actorCanvas.renderPac(this.pac);
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
