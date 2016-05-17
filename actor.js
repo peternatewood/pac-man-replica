@@ -32,8 +32,6 @@ Actor.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-
-  return {x: this.x, y: this.y}
 };
 Actor.prototype.moveTowardCenter = function() {
   var xInTile = this.x % 8;
