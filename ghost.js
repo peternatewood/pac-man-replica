@@ -3,7 +3,6 @@ var Ghost = function(args) {
   this.y = args.startY;
   this.direction = args.direction ? args.direction : "left";
   this.speed = GHOST_MOVE_DELAY;
-  this.isMoving = false;
   this.context = args.context;
   this.name = args.name;
   this.color = nameToColor[args.name];
