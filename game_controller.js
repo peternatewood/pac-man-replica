@@ -188,10 +188,10 @@ GameController.prototype.handleKeyUp = function(event) {
   }
 };
 GameController.prototype.setNextDirection = function(ghost) {
-  var currentTile = {
-    x: Math.floor(this[ghost].x / 8),
-    y: Math.floor(this[ghost].y / 8) - 3
-  }
+  var currentTile = gameBoard.convertToTile({
+    x: this[ghost].x,
+    y: this[ghost].y
+  });
   var adjacentTiles = gameBoard.getAdjacentTiles({
     x: this[ghost].x,
     y: this[ghost].y
