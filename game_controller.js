@@ -12,21 +12,18 @@ var GameController = function(args) {
   this.pelletCanvas = args.pelletCanvas;
 
   this.pac = new Actor({
-    context: this.actorCanvas.context,
     startX: 113,
     startY: 212,
     name: "m",
     direction: "right"
   });
   this.blinky = new Ghost({
-    context: this.actorCanvas.context,
     direction: "left",
     name: "b",
     startX: 112,
     startY: 116
   });
   this.inky = new Ghost({
-    context: this.actorCanvas.context,
     direction: "up",
     mode: "house",
     name: "i",
@@ -34,7 +31,6 @@ var GameController = function(args) {
     startY: 139
   });
   this.pinky = new Ghost({
-    context: this.actorCanvas.context,
     direction: "right",
     mode: "exitting",
     name: "p",
@@ -42,7 +38,6 @@ var GameController = function(args) {
     startY: 139
   });
   this.clyde = new Ghost({
-    context: this.actorCanvas.context,
     direction: "down",
     mode: "house",
     name: "c",
