@@ -144,7 +144,7 @@ GameController.prototype.moveActor = function() {
 
     this.pac.move();
 
-    var newCoords = this.actorBoard.convertToTile({
+    var newCoords = Board.convertToTile({
       x: this.pac.x,
       y: this.pac.y
     });
@@ -188,7 +188,7 @@ GameController.prototype.moveGhost = function(name) {
       }
     break;
   }
-  
+
   this[ghost].move();
   this.actorCanvas.renderGhost(this[ghost]);
 };
@@ -226,7 +226,7 @@ GameController.prototype.handleKeyUp = function(event) {
   }
 };
 GameController.prototype.setNextDirection = function(ghost) {
-  var currentTile = this.gameBoard.convertToTile({
+  var currentTile = Board.convertToTile({
     x: this[ghost].x,
     y: this[ghost].y
   });

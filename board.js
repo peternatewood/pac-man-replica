@@ -4,6 +4,12 @@ var Board = function(boardArray) {
     return row.split("");
   });
 }
+Board.convertToTile = function(coords) {
+  return {
+    x: Math.floor(coords.x / 8),
+    y: Math.floor(coords.y / 8) - 3
+  }
+};
 Board.prototype.getCell = function(args) {
   return this.board.matrix[args.y][args.x];
 };
@@ -12,12 +18,6 @@ Board.prototype.setCell = function(args) {
 };
 Board.prototype.find = function(value) {
   return this.board.find(value);
-};
-Board.prototype.convertToTile = function(coords) {
-  return {
-    x: Math.floor(coords.x / 8),
-    y: Math.floor(coords.y / 8) - 3
-  }
 };
 Board.prototype.predictCollision = function(coords, direction) {
   var yOffset = 0;
@@ -29,14 +29,14 @@ Board.prototype.predictCollision = function(coords, direction) {
     case "right": xOffset += 4.5; break;
   }
 
-  var tile = this.getCell(this.convertToTile({
+  var tile = this.getCell(Board.convertToTile({
     x: coords.x + xOffset,
     y: coords.y + yOffset
   }));
   return tileLetterToName[tile];
 };
 Board.prototype.getAdjacentTiles = function(args) {
-  var coords = this.convertToTile({x: args.x, y: args.y});
+  var coords = Board.convertToTile({x: args.x, y: args.y});
   return {
     up: {y: coords.y - 1, x: coords.x},
     down: {y: coords.y + 1, x: coords.x},
