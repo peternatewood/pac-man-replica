@@ -69,9 +69,9 @@ Board.prototype.getClosestTile = function(args) {
   var closestTile;
   for(var prop in tiles) {
     if(tiles.hasOwnProperty(prop)) {
-      var currentDistance = this.getTileDistance(args.target, tiles[prop]);
+      var currentDistance = Board.getTileDistance(args.target, tiles[prop]);
       if(closestTile) {
-        closestTile = currentDistance < this.getTileDistance(args.target, closestTile) ? tiles[prop] : closestTile;
+        closestTile = currentDistance < Board.getTileDistance(args.target, closestTile) ? tiles[prop] : closestTile;
       }
       else {
         closestTile = tiles[prop];
