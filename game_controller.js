@@ -50,7 +50,7 @@ var GameController = function(args) {
   });
 
   this.drawPellets();
-  this.pac.render();
+  this.actorCanvas.renderPac(this.pac);
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
@@ -137,14 +137,7 @@ GameController.prototype.moveActor = function() {
   }
   this.pac.moveTowardCenter();
 
-  this.actorCanvas.renderPac({
-    x: this.pac.x,
-    y: this.pac.y,
-    color: nameToColor[this.pac.name],
-    direction: this.pac.direction,
-    radius: this.pac.radius,
-    mouthPos: this.pac.mouthPos
-  });
+  this.actorCanvas.renderPac(this.pac);
 };
 GameController.prototype.moveGhost = function(name) {
   var ghost;
