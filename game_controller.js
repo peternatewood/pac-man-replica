@@ -162,12 +162,7 @@ GameController.prototype.moveGhost = function(name) {
   }
 
   this[ghost].move();
-  this.actorCanvas.renderGhost({
-    x: this[ghost].x,
-    y: this[ghost].y,
-    color: this[ghost].color,
-    direction: this[ghost].direction
-  });
+  this.actorCanvas.renderGhost(this[ghost]);
 };
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
