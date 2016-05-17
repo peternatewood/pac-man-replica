@@ -151,17 +151,6 @@ Ghost.prototype.move = function() {
     case "left": this.x--; break;
     case "right": this.x++; break;
   }
-  if(this.movementMode == "house") {
-    if(this.willCollide()) {
-      this.direction = oppositeDirection(this.direction);
-    }
-  }
-  else if(this.movementMode == "exitting") {
-    this.exitHouse();
-  }
-  else if(this.x % 8 == 4 && this.y % 8 == 4) {
-    this.setNextDirection();
-  }
 };
 Ghost.prototype.exitHouse = function() {
   this.setMode("exitting");
