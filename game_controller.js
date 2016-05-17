@@ -122,13 +122,13 @@ GameController.prototype.moveActor = function() {
 
   var collision;
   if(this.keyStates[this.pac.direction] === false && newDirection) {
-    collision = gameBoard.detectCollision(coords, newDirection);
+    collision = gameBoard.predictCollision(coords, newDirection);
     if(collision != "door" && collision != "wall") {
       this.pac.direction = newDirection;
     }
   }
 
-  collision = gameBoard.detectCollision(coords, this.pac.direction);
+  collision = gameBoard.predictCollision(coords, this.pac.direction);
   if(collision == "wall" || collision == "door") {
     clearInterval(this.pacMoveInterval);
     this.pacMoveInterval = false;

@@ -13,7 +13,7 @@ Board.prototype.setCell = function(args) {
 Board.prototype.find = function(value) {
   return this.board.find(value);
 };
-Board.prototype.detectCollision = function(coords, direction) {
+Board.prototype.predictCollision = function(coords, direction) {
   var yOffset = 0;
   var xOffset = 0;
   switch(direction) {
