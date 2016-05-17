@@ -393,7 +393,7 @@ var START_BOARD = [
   "     x.xx          xx.x     ",
   "     x.xx xxx--xxx xx.x     ",
   "xxxxxx.xx x      x xx.xxxxxx",
-  "      .   x      x   .      ",
+  "tttttt.   x      x   .tttttt",
   "xxxxxx.xx x      x xx.xxxxxx",
   "     x.xx xxxxxxxx xx.x     ",
   "     x.xx          xx.x     ",
@@ -466,6 +466,7 @@ var tileLetterToName = {
   ".": "pellet",
   "o": "powerPellet",
   "/": "ghostBlocker",
+  "t": "tunnel",
   "b": "blinky",
   "i": "inky",
   "p": "pinky",
@@ -521,7 +522,7 @@ var GHOST_CORNERS = {
   c: {x: 0, y: 35}
 }
 
-var EMPTY_TILES = [" ", ".", "o", "m", "/"];
+var EMPTY_TILES = [" ", ".", "o", "m", "/", "t"];
 
 var oppositeDirection = function(direction) {
   switch(direction) {
