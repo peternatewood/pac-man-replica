@@ -141,20 +141,19 @@ GameController.prototype.moveActor = function() {
   }
   else {
     var coords = this.actorBoard.find("m");
-    this.actorBoard.setCell({
-      x: coords.x,
-      y: coords.y,
-      value: " "
-    });
+
     this.pac.move();
-    coords = this.actorBoard.convertToTile({
+
+    var newCoords = this.actorBoard.convertToTile({
       x: this.pac.x,
       y: this.pac.y
     });
-    this.actorBoard.setCell({
-      x: coords.x,
-      y: coords.y,
-      value: "m"
+
+    this.updateActorBoard({
+      coords: coords,
+      newCoords: newCoords,
+      name: "m",
+      actor: "pac"
     });
   }
   this.pac.moveTowardCenter();
@@ -188,6 +187,20 @@ GameController.prototype.moveGhost = function(name) {
 
   this[ghost].move();
   this.actorCanvas.renderGhost(this[ghost]);
+};
+GameController.prototype.updateActorBoard = function(args) {
+  if(args.coords.x != args.newCoords.x || args.coords.y != args.newCoords.y) {
+    this.actorBoard.setCell({
+      x: args.coords.x,
+      y: args.coords.y,
+      value: " "
+    });
+    this.actorBoard.setCell({
+      x: args.newCoords.x,
+      y: args.newCoords.y,
+      value: args.name
+    });
+  }
 };
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
