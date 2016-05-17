@@ -48,6 +48,15 @@ Ghost.inkyTarget = function(args) {
     y: args.coords.y + pacDistance.y
   }
 };
+Ghost.clydeTarget = function(args) {
+  var distance = Board.getTileDistance(args.coords, args.ghost);
+  if(distance > 8) {
+    return args.coords;
+  }
+  else {
+    return GHOST_CORNERS.c;
+  }
+};
 Ghost.prototype.isCentered = function() {
   return this.x % 8 == 4 && this.y % 8 == 4;
 };
