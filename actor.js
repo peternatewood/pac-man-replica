@@ -8,7 +8,6 @@ var Actor = function(args) {
   this.speed = PAC_MOVE_DELAY;
   this.mouthPos = 0.0;
   this.mouthIsOpening = true;
-  this.moveIntervalID = false;
   this.keyStates = {
     up: false,
     down: false,
