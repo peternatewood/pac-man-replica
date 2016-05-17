@@ -29,6 +29,25 @@ Ghost.pinkyTarget = function(args) {
     y: args.coords.y + yMod
   }
 };
+Ghost.inkyTarget = function(args) {
+  var xMod = 0;
+  var yMod = 0;
+  switch(args.direction) {
+    case "up": yMod -= 2; break;
+    case "down": yMod += 2; break;
+    case "left": xMod -= 2; break;
+    case "right": xMod += 2; break;
+  }
+  var pacDistance = {
+    x: (args.coords.x + xMod) - args.blinky.x,
+    y: (args.coords.y + yMod) - args.blinky.y
+  }
+
+  return {
+    x: args.coords.x + pacDistance.x,
+    y: args.coords.y + pacDistance.y
+  }
+};
 Ghost.prototype.isCentered = function() {
   return this.x % 8 == 4 && this.y % 8 == 4;
 };
