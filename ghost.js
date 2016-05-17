@@ -135,15 +135,6 @@ Ghost.prototype.renderEyes = function() {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
-Ghost.prototype.willCollide = function() {
-  if(this.y + 8 >= HOUSE_BOTTOM) {
-    return true;
-  }
-  else if(this.y - 5 <= HOUSE_TOP) {
-    return true;
-  }
-  return false;
-};
 Ghost.prototype.move = function() {
   switch(this.direction){
     case "up": this.y--; break;
