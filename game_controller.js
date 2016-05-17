@@ -159,7 +159,7 @@ GameController.prototype.moveGhost = function(name) {
     this[ghost].exitHouse();
   }
   else if(this[ghost].isCentered()) {
-    this[ghost].setNextDirection();
+    this.setNextDirection(ghost);
   }
 
   this[ghost].move();
