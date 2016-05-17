@@ -24,44 +24,6 @@ Actor.prototype.getClearDimensions = function() {
     h: 2 * this.radius
   }
 };
-Actor.prototype.render = function() {
-  this.context.fillStyle = nameToColor[this.name];
-  this.context.beginPath();
-
-  var arcStart, arcEnd;
-  var cheekX = 0;
-  var cheekY = 0;
-  switch(this.direction) {
-    case "up":
-      arcStart = (1.5 + this.mouthPos) * Math.PI;
-      arcEnd = (3.5 - this.mouthPos) * Math.PI;
-      cheekY = 2.5;
-    break;
-    case "down":
-      arcStart = (0.5 + this.mouthPos) * Math.PI;
-      arcEnd = (2.5 - this.mouthPos) * Math.PI;
-      cheekY = -2.5;
-    break;
-    case "left":
-      arcStart = (1.0 + this.mouthPos) * Math.PI;
-      arcEnd = (3.0 - this.mouthPos) * Math.PI;
-      cheekX = 2.5;
-    break;
-    case "right":
-      arcStart = (0.0 + this.mouthPos) * Math.PI;
-      arcEnd = (2.0 - this.mouthPos) * Math.PI;
-      cheekX = -2.5;
-    break;
-  }
-
-  if(this.name == "m") {
-    this.context.arc(this.x, this.y, this.radius, arcStart, arcEnd, false);
-    this.context.lineTo(this.x + cheekX, this.y + cheekY);
-  }
-
-  this.context.closePath();
-  this.context.fill();
-};
 Actor.prototype.move = function() {
   this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.08)) * 100) / 100;
   if(this.mouthPos <= 0) {
