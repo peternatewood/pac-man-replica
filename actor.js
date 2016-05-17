@@ -33,16 +33,6 @@ Actor.prototype.move = function() {
     case "right": this.x++; break;
   }
 
-  if(this.x + 8 <= 0) {
-    if(this.direction == "left") {
-      this.x = BOARD_WIDTH;
-    }
-  }
-  else if(this.x - 8 > BOARD_WIDTH) {
-    if(this.direction == "right") {
-      this.x = 0 - 8;
-    }
-  }
   return {x: this.x, y: this.y}
 };
 Actor.prototype.moveTowardCenter = function() {
