@@ -187,6 +187,29 @@ GameController.prototype.moveGhost = function(name) {
         this.setNextDirection(ghost);
       }
     break;
+    case "chase":
+      var coords = Board.convertToTile({
+        x: this.pac.x,
+        y: this.pac.y
+      });
+      var ghostCoords = Board.convertToTile({
+        x: this[ghost].x,
+        y: this[ghost].y
+      });
+      var blinkyCoords = Board.convertToTile({
+        x: this.blinky.x,
+        y: this.blinky.y
+      });
+      this[ghost].targetTile = Ghost[ghost + "Target"]({
+        coords: coords,
+        direction: this.pac.direction,
+        ghost: ghostCoords,
+        blinky: blinkyCoords
+      });
+      if(this[ghost].isCentered()) {
+        this.setNextDirection(ghost);
+      }
+    break;
   }
 
   this[ghost].move();
