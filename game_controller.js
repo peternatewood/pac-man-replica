@@ -137,7 +137,14 @@ GameController.prototype.moveActor = function() {
   }
   this.pac.moveTowardCenter();
 
-  this.pac.render();
+  this.actorCanvas.renderPac({
+    x: this.pac.x,
+    y: this.pac.y,
+    color: nameToColor[this.pac.name],
+    direction: this.pac.direction,
+    radius: this.pac.radius,
+    mouthPos: this.pac.mouthPos
+  });
 };
 GameController.prototype.moveGhost = function(name) {
   var ghost;
@@ -175,11 +182,9 @@ GameController.prototype.handleKeyDown = function(event) {
     event.preventDefault();
     if(this.pac.keyStates[keyPressed] === false) {
       this.pac.keyStates[keyPressed] = true;
-      this.pac.clear();
       if(this.pac.moveIntervalID === false) {
         this.pac.moveIntervalID = setInterval(this.moveActor.bind(this), this.pac.speed);
       }
-      this.pac.render();
     }
   }
 };
