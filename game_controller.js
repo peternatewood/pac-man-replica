@@ -219,6 +219,12 @@ GameController.prototype.moveGhost = function(name) {
   }
 
   this[ghost].move();
+  if(this[ghost].x < 0) {
+    this[ghost].x = BOARD_WIDTH;
+  }
+  else if(this[ghost].x > BOARD_WIDTH) {
+    this[ghost].x = 0;
+  }
   this.actorCanvas.renderGhost(this[ghost]);
 };
 GameController.prototype.updateActorBoard = function(args) {
@@ -271,16 +277,18 @@ GameController.prototype.setNextDirection = function(ghost) {
     target: this[ghost].targetTile
   });
 
-  if(nextTile.x < currentTile.x) {
-    this[ghost].direction = "left";
-  }
-  else if(nextTile.x > currentTile.x) {
-    this[ghost].direction = "right";
-  }
-  else if(nextTile.y < currentTile.y) {
-    this[ghost].direction = "up";
-  }
-  else if(nextTile.y > currentTile.y) {
-    this[ghost].direction = "down";
+  if(nextTile) {
+    if(nextTile.x < currentTile.x) {
+      this[ghost].direction = "left";
+    }
+    else if(nextTile.x > currentTile.x) {
+      this[ghost].direction = "right";
+    }
+    else if(nextTile.y < currentTile.y) {
+      this[ghost].direction = "up";
+    }
+    else if(nextTile.y > currentTile.y) {
+      this[ghost].direction = "down";
+    }
   }
 };
