@@ -24,6 +24,16 @@ Actor.prototype.getClearDimensions = function() {
     h: 2 * this.radius
   }
 };
+Actor.prototype.getRenderArgs = function() {
+  return {
+    x: this.x,
+    y: this.y,
+    direction: this.direction,
+    color: nameToColor[this.name],
+    radius: this.radius,
+    mouthPos: this.mouthPos
+  }
+};
 Actor.prototype.move = function() {
   this.mouthPos = Math.floor((this.mouthPos + ((this.mouthIsOpening ? 1 : -1) * 0.08)) * 100) / 100;
   if(this.mouthPos <= 0) {
