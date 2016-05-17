@@ -411,6 +411,39 @@ var START_BOARD = [
   "x..........................x",
   "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ];
+var START_BOARD_ACTORS = [
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "x            xx            x",
+  "x xxxx xxxxx xx xxxxx xxxx x",
+  "x xxxx xxxxx xx xxxxx xxxx x",
+  "x xxxx xxxxx xx xxxxx xxxx x",
+  "x                          x",
+  "x xxxx xx xxxxxxxx xx xxxx x",
+  "x xxxx xx xxxxxxxx xx xxxx x",
+  "x      xx    xx    xx      x",
+  "xxxxxx xxxxx xx xxxxx xxxxxx",
+  "     x xxxxx xx xxxxx x     ",
+  "     x xx    b     xx x     ",
+  "     x xx xxx  xxx xx x     ",
+  "xxxxxx xx x      x xx xxxxxx",
+  "          xi p c x          ",
+  "xxxxxx xx x      x xx xxxxxx",
+  "     x xx xxxxxxxx xx x     ",
+  "     x xx    m     xx x     ",
+  "     x xx xxxxxxxx xx x     ",
+  "xxxxxx xx xxxxxxxx xx xxxxxx",
+  "x            xx            x",
+  "x xxxx xxxxx xx xxxxx xxxx x",
+  "x xxxx xxxxx xx xxxxx xxxx x",
+  "x   xx                xx   x",
+  "xxx xx xx xxxxxxxx xx xx xxx",
+  "xxx xx xx xxxxxxxx xx xx xxx",
+  "x      xx    xx    xx      x",
+  "x xxxxxxxxxx xx xxxxxxxxxx x",
+  "x xxxxxxxxxx xx xxxxxxxxxx x",
+  "x                          x",
+  "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+];
 
 var keyCodes = {
   37: "left",
