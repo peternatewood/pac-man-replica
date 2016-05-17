@@ -149,8 +149,10 @@ GameController.prototype.moveGhost = function(name) {
   }
   this[ghost].clear();
 
-  if(this[ghost].movementMode == "house" && this[ghost].willCollide()) {
-    this[ghost].direction = oppositeDirection(this[ghost].direction);
+  if(this[ghost].movementMode == "house") {
+    if(this[ghost].y + 8 >= HOUSE_BOTTOM || this[ghost].y - 5 <= HOUSE_TOP) {
+      this[ghost].direction = oppositeDirection(this[ghost].direction);
+    }
   }
   else if(this[ghost].movementMode == "exitting") {
     this[ghost].exitHouse();
