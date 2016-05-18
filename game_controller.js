@@ -263,7 +263,7 @@ GameController.prototype.updateActorBoard = function(args) {
 };
 GameController.prototype.updateGameBoard = function() {
   this.updatePellets();
-  drawBorders(this.boardCanvas.context);
+  BrowserView.drawBorders(this.boardCanvas.context);
   this.updateLivesDisplay();
 };
 GameController.prototype.updateLivesDisplay = function() {
