@@ -141,7 +141,7 @@ GameController.prototype.moveActor = function() {
     });
   }
   this.pac.moveTowardCenter();
-  this.updatePellets();
+  this.updateGameBoard();
 
   this.pacCanvas.renderPac(this.pac);
 };
@@ -271,6 +271,11 @@ GameController.prototype.updateActorBoard = function(args) {
       value: args.name
     });
   }
+};
+GameController.prototype.updateGameBoard = function() {
+  this.updatePellets();
+  drawBorders(this.boardCanvas.context);
+  this.updateLivesDisplay();
 };
 GameController.prototype.updateLivesDisplay = function() {
   for(var i = 0; i < this.lives; i++) {
