@@ -8,6 +8,7 @@ var Ghost = function(args) {
   this.color = nameToColor[args.name];
   this.movementMode = args.mode ? args.mode : "scatter";
   this.targetTile = GHOST_CORNERS[this.name];
+  this.pelletLimit = args.limit ? args.limit : 0;
 }
 Ghost.blinkyTarget = function(args) {
   return {
@@ -94,5 +95,10 @@ Ghost.prototype.exitHouse = function() {
 Ghost.prototype.setMode = function(modeName) {
   if(GHOST_MODES.includes(modeName)) {
     this.movementMode = modeName;
+  }
+};
+Ghost.prototype.handlePelletCount = function(pelletCount) {
+  if(pelletCount >= this.pelletLimit) {
+    this.setMode("exitting");
   }
 };
