@@ -77,16 +77,6 @@ GameController.prototype.drawPellets = function() {
       }
     }.bind(this));
   }.bind(this));
-
-  var score = this.pelletCount.toString();
-  if(score.length == 1) {
-    score = "0" + score;
-  }
-  this.boardCanvas.drawText({
-    text: score,
-    col: 4 - score.length,      
-    row: 2
-  });
 };
 GameController.prototype.moveActor = function() {
   this.pacCanvas.clearRect(this.pac.getClearDimensions());
@@ -317,15 +307,15 @@ GameController.prototype.updatePellets = function() {
       this.clyde.handlePelletCount(this.pelletCount);
     }
     this.drawPellets();
-
-    var score = this.pelletCount.toString();
-    if(score.length == 1) {
-      score = "0" + score;
-    }
-    this.boardCanvas.drawText({
-      text: score,
-      col: 4 - score.length,      
-      row: 2
-    });
   }
+
+  var score = this.pelletCount.toString();
+  if(score.length == 1) {
+    score = "0" + score;
+  }
+  this.boardCanvas.drawText({
+    text: score,
+    col: 4 - score.length,
+    row: 1
+  });
 };
