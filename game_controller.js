@@ -30,6 +30,7 @@ var GameController = function(args) {
   });
   this.inky = new Ghost({
     direction: "up",
+    limit: 30,
     mode: "house",
     name: "i",
     startX: 96,
@@ -44,6 +45,7 @@ var GameController = function(args) {
   });
   this.clyde = new Ghost({
     direction: "down",
+    limit: 60,
     mode: "house",
     name: "c",
     startX: 128,
@@ -309,6 +311,12 @@ GameController.prototype.updatePellets = function() {
       value: " "
     });
     this.pelletCount++;
+    if(this.inky.movementMode == "house") {
+      this.inky.handlePelletCount(this.pelletCount);
+    }
+    if(this.clyde.movementMode == "house") {
+      this.clyde.handlePelletCount(this.pelletCount);
+    }
     this.drawPellets();
 
     var score = this.pelletCount.toString().split("");
