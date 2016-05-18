@@ -301,7 +301,10 @@ GameController.prototype.setNextDirection = function(ghost) {
 
 GameController.prototype.updateActorBoard = function(args) {
   var oldCoords = this.actorBoard.find(args.name);
-  if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
+  if(this.actorBoard.getCell(args.coords) == "m" && args.name != "m") {
+    this.startPacDeath();
+  }
+  else if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
     this.actorBoard.setCell({
       x: oldCoords.x,
       y: oldCoords.y,
