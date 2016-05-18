@@ -45,7 +45,7 @@ var GameController = function(args) {
   });
   this.clyde = new Ghost({
     direction: "down",
-    limit: 60,
+    limit: 90,
     mode: "house",
     name: "c",
     startX: 128,
