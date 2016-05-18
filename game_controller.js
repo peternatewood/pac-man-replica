@@ -41,6 +41,18 @@ var GameController = function(args) {
     this.moveGhost("c");
   }.bind(this), GHOST_MOVE_DELAY);
 }
+GameController.prototype.resetActors = function() {
+  for(var prop in ACTOR_ARGS) {
+    if(ACTOR_ARGS.hasOwnProperty(prop)) {
+      if(prop == "pac") {
+        this.pac = new Actor(ACTOR_ARGS.pac);
+      }
+      else {
+        this[prop] = new Ghost(ACTOR_ARGS[prop]);
+      }
+    }
+  }
+};
 GameController.prototype.drawPellets = function() {
   this.pelletCanvas.clearRect({
     x: 0,
