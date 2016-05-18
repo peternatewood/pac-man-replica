@@ -129,14 +129,13 @@ GameController.prototype.moveActor = function() {
       this.pac.x = 0;
     }
 
-    var newCoords = Board.convertToTile({
+    var coords = Board.convertToTile({
       x: this.pac.x,
       y: this.pac.y
     });
 
     this.updateActorBoard({
       coords: coords,
-      newCoords: newCoords,
       name: "m",
       actor: "pac"
     });
@@ -291,15 +290,16 @@ GameController.prototype.setNextDirection = function(ghost) {
 };
 
 GameController.prototype.updateActorBoard = function(args) {
-  if(args.coords.x != args.newCoords.x || args.coords.y != args.newCoords.y) {
+  var oldCoords = this.actorBoard.find(args.name);
+  if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
     this.actorBoard.setCell({
-      x: args.coords.x,
-      y: args.coords.y,
+      x: oldCoords.x,
+      y: oldCoords.y,
       value: " "
     });
     this.actorBoard.setCell({
-      x: args.newCoords.x,
-      y: args.newCoords.y,
+      x: args.coords.x,
+      y: args.coords.y,
       value: args.name
     });
   }
