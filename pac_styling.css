@@ -41,7 +41,7 @@ input {
 #debug {
   background-color: #000;
   color: #FFF;
-  /*display: none;*/
+  display: none;
   font-family: monospace;
   left: 0px;
   min-height: 180px;
