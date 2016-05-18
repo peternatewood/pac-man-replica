@@ -36,6 +36,10 @@ var GameController = function(args) {
     this.moveGhost("p");
     this.moveGhost("c");
   }.bind(this), GHOST_MOVE_DELAY);
+
+  setTimeout(function() {
+    this.ghostsMode = "chase";
+  }.bind(this), 7000);
 }
 GameController.prototype.resetActors = function() {
   for(var prop in ACTOR_ARGS) {
@@ -252,6 +256,10 @@ GameController.prototype.setNextDirection = function(ghost) {
     else if(nextTile.y > currentTile.y) {
       this[ghost].direction = "down";
     }
+  }
+
+  if(this.ghostsMode == "chase" && this[ghost].movementMode == "scatter") {
+    this[ghost].setMode("chase");
   }
 };
 
