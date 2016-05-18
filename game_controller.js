@@ -70,13 +70,6 @@ var GameController = function(args) {
     this.moveGhost("p");
     this.moveGhost("c");
   }.bind(this), GHOST_MOVE_DELAY);
-
-  setTimeout(function() {
-    this.inky.setMode("exitting");
-  }.bind(this), INKY_EXIT_DELAY);
-  setTimeout(function() {
-    this.clyde.setMode("exitting");
-  }.bind(this), CLYDE_EXIT_DELAY);
 }
 GameController.prototype.drawPellets = function() {
   this.pelletCanvas.clearRect({
