@@ -227,6 +227,8 @@ GameController.prototype.handleKeyUp = function(event) {
   }
 };
 GameController.prototype.startPacDeath = function() {
+  clearInterval(this.ghostMoveInterval);
+
   this.pac.mouthPos = 0;
 
   var runDeathLoop = function() {
