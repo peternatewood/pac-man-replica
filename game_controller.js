@@ -277,6 +277,14 @@ GameController.prototype.updateGameBoard = function() {
   this.updateLivesDisplay();
 };
 GameController.prototype.updateLivesDisplay = function() {
+  for(var i = 0; i < 2; i++) {
+    this.boardCanvas.clearRect({
+      x: (24 + (16 * i)) - this.pac.radius,
+      y: BOARD_HEIGHT - (8 + this.pac.radius),
+      w: 2 * this.pac.radius,
+      h: 2 * this.pac.radius
+    })
+  }
   for(var i = 0; i < this.lives; i++) {
     this.boardCanvas.renderPac({
       color: nameToColor["m"],
