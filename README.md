@@ -14,6 +14,8 @@ Eating pellets, power pellets, special items (like the cherry), and ghosts will 
 
 ## Setup
 
+Once the game is closer to MVP, it will be available to play on my website, until then:
+
 1. Clone the repo to your Desktop or whatever directory in which you want to keep it.
 2. Use any supported browser to open the "pac_alike.html" located in the root directory.
 3. Escape the ghosts!
@@ -48,20 +50,62 @@ Firefox: version 46
 
 ## Version History
 
-:large_blue_diamond: ** : 18 May 2016 -** Pac-Man will now be killed if he comes into contact with any ghost; that is, if both Pac-Man and a ghost occupy the same tile at once.
+:large_blue_diamond: **0.67 : 18 May 2016 -** Pac-Man will now be killed if he comes into contact with any ghost; that is, if both Pac-Man and a ghost occupy the same tile at once.
 
-:small_red_triangle_down: ** : 17 May 2016 -** Pac-Man "eats" any pellets he moves over, each pellet adding one point to the score counter.
+:small_red_triangle_down: **0.60 : 17 May 2016 -** Pac-Man "eats" any pellets he moves over, each pellet adding one point to the score counter. Inky and Clyde now leave the house once Pac-Man has eaten enough pellets. All ghosts change to scatter mode after seven seconds, as long as they have left the house.
+
+:small_red_triangle_down: **0.53 : 13 May 2016 -** All four ghosts move correctly from their given starting positions, even from inside the house. Ghosts can no longer move up through the four safe tiles near the ghost house.
+
+:small_red_triangle_down: **0.47 : 12 May 2016 -** Blinky now moves on a regular interval. New AudioChannel object and theme song constant allow simple sound production, but are not yet in use.
+
+:small_red_triangle_down: **0.40 : 10 May 2016 -** Ghosts decide each tile whether to change direction based on the distance between each available tile and the ghost's target tile.
+
+:small_red_triangle_down: **0.27 : 5 May 2016 -** Pac-Man moves in response to user input, and will stop on collision with an obstacle.
+
+:small_red_triangle_down: **0.20 : 26 April 2016 -** Pac-Man can now be rendered in the maze.
+
+:small_red_triangle_down: **0.13 : 18 April 2016 -** Ghosts can now be rendered in the maze.
+
+:small_red_triangle_down: **0.07 : 17 April 2016 -** The maze can now be rendered.
 
 ## MVP Checklist
 
 :white_check_mark: Pac-Man dies on contact with a ghost.
 
+:white_check_mark: Each ghost only leaves the house once Pac-Man has eaten a number of pellets equal to its pellet limit.
+
+:white_check_mark: Pac-Man eats pellets, which increase the player's score.
+
+:white_check_mark: Each ghost calculates its target tile based on its own unique formula.
+
+:white_check_mark: Pac-Man and the ghosts can move through the tunnel, appearing on the opposite side.
+
+:white_check_mark: Ghosts move on a regular interval.
+
+:white_check_mark: Pac-Man's mouth opens and closes as he moves.
+
+:white_check_mark: Pac-Man moves with player input. He continues to move in the direction he faces until he reaches an obstacle.
+
+:white_check_mark: Can render ghosts with their eyes pointing in the direction they face.
+
+:white_check_mark: Can render Pac-Man facing in each of the four cardinal directions.
+
+:white_check_mark: The maze is rendered using vector graphics in a single function.
+
 :white_medium_small_square: The game progresses to the next level once all 244 pellets have been eaten.
 
-:white_medium_small_square: A user is greeted with a title screen, displaying names of the ghosts, the current high score, and point values for pellets and frightened ghosts.
+:white_medium_small_square: The game stores a high score on game over, and loads from the user's cookies.
 
-:white_medium_small_square: Safari browser support
+:white_medium_small_square: The player is greeted with a title screen, displaying names of the ghosts, the current high score, and point values for pellets and frightened ghosts.
 
-:white_medium_small_square: Opera browser support
+:white_medium_small_square: The player hears the Pac-Man theme music when starting the game.
 
-:white_medium_small_square: Internet Explorer browser support
+:white_medium_small_square: The game plays sounds for the ghosts and Pac-Man.
+
+## Planned Features
+
+:white_medium_small_square: Safari browser support.
+
+:white_medium_small_square: Opera browser support.
+
+:white_medium_small_square: Internet Explorer browser support.
