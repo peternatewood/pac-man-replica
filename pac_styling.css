@@ -23,19 +23,19 @@ input {
 #pellets {
   z-index: 1;
 }
-#pac {
+#blinky {
   z-index: 2;
 }
-#blinky {
+#inky {
   z-index: 3;
 }
-#inky {
+#pinky {
   z-index: 4;
 }
-#pinky {
+#clyde {
   z-index: 5;
 }
-#clyde {
+#pac {
   z-index: 6;
 }
 
