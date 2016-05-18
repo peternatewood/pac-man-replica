@@ -28,11 +28,13 @@ ready(function() {
     actorBoard: new Board(START_BOARD_ACTORS)
   });
 
+  // Assigns the target tiles of each ghost to its respective input
   document.getElementById("blinky-target").value = controller.blinky.targetTile.x + "," + controller.blinky.targetTile.y;
   document.getElementById("inky-target").value = controller.inky.targetTile.x + "," + controller.inky.targetTile.y;
   document.getElementById("pinky-target").value = controller.pinky.targetTile.x + "," + controller.pinky.targetTile.y;
   document.getElementById("clyde-target").value = controller.clyde.targetTile.x + "," + controller.clyde.targetTile.y;
 
+  // Allows debug form to update ghost targets
   document.getElementById("update-data").addEventListener("submit", function(event) {
     event.preventDefault();
     var blinkyTarget = document.getElementById("blinky-target").value.split(",");
