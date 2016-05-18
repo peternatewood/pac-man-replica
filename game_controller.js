@@ -87,6 +87,7 @@ GameController.prototype.drawPellets = function() {
     row.forEach(function(col, cIndex) {
       if(col == ".") {
         this.pelletCanvas.drawRect({
+          color: PELLET_COLOR,
           x: (8 * cIndex) + 3,
           y: (8 * rIndex) + 27,
           w: 2,
@@ -102,6 +103,7 @@ GameController.prototype.drawPellets = function() {
       }
       else if(col == "-") {
         this.pelletCanvas.drawRect({
+          color: PELLET_COLOR,
           x: 8 * cIndex,
           y: (8 * rIndex) + 29,
           w: 8,
@@ -308,5 +310,17 @@ GameController.prototype.updatePellets = function() {
     });
     this.pelletCount++;
     this.drawPellets();
+
+    var score = this.pelletCount.toString().split("");
+    score.forEach(function(char, index) {
+      this.boardCanvas.drawObject({
+        objectArr: charset[char],
+        color: {r: 255, g: 255, b: 255, a: 255},
+        x: 8 * (index + 3),
+        y: 16
+      });
+    }.bind(this));
+    this.boardCanvas.finalizePerPixelRender();
+    drawBorders(this.boardCanvas.context);
   }
 };
