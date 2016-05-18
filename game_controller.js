@@ -237,14 +237,15 @@ GameController.prototype.handleKeyUp = function(event) {
 };
 GameController.prototype.startPacDeath = function() {
   clearInterval(this.ghostMoveInterval);
-  this.blinkyCanvas.clearRect(this.blinky.getClearDimensions());
-  this.inkyCanvas.clearRect(this.inky.getClearDimensions());
-  this.pinkyCanvas.clearRect(this.pinky.getClearDimensions());
-  this.clydeCanvas.clearRect(this.clyde.getClearDimensions());
+  clearInterval(this.pacMoveInterval);
 
   this.pac.mouthPos = 0;
 
   var runDeathLoop = function() {
+    this.blinkyCanvas.clearRect(this.blinky.getClearDimensions());
+    this.inkyCanvas.clearRect(this.inky.getClearDimensions());
+    this.pinkyCanvas.clearRect(this.pinky.getClearDimensions());
+    this.clydeCanvas.clearRect(this.clyde.getClearDimensions());
     this.pacCanvas.renderPacDeath(this.pac);
     if(this.pac.mouthPos < 1) {
       this.pac.mouthPos += 0.1;
@@ -256,7 +257,7 @@ GameController.prototype.startPacDeath = function() {
         y: this.pac.y - this.pac.radius,
         w: 2 * this.pac.radius,
         h: 2 * this.pac.radius
-      })
+      });
     }
   }.bind(this);
 
