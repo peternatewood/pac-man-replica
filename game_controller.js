@@ -30,7 +30,7 @@ var GameController = function(args) {
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
 
-  setInterval(function() {
+  this.ghostMoveInterval = setInterval(function() {
     this.moveGhost("b");
     this.moveGhost("i");
     this.moveGhost("p");
