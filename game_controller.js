@@ -226,6 +226,27 @@ GameController.prototype.handleKeyUp = function(event) {
     this.keyStates[keyPressed] = false;
   }
 };
+GameController.prototype.startPacDeath = function() {
+  this.pac.mouthPos = 0;
+
+  var runDeathLoop = function() {
+    this.pacCanvas.renderPacDeath(this.pac);
+    if(this.pac.mouthPos < 1) {
+      this.pac.mouthPos += 0.1;
+      setTimeout(runDeathLoop.bind(this), PAC_DEATH_DELAY);
+    }
+    else {
+      this.pacCanvas.clearRect({
+        x: this.pac.x - this.pac.radius,
+        y: this.pac.y - this.pac.radius,
+        w: 2 * this.pac.radius,
+        h: 2 * this.pac.radius
+      })
+    }
+  }.bind(this);
+
+  runDeathLoop();
+};
 GameController.prototype.setNextDirection = function(ghost) {
   var currentTile = Board.convertToTile({
     x: this[ghost].x,
