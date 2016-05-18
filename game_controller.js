@@ -30,6 +30,7 @@ var GameController = function(args) {
   drawBorders(this.boardCanvas.context);
 
   this.pacCanvas.renderPac(this.pac);
+  this.updateLivesDisplay();
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
@@ -205,20 +206,6 @@ GameController.prototype.moveGhost = function(name) {
   }
   this[ghost + "Canvas"].renderGhost(this[ghost]);
 };
-GameController.prototype.updateActorBoard = function(args) {
-  if(args.coords.x != args.newCoords.x || args.coords.y != args.newCoords.y) {
-    this.actorBoard.setCell({
-      x: args.coords.x,
-      y: args.coords.y,
-      value: " "
-    });
-    this.actorBoard.setCell({
-      x: args.newCoords.x,
-      y: args.newCoords.y,
-      value: args.name
-    });
-  }
-};
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = keyCodes[event.keyCode];
   if(keyPressed) {
@@ -268,6 +255,33 @@ GameController.prototype.setNextDirection = function(ghost) {
     else if(nextTile.y > currentTile.y) {
       this[ghost].direction = "down";
     }
+  }
+};
+
+GameController.prototype.updateActorBoard = function(args) {
+  if(args.coords.x != args.newCoords.x || args.coords.y != args.newCoords.y) {
+    this.actorBoard.setCell({
+      x: args.coords.x,
+      y: args.coords.y,
+      value: " "
+    });
+    this.actorBoard.setCell({
+      x: args.newCoords.x,
+      y: args.newCoords.y,
+      value: args.name
+    });
+  }
+};
+GameController.prototype.updateLivesDisplay = function() {
+  for(var i = 0; i < this.lives; i++) {
+    this.boardCanvas.renderPac({
+      color: nameToColor["m"],
+      mouthPos: 0.2,
+      direction: "left",
+      x: 24 + (16 * i),
+      y: BOARD_HEIGHT - 8,
+      radius: this.pac.radius
+    });
   }
 };
 GameController.prototype.updatePellets = function() {
