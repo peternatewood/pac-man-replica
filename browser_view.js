@@ -35,6 +35,16 @@ BrowserView.prototype.drawObject = function(args) {
           a: args.color.a
         });
       }
+      else {
+        this.drawPixel({
+          x: args.x + cIndex,
+          y: args.y + rIndex,
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 0
+        });
+      }
     }.bind(this));
   }.bind(this));
 };
@@ -69,7 +79,7 @@ BrowserView.prototype.drawCircle = function(args) {
   this.context.fill();
 };
 BrowserView.prototype.drawRect = function(args) {
-  this.context.fillStyle = PELLET_COLOR;
+  this.context.fillStyle = args.color;
   this.context.fillRect(args.x, args.y, args.w, args.h);
 };
 BrowserView.prototype.clearRect = function(args) {
