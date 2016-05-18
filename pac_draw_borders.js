@@ -2,6 +2,7 @@ var drawBorders = function(context) {
   var x = 0.5;
   var y = 32.5;
 
+  context.clearRect(0, 24, BOARD_WIDTH, BOARD_HEIGHT - 40);
   context.strokeStyle = "#00F";
   context.lineWidth = 1;
 
