@@ -108,6 +108,24 @@ BrowserView.prototype.renderPac = function(args) {
   this.context.closePath();
   this.context.fill();
 };
+BrowserView.prototype.renderPacDeath = function(args) {
+  this.clearRect({
+    x: args.x - args.radius,
+    y: args.y - args.radius,
+    w: 2 * args.radius,
+    h: 2 * args.radius
+  });
+  this.context.fillStyle = args.color;
+  this.context.beginPath();
+
+  var arcStart = (1.5 + args.mouthPos) * Math.PI;
+  var arcEnd = (3.5 - args.mouthPos) * Math.PI;
+
+  this.context.arc(args.x, args.y, args.radius, arcStart, arcEnd, false);
+  this.context.lineTo(args.x, args.y);
+  this.context.closePath();
+  this.context.fill();
+};
 BrowserView.prototype.renderGhost = function(args) {
   this.context.fillStyle = args.color;
   var x = args.x;
