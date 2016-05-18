@@ -302,20 +302,28 @@ GameController.prototype.setNextDirection = function(ghost) {
 
 GameController.prototype.updateActorBoard = function(args) {
   var oldCoords = this.actorBoard.find(args.name);
-  if(this.actorBoard.getCell(args.coords) == "m" && args.name != "m") {
-    this.startPacDeath();
-  }
-  else if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
-    this.actorBoard.setCell({
-      x: oldCoords.x,
-      y: oldCoords.y,
-      value: " "
-    });
-    this.actorBoard.setCell({
-      x: args.coords.x,
-      y: args.coords.y,
-      value: args.name
-    });
+  var cell = this.actorBoard.getCell(args.coords);
+  var ghosts = ["b", "i", "p", "c"];
+
+  if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
+    if(args.name == "m" && ghosts.includes(cell)) {
+      this.startPacDeath();
+    }
+    else if(cell == "m") {
+      this.startPacDeath();
+    }
+    else {
+      this.actorBoard.setCell({
+        x: oldCoords.x,
+        y: oldCoords.y,
+        value: " "
+      });
+      this.actorBoard.setCell({
+        x: args.coords.x,
+        y: args.coords.y,
+        value: args.name
+      });
+    }
   }
 };
 GameController.prototype.updateGameBoard = function() {
