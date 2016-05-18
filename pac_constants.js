@@ -569,6 +569,11 @@ var GHOST_CORNERS = {
   c: {x: 0, y: 35}
 }
 
+var CHAR_TO_COLOR = {
+  "x": {r: 255, g: 255, b: 255, a: 255},
+  " ": {r: 0, g: 0, b: 0, a: 0}
+}
+
 var EMPTY_TILES = [" ", ".", "o", "m", "/", "t"];
 
 var oppositeDirection = function(direction) {
