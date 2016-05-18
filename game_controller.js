@@ -16,41 +16,11 @@ var GameController = function(args) {
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
 
-  this.pac = new Actor({
-    startX: 113,
-    startY: 212,
-    name: "m",
-    direction: "right"
-  });
-  this.blinky = new Ghost({
-    direction: "left",
-    name: "b",
-    startX: 112,
-    startY: 116
-  });
-  this.inky = new Ghost({
-    direction: "up",
-    limit: 30,
-    mode: "house",
-    name: "i",
-    startX: 96,
-    startY: 139
-  });
-  this.pinky = new Ghost({
-    direction: "right",
-    mode: "exitting",
-    name: "p",
-    startX: 112,
-    startY: 139
-  });
-  this.clyde = new Ghost({
-    direction: "down",
-    limit: 90,
-    mode: "house",
-    name: "c",
-    startX: 128,
-    startY: 139
-  });
+  this.pac = new Actor(ACTOR_ARGS.pac);
+  this.blinky = new Ghost(ACTOR_ARGS.blinky);
+  this.inky = new Ghost(ACTOR_ARGS.inky);
+  this.pinky = new Ghost(ACTOR_ARGS.pinky);
+  this.clyde = new Ghost(ACTOR_ARGS.clyde);
 
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
