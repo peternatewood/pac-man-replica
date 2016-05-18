@@ -315,6 +315,5 @@ GameController.prototype.updatePellets = function() {
       col: 4 - score.length,      
       row: 2
     });
-    drawBorders(this.boardCanvas.context);
   }
 };
