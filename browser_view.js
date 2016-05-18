@@ -25,26 +25,14 @@ BrowserView.prototype.drawObject = function(args) {
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
-      if(col == "x") {
-        this.drawPixel({
-          x: args.x + cIndex,
-          y: args.y + rIndex,
-          r: args.color.r,
-          g: args.color.g,
-          b: args.color.b,
-          a: args.color.a
-        });
-      }
-      else {
-        this.drawPixel({
-          x: args.x + cIndex,
-          y: args.y + rIndex,
-          r: 0,
-          g: 0,
-          b: 0,
-          a: 0
-        });
-      }
+      this.drawPixel({
+        x: args.x + cIndex,
+        y: args.y + rIndex,
+        r: CHAR_TO_COLOR[col].r,
+        g: CHAR_TO_COLOR[col].g,
+        b: CHAR_TO_COLOR[col].b,
+        a: CHAR_TO_COLOR[col].a
+      });
     }.bind(this));
   }.bind(this));
 };
@@ -57,8 +45,7 @@ BrowserView.prototype.drawText = function(args) {
       this.drawObject({
         objectArr: charset[letter],
         x: x,
-        y: y,
-        color: args.color
+        y: y
       });
     }
     else if(letter == "\n") {
@@ -245,7 +232,6 @@ BrowserView.prototype.drawText = function(args) {
   text.forEach(function(char, index) {
     this.drawObject({
       objectArr: charset[char],
-      color: args.color ? args.color : {r: 255, g: 255, b: 255, a: 255},
       x: 8 * (x + index),
       y: 8 * y
     });
