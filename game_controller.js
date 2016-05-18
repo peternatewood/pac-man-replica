@@ -26,7 +26,6 @@ var GameController = function(args) {
   this.actorBoard = args.actorBoard;
 
   this.drawPellets();
-  this.boardCanvas.finalizePerPixelRender();
   drawBorders(this.boardCanvas.context);
 
   this.pacCanvas.renderPac(this.pac);
@@ -77,6 +76,16 @@ GameController.prototype.drawPellets = function() {
       }
     }.bind(this));
   }.bind(this));
+
+  var score = this.pelletCount.toString();
+  if(score.length == 1) {
+    score = "0" + score;
+  }
+  this.boardCanvas.drawText({
+    text: score,
+    col: 4 - score.length,      
+    row: 2
+  });
 };
 GameController.prototype.moveActor = function() {
   this.pacCanvas.clearRect(this.pac.getClearDimensions());
@@ -282,16 +291,15 @@ GameController.prototype.updatePellets = function() {
     }
     this.drawPellets();
 
-    var score = this.pelletCount.toString().split("");
-    score.forEach(function(char, index) {
-      this.boardCanvas.drawObject({
-        objectArr: charset[char],
-        color: {r: 255, g: 255, b: 255, a: 255},
-        x: 8 * (index + 3),
-        y: 16
-      });
-    }.bind(this));
-    this.boardCanvas.finalizePerPixelRender();
+    var score = this.pelletCount.toString();
+    if(score.length == 1) {
+      score = "0" + score;
+    }
+    this.boardCanvas.drawText({
+      text: score,
+      col: 4 - score.length,      
+      row: 2
+    });
     drawBorders(this.boardCanvas.context);
   }
 };
