@@ -231,6 +231,27 @@ BrowserView.prototype.renderGhost = function(args) {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
+BrowserView.prototype.drawText = function(args) {
+  var text = args.text.toUpperCase().split("");
+  var x = 0;
+  var y = args.row;
+  if(args.center) {
+    x = Math.floor((HORIZ_TILES / 2) - (text.length / 2));
+  }
+  else {
+    x = args.col;
+  }
+
+  text.forEach(function(char, index) {
+    this.drawObject({
+      objectArr: charset[char],
+      color: args.color ? args.color : {r: 255, g: 255, b: 255, a: 255},
+      x: 8 * (x + index),
+      y: 8 * y
+    });
+  }.bind(this));
+  this.finalizePerPixelRender();
+};
 BrowserView.prototype.finalizePerPixelRender = function() {
   this.context.putImageData(this.canvasData, 0, 0);
 };
