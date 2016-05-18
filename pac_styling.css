@@ -9,6 +9,7 @@ canvas {
   border-radius: 12px;
   left: 40vw;
   margin: 3em;
+  padding: 8px 0;
   position: absolute;
 }
 input {
