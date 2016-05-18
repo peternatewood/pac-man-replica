@@ -561,7 +561,6 @@ var ACTOR_ARGS = {
     startY: 139
   }
 };
-
 var GHOST_CORNERS = {
   b: {x: 22, y: 0},
   i: {x: 27, y: 35},
@@ -571,6 +570,8 @@ var GHOST_CORNERS = {
 
 var CHAR_TO_COLOR = {
   "x": {r: 255, g: 255, b: 255, a: 255},
+  "r": {r: 255, g: 0, b: 0, a: 255},
+  "o": {r: 255, g: 178, b: 0, a: 255},
   " ": {r: 0, g: 0, b: 0, a: 0}
 }
 
