@@ -514,6 +514,43 @@ var GHOST_MODES = [
   "chase",
   "frightened"
 ];
+var ACTOR_ARGS = {
+  pac: {
+    startX: 113,
+    startY: 212,
+    name: "m",
+    direction: "right"
+  },
+  blinky: {
+    direction: "left",
+    name: "b",
+    startX: 112,
+    startY: 116
+  },
+  inky: {
+    direction: "up",
+    limit: 30,
+    mode: "house",
+    name: "i",
+    startX: 96,
+    startY: 139
+  },
+  pinky: {
+    direction: "right",
+    mode: "exitting",
+    name: "p",
+    startX: 112,
+    startY: 139
+  },
+  clyde: {
+    direction: "down",
+    limit: 90,
+    mode: "house",
+    name: "c",
+    startX: 128,
+    startY: 139
+  }
+};
 
 var GHOST_CORNERS = {
   b: {x: 22, y: 0},
