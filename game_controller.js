@@ -204,6 +204,16 @@ GameController.prototype.moveGhost = function(name) {
   else if(this[ghost].x > BOARD_WIDTH) {
     this[ghost].x = 0;
   }
+
+  var coords = Board.convertToTile({
+    x: this[ghost].x,
+    y: this[ghost].y
+  });
+  this.updateActorBoard({
+    coords: coords,
+    name: this[ghost].name
+  });
+
   this[ghost + "Canvas"].renderGhost(this[ghost]);
 };
 GameController.prototype.handleKeyDown = function(event) {
