@@ -27,10 +27,9 @@ var GameController = function(args) {
   this.actorBoard = args.actorBoard;
 
   this.drawPellets();
-  drawBorders(this.boardCanvas.context);
 
   this.pacCanvas.renderPac(this.pac);
-  this.updateLivesDisplay();
+  this.updateGameBoard();
 
   addEventListener("keydown", this.handleKeyDown.bind(this));
   addEventListener("keyup", this.handleKeyUp.bind(this));
