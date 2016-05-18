@@ -228,6 +228,10 @@ GameController.prototype.handleKeyUp = function(event) {
 };
 GameController.prototype.startPacDeath = function() {
   clearInterval(this.ghostMoveInterval);
+  this.blinkyCanvas.clearRect(this.blinky.getClearDimensions());
+  this.inkyCanvas.clearRect(this.inky.getClearDimensions());
+  this.pinkyCanvas.clearRect(this.pinky.getClearDimensions());
+  this.clydeCanvas.clearRect(this.clyde.getClearDimensions());
 
   this.pac.mouthPos = 0;
 
