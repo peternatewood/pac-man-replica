@@ -455,6 +455,23 @@ var START_BOARD_ACTORS = [
   "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ];
 
+var CHERRY = [
+  "          oo",
+  "        oooo",
+  "      oo o  ",
+  "     o   o  ",
+  " rrro   o   ",
+  "rrrorr o    ",
+  "rrrrr rorr  ",
+  "rxrr rrorrr ",
+  "rrxr rrrrrr ",
+  " rrr rxrrrr ",
+  "     rrxrrr ",
+  "      rrrr  "
+].map(function(row) {
+  return row.split("");
+});
+
 var keyCodes = {
   37: "left",
   38: "up",
