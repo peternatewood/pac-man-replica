@@ -17,11 +17,7 @@ var GameController = function(args) {
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
 
-  this.pac = new Actor(ACTOR_ARGS.pac);
-  this.blinky = new Ghost(ACTOR_ARGS.blinky);
-  this.inky = new Ghost(ACTOR_ARGS.inky);
-  this.pinky = new Ghost(ACTOR_ARGS.pinky);
-  this.clyde = new Ghost(ACTOR_ARGS.clyde);
+  this.resetActors();
 
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
