@@ -358,6 +358,17 @@ GameController.prototype.updateLivesDisplay = function() {
     });
   }
 };
+GameController.prototype.updateScore = function() {
+  var score = this.pelletCount.toString();
+  if(score.length == 1) {
+    score = "0" + score;
+  }
+  this.boardCanvas.drawText({
+    text: score,
+    col: 7 - score.length,
+    row: 1
+  });
+};
 GameController.prototype.updatePellets = function() {
   var coords = Board.convertToTile({
     x: this.pac.x,
@@ -381,13 +392,5 @@ GameController.prototype.updatePellets = function() {
     this.drawPellets();
   }
 
-  var score = this.pelletCount.toString();
-  if(score.length == 1) {
-    score = "0" + score;
-  }
-  this.boardCanvas.drawText({
-    text: score,
-    col: 7 - score.length,
-    row: 1
-  });
+  this.updateScore();
 };
