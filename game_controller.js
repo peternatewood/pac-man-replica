@@ -23,6 +23,9 @@ var GameController = function(args) {
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
 
+  this.startGame();
+}
+GameController.prototype.startGame = function() {
   this.drawPellets();
 
   this.pacCanvas.renderPac(this.pac);
@@ -41,7 +44,7 @@ var GameController = function(args) {
   setTimeout(function() {
     this.ghostsMode = "chase";
   }.bind(this), 7000);
-}
+};
 GameController.prototype.resetActors = function() {
   for(var prop in ACTOR_ARGS) {
     if(ACTOR_ARGS.hasOwnProperty(prop)) {
