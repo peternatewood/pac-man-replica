@@ -1,4 +1,4 @@
-var charset = {
+var CHARSET = {
   " ": [
     "        ",
     "        ",
@@ -431,9 +431,9 @@ var charset = {
   ]
 }
 
-for(var prop in charset) {
-  if(charset.hasOwnProperty(prop)) {
-    charset[prop] = charset[prop].map(function(row) {
+for(var prop in CHARSET) {
+  if(CHARSET.hasOwnProperty(prop)) {
+    CHARSET[prop] = CHARSET[prop].map(function(row) {
       return row.split("");
     });
   }

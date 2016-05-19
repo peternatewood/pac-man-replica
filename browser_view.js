@@ -228,7 +228,7 @@ BrowserView.prototype.drawText = function(args) {
 
   text.forEach(function(char, index) {
     this.drawObject({
-      objectArr: charset[char],
+      objectArr: CHARSET[char],
       x: 8 * (x + index),
       y: 8 * y
     });
