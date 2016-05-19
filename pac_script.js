@@ -24,6 +24,9 @@ ready(function() {
       canvases[i].style.left = (windowWidth / 2) - (boardWidth / 2) + "px";
     }
   }
+  centerBoards();
+
+  window.addEventListener("resize", centerBoards);
 
   var controller = new GameController({
     pacCanvas: new BrowserView("pac"),
