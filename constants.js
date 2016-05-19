@@ -522,6 +522,17 @@ var CHERRY = [
 ].map(function(row) {
   return row.split("");
 });
+var TWO_HUND = [
+  " xxx   xx   xx ",
+  "x   x x  x x  x",
+  "x   x x  x x  x",
+  "   x  x  x x  x",
+  "  x   x  x x  x",
+  " x    x  x x  x",
+  "xxxxx  xx   xx "
+].map(function(row) {
+  return row.split("");
+});
 
 var KEY_CODES = {
   37: "left",
