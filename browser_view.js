@@ -25,13 +25,14 @@ BrowserView.prototype.drawObject = function(args) {
 
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
+      var color = args.color ? args.color : CHAR_TO_COLOR[col];
       this.drawPixel({
         x: args.x + cIndex,
         y: args.y + rIndex,
-        r: CHAR_TO_COLOR[col].r,
-        g: CHAR_TO_COLOR[col].g,
-        b: CHAR_TO_COLOR[col].b,
-        a: CHAR_TO_COLOR[col].a
+        r: color.r,
+        g: color.g,
+        b: color.b,
+        a: color.a
       });
     }.bind(this));
   }.bind(this));
