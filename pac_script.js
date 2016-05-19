@@ -89,11 +89,11 @@ ready(function() {
   // }, CLYDE_EXIT_DELAY + 2000);
 
   // Green grid to delineate 8 x 8 tiles
-  // pelletCanvas.context.fillStyle = "#080";
+  // controller.pacCanvas.context.fillStyle = "#080";
   // for(var x = 0; x < BOARD_WIDTH; x += 8) {
-  //   pelletCanvas.context.fillRect(x, 0, 1, BOARD_HEIGHT);
+  //   controller.pacCanvas.context.fillRect(x, 0, 1, BOARD_HEIGHT);
   // }
   // for(var y = 0; y < BOARD_HEIGHT; y += 8) {
-  //   pelletCanvas.context.fillRect(0, y, BOARD_WIDTH, 1);
+  //   controller.pacCanvas.context.fillRect(0, y, BOARD_WIDTH, 1);
   // }
 });
