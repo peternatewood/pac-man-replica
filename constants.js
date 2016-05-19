@@ -553,7 +553,8 @@ var NAME_TO_COLOR = {
   i: "#4FF",
   p: "#FCF",
   c: "#FA6",
-  m: "#FF0"
+  m: "#FF0",
+  F: "#00F"
 }
 
 var TILE_LETTER_TO_NAME = {
