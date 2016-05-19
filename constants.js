@@ -35,9 +35,9 @@ var CHARSET = {
     "        ",
     "        ",
     "        ",
-    "        ",
     " xx     ",
-    " xx     "
+    " xx     ",
+    "        "
   ],
   "/": [
     "       x",
@@ -533,6 +533,15 @@ var TWO_HUND = [
 ].map(function(row) {
   return row.split("");
 });
+var PTS = [
+  "xxxx  xxxxx  xxxx",
+  "x   x   x   x    ",
+  "xxxx    x    xxx ",
+  "x       x       x",
+  "x       x   xxxx "
+].map(function(row) {
+  return row.split("");
+});
 
 var KEY_CODES = {
   37: "left",
@@ -554,7 +563,7 @@ var NAME_TO_COLOR = {
   p: "#FCF",
   c: "#FA6",
   m: "#FF0",
-  F: "#00F"
+  F: "#40F"
 }
 
 var TILE_LETTER_TO_NAME = {
