@@ -1,6 +1,7 @@
 var GameController = function(args) {
   this.pelletCount = 0;
   this.lives = 2;
+  this.gameState = "title";
   this.keyStates = {
     up: false,
     down: false,
