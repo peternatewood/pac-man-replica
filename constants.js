@@ -63,9 +63,9 @@ var CHARSET = {
   0: [
     "   xxx  ",
     "  x  xx ",
-    " xx  xxx",
     " xx   xx",
-    " xxx  xx",
+    " xx   xx",
+    " xx   xx",
     "  xx  x ",
     "   xxx  ",
     "        "
@@ -530,6 +530,13 @@ var KEY_CODES = {
   40: "down"
 }
 
+var RGBA_COLORS = {
+  b: {r: 255, g: 0, b: 0, a: 255},
+  i: {r: 67, g: 255, b: 255, a: 255},
+  p: {r: 255, g: 204, b: 255, a: 255},
+  c: {r: 255, g: 170, b: 102, a: 255},
+  m: {r: 255, g: 255, b: 0, a: 255}
+}
 var NAME_TO_COLOR = {
   b: "#F00",
   i: "#4FF",
