@@ -39,7 +39,7 @@ Board.prototype.predictCollision = function(coords, direction) {
     x: coords.x + xOffset,
     y: coords.y + yOffset
   }));
-  return tileLetterToName[tile];
+  return TILE_LETTER_TO_NAME[tile];
 };
 Board.prototype.getAdjacentTiles = function(args) {
   var coords = Board.convertToTile({x: args.x, y: args.y});

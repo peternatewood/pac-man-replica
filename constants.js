@@ -523,14 +523,14 @@ var CHERRY = [
   return row.split("");
 });
 
-var keyCodes = {
+var KEY_CODES = {
   37: "left",
   38: "up",
   39: "right",
   40: "down"
 }
 
-var nameToColor = {
+var NAME_TO_COLOR = {
   b: "#F00",
   i: "#4FF",
   p: "#FCF",
@@ -538,7 +538,7 @@ var nameToColor = {
   m: "#FF0"
 }
 
-var tileLetterToName = {
+var TILE_LETTER_TO_NAME = {
   "x": "wall",
   "-": "door",
   ".": "pellet",

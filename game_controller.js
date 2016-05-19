@@ -220,7 +220,7 @@ GameController.prototype.moveGhost = function(name) {
   this[ghost + "Canvas"].renderGhost(this[ghost]);
 };
 GameController.prototype.handleKeyDown = function(event) {
-  var keyPressed = keyCodes[event.keyCode];
+  var keyPressed = KEY_CODES[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
     if(this.keyStates[keyPressed] === false) {
@@ -232,7 +232,7 @@ GameController.prototype.handleKeyDown = function(event) {
   }
 };
 GameController.prototype.handleKeyUp = function(event) {
-  var keyPressed = keyCodes[event.keyCode];
+  var keyPressed = KEY_CODES[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
     this.keyStates[keyPressed] = false;
@@ -349,7 +349,7 @@ GameController.prototype.updateLivesDisplay = function() {
   }
   for(var i = 0; i < this.lives; i++) {
     this.boardCanvas.renderPac({
-      color: nameToColor["m"],
+      color: NAME_TO_COLOR["m"],
       mouthPos: 0.2,
       direction: "left",
       x: 24 + (16 * i),
