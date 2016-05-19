@@ -260,6 +260,16 @@ var THEME_SONG = [
     length: 112
   },
   {
+    note: "ab",
+    octave: 5,
+    length: 48
+  },
+  {
+    note: "e",
+    octave: 0,
+    length: 16
+  },
+  {
     note: "a",
     octave: 5,
     length: 48
@@ -271,16 +281,6 @@ var THEME_SONG = [
   },
   {
     note: "bb",
-    octave: 5,
-    length: 48
-  },
-  {
-    note: "e",
-    octave: 0,
-    length: 16
-  },
-  {
-    note: "b",
     octave: 5,
     length: 48
   },
