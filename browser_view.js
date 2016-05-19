@@ -227,6 +227,93 @@ BrowserView.prototype.renderGhost = function(args) {
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
 };
+BrowserView.prototype.renderGhostFrightened = function(args) {
+  this.context.fillStyle = args.color;
+  var x = args.x;
+  var y = args.y;
+
+  // Head
+  this.context.beginPath();
+  this.context.arc(x, y, 6, Math.PI, 0, false);
+  this.context.moveTo(x += 7, y);
+  this.context.lineTo(x, y += 5);
+  this.context.lineTo(x -= 14, y);
+  this.context.lineTo(x, y -= 5);
+  this.context.closePath();
+  this.context.fill();
+
+  // Tendrils
+  x = args.x + 7;
+  y = args.y + 5;
+
+  this.context.moveTo(x, y);
+  switch(this.ghostAnimStep) {
+    case 0:
+      this.context.lineTo(x, y += 3);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x -= 2, y -= 2.5);
+      this.context.lineTo(x -= 2, y += 2.5);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x, y -= 2);
+      this.context.lineTo(x -= 2, y);
+      this.context.lineTo(x, y += 2);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x -= 2, y -= 2.5);
+      this.context.lineTo(x -= 2, y += 2.5);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x, y -= 3);
+    break;
+    case 1:
+      this.context.lineTo(x, y += 1);
+      this.context.lineTo(x -= 2, y += 2.5);
+      this.context.lineTo(x -= 2, y -= 2.5);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x -= 2, y += 2.5);
+      this.context.lineTo(x -= 2, y -= 2.5);
+      this.context.lineTo(x -= 1, y);
+      this.context.lineTo(x -= 2, y += 2.5);
+      this.context.lineTo(x -= 2, y -= 2.5);
+      this.context.lineTo(x, y -= 1);
+    break;
+  }
+  this.context.closePath();
+  this.context.fill();
+
+  // Eyes
+  this.context.fillStyle = NAME_TO_COLOR["p"];
+  x = args.x - 3;
+  y = args.y - 1;
+  this.context.fillRect(x, y, 2, 2);
+  this.context.fillRect(x + 4, y, 2, 2);
+
+  // Mouth
+  this.context.strokeStyle = NAME_TO_COLOR["p"];
+  x = args.x - 4.5;
+  y = args.y + 4.5;
+
+  switch(args.direction) {
+    case "up": y -= 2; break;
+    case "down": y += 1; break;
+    case "left": x--; break;
+    case "right": x++; break;
+  }
+
+  // Whites of eyes
+  this.context.beginPath();
+  this.context.moveTo(x, y);
+  this.context.lineTo(x += 1, y -= 1);
+  this.context.lineTo(x += 1, y);
+  this.context.lineTo(x += 1, y += 1);
+  this.context.lineTo(x += 1, y);
+  this.context.lineTo(x += 1, y -= 1);
+  this.context.lineTo(x += 1, y);
+  this.context.lineTo(x += 1, y += 1);
+  this.context.lineTo(x += 1, y);
+  this.context.lineTo(x += 1, y -= 1);
+  this.context.lineTo(x += 1, y);
+  this.context.lineTo(x += 1, y += 1);
+  this.context.stroke();
+};
 BrowserView.prototype.drawText = function(args) {
   var text = args.text.toUpperCase().split("");
   var x = 0;
