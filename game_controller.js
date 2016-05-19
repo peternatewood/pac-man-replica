@@ -18,14 +18,13 @@ var GameController = function(args) {
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
 
-  this.resetActors();
-
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
 
   this.startGame();
 }
 GameController.prototype.startGame = function() {
+  this.resetActors();
   this.drawPellets();
 
   this.pacCanvas.renderPac(this.pac);
