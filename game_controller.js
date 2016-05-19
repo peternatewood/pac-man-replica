@@ -275,6 +275,7 @@ GameController.prototype.setNextDirection = function(ghost) {
   adjacentTiles[oppositeDirection(this[ghost].direction)] = undefined;
 
   var emptyTiles = this.gameBoard.getEmptyTiles(adjacentTiles);
+  emptyTiles = this.actorBoard.getEmptyTiles(emptyTiles);
   var nextTile = this.gameBoard.getClosestTile({
     tiles: emptyTiles,
     target: this[ghost].targetTile
@@ -293,6 +294,9 @@ GameController.prototype.setNextDirection = function(ghost) {
     else if(nextTile.y > currentTile.y) {
       this[ghost].direction = "down";
     }
+  }
+  else {
+    this[ghost].direction = oppositeDirection(this[ghost].direction);
   }
 
   if(this.ghostsMode == "chase" && this[ghost].movementMode == "scatter") {
