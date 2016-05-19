@@ -23,6 +23,144 @@ var GameController = function(args) {
 
   this.startGame();
 }
+GameController.prototype.drawTitleScreen = function() {
+  ["pac", "blinky", "inky", "pinky", "clyde", "board", "pellet"].forEach(function(name) {
+    this[name + "Canvas"].clearRect({
+      x: 0,
+      y: 0,
+      w: BOARD_WIDTH,
+      h: BOARD_HEIGHT
+    });
+  }.bind(this));
+
+  this.boardCanvas.drawText({
+    text: "1up   high score   2up",
+    row: 0,
+    col: 3
+  });
+  this.updateScore();
+  this.boardCanvas.drawText({
+    text: "character / nickname",
+    row: 5,
+    col: 7
+  });
+  this.blinkyCanvas.renderGhost({
+    x: 40,
+    y: 58,
+    color: NAME_TO_COLOR["b"],
+    direction: "right"
+  });
+  this.boardCanvas.drawText({
+    text: "-shadow    \"blinky\"",
+    row: 7,
+    col: 7,
+    color: RGBA_COLORS["b"]
+  });
+  this.pinkyCanvas.renderGhost({
+    x: 40,
+    y: 82,
+    color: NAME_TO_COLOR["p"],
+    direction: "right"
+  });
+  this.boardCanvas.drawText({
+    text: "-speedy    \"pinky\"",
+    row: 10,
+    col: 7,
+    color: RGBA_COLORS["p"]
+  });
+  this.inkyCanvas.renderGhost({
+    x: 40,
+    y: 106,
+    color: NAME_TO_COLOR["i"],
+    direction: "right"
+  });
+  this.boardCanvas.drawText({
+    text: "-bashful   \"inky\"",
+    row: 13,
+    col: 7,
+    color: RGBA_COLORS["i"]
+  });
+  this.clydeCanvas.renderGhost({
+    x: 40,
+    y: 130,
+    color: NAME_TO_COLOR["c"],
+    direction: "right"
+  });
+  this.boardCanvas.drawText({
+    text: "-pokey     \"clyde\"",
+    row: 16,
+    col: 7,
+    color: RGBA_COLORS["c"]
+  });
+
+  this.boardCanvas.drawObject({
+    objectArr: TWO_HUND,
+    x: 70,
+    y: 160,
+    color: {r: 0, g: 255, b: 255, a: 255}
+  });
+
+  this.boardCanvas.drawText({
+    text: "10",
+    col: 12,
+    row: 25
+  });
+  this.boardCanvas.drawText({
+    text: "50",
+    col: 12,
+    row: 27
+  });
+  this.boardCanvas.drawObject({
+    objectArr: PTS,
+    x: 120,
+    y: 202
+  });
+  this.boardCanvas.drawObject({
+    objectArr: PTS,
+    x: 120,
+    y: 218
+  });
+  this.boardCanvas.drawText({
+    text: "@ 1980 midway mfg.co.",
+    color: RGBA_COLORS["p"],
+    col: 4,
+    row: 32
+  });
+  this.boardCanvas.drawText({
+    text: "credit  0",
+    col: 2,
+    row: 35
+  });
+
+  this.boardCanvas.finalizePerPixelRender();
+
+  this.boardCanvas.drawRect({
+    color: PELLET_COLOR,
+    x: 83,
+    y: 203,
+    w: 2,
+    h: 2
+  });
+  this.boardCanvas.drawCircle({
+    x: 84,
+    y: 220,
+    rad: 4
+  });
+
+  var frightenedGhostArgs = {
+    name: "F",
+    startX: 96,
+    startY: 164
+  }
+  var frightenedA = new Ghost(frightenedGhostArgs);
+  frightenedGhostArgs.startX += 16;
+  var frightenedB = new Ghost(frightenedGhostArgs);
+  frightenedGhostArgs.startX += 16;
+  var frightenedC = new Ghost(frightenedGhostArgs);
+  this.boardCanvas.renderGhostFrightened(frightenedA);
+  this.boardCanvas.renderGhostFrightened(frightenedB);
+  this.boardCanvas.renderGhostFrightened(frightenedC);
+};
 GameController.prototype.startGame = function() {
   this.resetActors();
   this.drawPellets();
