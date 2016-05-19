@@ -26,14 +26,26 @@ BrowserView.prototype.drawObject = function(args) {
   args.objectArr.forEach(function(row, rIndex) {
     row.forEach(function(col, cIndex) {
       var color = args.color ? args.color : CHAR_TO_COLOR[col];
-      this.drawPixel({
-        x: args.x + cIndex,
-        y: args.y + rIndex,
-        r: color.r,
-        g: color.g,
-        b: color.b,
-        a: color.a
-      });
+      if(col == " ") {
+        this.drawPixel({
+          x: args.x + cIndex,
+          y: args.y + rIndex,
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 0
+        });
+      }
+      else {
+        this.drawPixel({
+          x: args.x + cIndex,
+          y: args.y + rIndex,
+          r: color.r,
+          g: color.g,
+          b: color.b,
+          a: color.a
+        });
+      }
     }.bind(this));
   }.bind(this));
 };
@@ -230,7 +242,8 @@ BrowserView.prototype.drawText = function(args) {
     this.drawObject({
       objectArr: CHARSET[char],
       x: 8 * (x + index),
-      y: 8 * y
+      y: 8 * y,
+      color: args.color
     });
   }.bind(this));
   this.finalizePerPixelRender();
