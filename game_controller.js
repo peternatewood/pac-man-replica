@@ -23,7 +23,7 @@ var GameController = function(args) {
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
 
-  this.startGame();
+  this.drawTitleScreen();
 }
 GameController.prototype.drawTitleScreen = function() {
   ["pac", "blinky", "inky", "pinky", "clyde", "board", "pellet"].forEach(function(name) {
