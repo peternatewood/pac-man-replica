@@ -15,8 +15,10 @@ var GameController = function(args) {
   this.inkyCanvas = args.inkyCanvas;
   this.pinkyCanvas = args.pinkyCanvas;
   this.clydeCanvas = args.clydeCanvas;
+
   this.boardCanvas = args.boardCanvas;
   this.pelletCanvas = args.pelletCanvas;
+  this.textCanvas = args.textCanvas;
 
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
