@@ -164,6 +164,22 @@ GameController.prototype.drawTitleScreen = function() {
   this.boardCanvas.renderGhostFrightened(frightenedC);
 };
 GameController.prototype.startGame = function() {
+  var canvasDims = {
+    x: 0,
+    y: 0,
+    w: BOARD_WIDTH,
+    h: BOARD_HEIGHT
+  }
+  this.boardCanvas.clearRect(canvasDims);
+  this.pelletCanvas.clearRect(canvasDims);
+  this.textCanvas.clear();
+
+  this.blinkyCanvas.clearRect(canvasDims);
+  this.pinkyCanvas.clearRect(canvasDims);
+  this.inkyCanvas.clearRect(canvasDims);
+  this.clydeCanvas.clearRect(canvasDims);
+  this.pacCanvas.clearRect(canvasDims);
+
   this.resetActors();
   this.drawPellets();
 
