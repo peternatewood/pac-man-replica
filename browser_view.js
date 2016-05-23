@@ -63,6 +63,21 @@ BrowserView.prototype.drawRect = function(args) {
 BrowserView.prototype.clearRect = function(args) {
   this.context.clearRect(args.x, args.y, args.w, args.h);
 };
+BrowserView.prototype.clear = function() {
+  for(var y = 0; y < this.canvas.height; y++) {
+    for(var x = 0; x < this.canvas.width; x++) {
+      this.drawPixel({
+        x: x,
+        y: y,
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 0
+      });
+    }
+  }
+  this.finalizePerPixelRender();
+}
 BrowserView.prototype.renderPac = function(args) {
   this.context.fillStyle = args.color;
   this.context.beginPath();
