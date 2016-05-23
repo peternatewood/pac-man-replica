@@ -37,6 +37,9 @@ input {
 #pac {
   z-index: 6;
 }
+#text {
+  z-index: 7;
+}
 
 #debug {
   background-color: #000;
