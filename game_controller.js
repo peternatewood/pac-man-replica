@@ -379,7 +379,13 @@ GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = KEY_CODES[event.keyCode];
   if(keyPressed) {
     event.preventDefault();
-    if(this.keyStates[keyPressed] === false) {
+    if(keyPressed == "space") {
+      switch(this.gameState) {
+        case "title": this.startGame(); this.gameState = "starting"; break;
+        default: break;
+      }
+    }
+    else if(this.gameState != "title" && this.keyStates[keyPressed] === false) {
       this.keyStates[keyPressed] = true;
       if(this.pacMoveInterval === false) {
         this.pacMoveInterval = setInterval(this.moveActor.bind(this), this.pac.speed);
