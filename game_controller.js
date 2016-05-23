@@ -23,6 +23,9 @@ var GameController = function(args) {
   this.gameBoard = args.gameBoard;
   this.actorBoard = args.actorBoard;
 
+  addEventListener("keydown", this.handleKeyDown.bind(this));
+  addEventListener("keyup", this.handleKeyUp.bind(this));
+
   this.drawTitleScreen();
 }
 GameController.prototype.drawTitleScreen = function() {
@@ -185,9 +188,6 @@ GameController.prototype.startGame = function() {
 
   this.pacCanvas.renderPac(this.pac);
   this.updateGameBoard();
-
-  addEventListener("keydown", this.handleKeyDown.bind(this));
-  addEventListener("keyup", this.handleKeyUp.bind(this));
 
   this.ghostMoveInterval = setInterval(function() {
     this.moveGhost("b");
