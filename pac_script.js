@@ -36,6 +36,7 @@ ready(function() {
     clydeCanvas: new BrowserView("clyde"),
     boardCanvas: new BrowserView("board"),
     pelletCanvas: new BrowserView("pellets"),
+    textCanvas: new BrowserView("text"),
     gameBoard: new Board(START_BOARD),
     actorBoard: new Board(START_BOARD_ACTORS)
   });
