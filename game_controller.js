@@ -35,13 +35,13 @@ GameController.prototype.drawTitleScreen = function() {
     });
   }.bind(this));
 
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "1up   high score   2up",
     row: 0,
     col: 3
   });
   this.updateScore();
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "character / nickname",
     row: 5,
     col: 7
@@ -52,7 +52,7 @@ GameController.prototype.drawTitleScreen = function() {
     color: NAME_TO_COLOR["b"],
     direction: "right"
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "-shadow    \"blinky\"",
     row: 7,
     col: 7,
@@ -64,7 +64,7 @@ GameController.prototype.drawTitleScreen = function() {
     color: NAME_TO_COLOR["p"],
     direction: "right"
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "-speedy    \"pinky\"",
     row: 10,
     col: 7,
@@ -76,7 +76,7 @@ GameController.prototype.drawTitleScreen = function() {
     color: NAME_TO_COLOR["i"],
     direction: "right"
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "-bashful   \"inky\"",
     row: 13,
     col: 7,
@@ -88,53 +88,53 @@ GameController.prototype.drawTitleScreen = function() {
     color: NAME_TO_COLOR["c"],
     direction: "right"
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "-pokey     \"clyde\"",
     row: 16,
     col: 7,
     color: RGBA_COLORS["c"]
   });
 
-  this.boardCanvas.drawObject({
+  this.textCanvas.drawObject({
     objectArr: TWO_HUND,
     x: 70,
     y: 160,
     color: {r: 0, g: 255, b: 255, a: 255}
   });
 
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "10",
     col: 12,
     row: 25
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "50",
     col: 12,
     row: 27
   });
-  this.boardCanvas.drawObject({
+  this.textCanvas.drawObject({
     objectArr: PTS,
     x: 120,
     y: 202
   });
-  this.boardCanvas.drawObject({
+  this.textCanvas.drawObject({
     objectArr: PTS,
     x: 120,
     y: 218
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "@ 1980 midway mfg.co.",
     color: RGBA_COLORS["p"],
     col: 4,
     row: 32
   });
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: "credit  0",
     col: 2,
     row: 35
   });
 
-  this.boardCanvas.finalizePerPixelRender();
+  this.textCanvas.finalizePerPixelRender();
 
   this.boardCanvas.drawRect({
     color: PELLET_COLOR,
@@ -503,7 +503,7 @@ GameController.prototype.updateScore = function() {
   if(score.length == 1) {
     score = "0" + score;
   }
-  this.boardCanvas.drawText({
+  this.textCanvas.drawText({
     text: score,
     col: 7 - score.length,
     row: 1
