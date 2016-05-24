@@ -523,7 +523,11 @@ GameController.prototype.updateLivesDisplay = function() {
   }
 };
 GameController.prototype.updateScore = function() {
-  var score = this.pelletCount.toString();
+  var points = CELL_TO_SCORE[this.gameBoard.getCell(this.actorBoard.find("m"))];
+  if(points) {
+    this.score += points;
+  }
+  var score = this.score.toString();
   if(score.length == 1) {
     score = "0" + score;
   }
@@ -540,6 +544,8 @@ GameController.prototype.updatePellets = function() {
   });
   var tile = this.gameBoard.getCell(coords);
 
+  this.updateScore();
+
   if(tile == "." || tile == "o") {
     this.gameBoard.setCell({
       x: coords.x,
@@ -555,6 +561,4 @@ GameController.prototype.updatePellets = function() {
     }
     this.drawPellets();
   }
-
-  this.updateScore();
 };
