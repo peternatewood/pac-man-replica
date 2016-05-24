@@ -614,6 +614,10 @@ var INKY_EXIT_DELAY = 2000;
 var CLYDE_EXIT_DELAY = 4000;
 
 var PELLET_COLOR = "#FCF";
+var CELL_TO_SCORE = {
+  ".": 10,
+  "o": 50
+}
 
 var GHOST_MODES = [
   "house",
