@@ -195,13 +195,6 @@ GameController.prototype.startGame = function() {
     this.moveGhost("i");
     this.moveGhost("p");
     this.moveGhost("c");
-    ["blinky", "inky", "pinky", "clyde"].forEach(function(ghost) {
-      var coords = Board.convertToTile({x: this[ghost].x, y: this[ghost].y});
-      this.updateActorBoard({
-        coords: coords,
-        name: ghost[0]
-      });
-    }.bind(this));
 }.bind(this), GHOST_MOVE_DELAY);
 
   setTimeout(function() {
@@ -361,6 +354,12 @@ GameController.prototype.moveGhost = function(name) {
         this.setNextDirection(ghost);
       }
     break;
+    case "frightened":
+      if(this[ghost].isCentered()) {
+        this[ghost].targetTile = this.actorBoard.getRandomTile();
+        this.setNextDirection(ghost);
+      }
+    break;
   }
 
   this[ghost].move();
@@ -376,7 +375,21 @@ GameController.prototype.moveGhost = function(name) {
     y: this[ghost].y
   });
 
-  this[ghost + "Canvas"].renderGhost(this[ghost]);
+  this.updateActorBoard({
+    coords: coords,
+    name: ghost[0]
+  });
+
+  if(this[ghost].movementMode == "frightened") {
+    this[ghost + "Canvas"].renderGhostFrightened({
+      x: this[ghost].x,
+      y: this[ghost].y,
+      color: NAME_TO_COLOR["F"]
+    });
+  }
+  else {
+    this[ghost + "Canvas"].renderGhost(this[ghost]);
+  }
 };
 GameController.prototype.handleKeyDown = function(event) {
   var keyPressed = KEY_CODES[event.keyCode];
@@ -469,8 +482,8 @@ GameController.prototype.setNextDirection = function(ghost) {
     this[ghost].direction = oppositeDirection(this[ghost].direction);
   }
 
-  if(this.ghostsMode == "chase" && this[ghost].movementMode == "scatter") {
-    this[ghost].setMode("chase");
+  if(this[ghost].movementMode == "scatter" || this[ghost].movementMode == "chase") {
+    this[ghost].setMode(this.ghostsMode);
   }
 };
 
@@ -479,7 +492,7 @@ GameController.prototype.updateActorBoard = function(args) {
   var cell = this.actorBoard.getCell(args.coords);
   var ghosts = ["b", "i", "p", "c"];
 
-  if(oldCoords.x != args.coords.x || oldCoords.y != args.coords.y) {
+  if(oldCoords && (oldCoords.x != args.coords.x || oldCoords.y != args.coords.y)) {
     if(args.name == "m" && ghosts.includes(cell)) {
       this.startPacDeath();
     }
@@ -498,6 +511,13 @@ GameController.prototype.updateActorBoard = function(args) {
         value: args.name
       });
     }
+  }
+  else {
+    this.actorBoard.setCell({
+      x: args.coords.x,
+      y: args.coords.y,
+      value: args.name
+    });
   }
 };
 GameController.prototype.updateGameBoard = function() {
