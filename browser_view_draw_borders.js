@@ -286,7 +286,7 @@ BrowserView.drawBorders = function(context) {
   context.lineTo(x -= 2, y += 2);
   context.lineTo(x -= 3, y);
   context.lineTo(x -= 2, y -= 2);
-  context.lineTo(x, y -= 19);
+  context.lineTo(x, y -= 20);
   context.lineTo(x -= 2, y -= 2);
   context.lineTo(x -= 12, y);
   context.lineTo(x -= 2, y -= 2);
@@ -346,8 +346,9 @@ BrowserView.drawBorders = function(context) {
   context.lineTo(x -= 2, y += 2);
   context.lineTo(x -= 67, y);
   context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
   // T shaped box
-  context.moveTo(x += 64, y -= 25);
+  context.moveTo(x += 64, y -= 24);
   context.lineTo(x, y -= 2);
   context.lineTo(x += 2, y -= 2);
   context.lineTo(x += 3, y);
@@ -384,6 +385,7 @@ BrowserView.drawBorders = function(context) {
   context.lineTo(x -= 2, y += 2);
   context.lineTo(x -= 67, y);
   context.lineTo(x -= 2, y -= 2);
+  context.lineTo(x, y -= 1);
 
   // Ghost house
   context.moveTo(x = 84.5, y = 124.5);
