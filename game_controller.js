@@ -195,7 +195,14 @@ GameController.prototype.startGame = function() {
     this.moveGhost("i");
     this.moveGhost("p");
     this.moveGhost("c");
-  }.bind(this), GHOST_MOVE_DELAY);
+    ["blinky", "inky", "pinky", "clyde"].forEach(function(ghost) {
+      var coords = Board.convertToTile({x: this[ghost].x, y: this[ghost].y});
+      this.updateActorBoard({
+        coords: coords,
+        name: ghost[0]
+      });
+    }.bind(this));
+}.bind(this), GHOST_MOVE_DELAY);
 
   setTimeout(function() {
     this.ghostsMode = "chase";
@@ -293,7 +300,6 @@ GameController.prototype.moveActor = function() {
       x: this.pac.x,
       y: this.pac.y
     });
-
     this.updateActorBoard({
       coords: coords,
       name: "m",
@@ -369,10 +375,6 @@ GameController.prototype.moveGhost = function(name) {
     x: this[ghost].x,
     y: this[ghost].y
   });
-  this.updateActorBoard({
-    coords: coords,
-    name: this[ghost].name
-  });
 
   this[ghost + "Canvas"].renderGhost(this[ghost]);
 };
@@ -405,10 +407,11 @@ GameController.prototype.startPacDeath = function() {
   clearInterval(this.ghostMoveInterval);
   clearInterval(this.pacMoveInterval);
 
-  this.blinkyCanvas.clearRect(this.blinky.getClearDimensions());
-  this.inkyCanvas.clearRect(this.inky.getClearDimensions());
-  this.pinkyCanvas.clearRect(this.pinky.getClearDimensions());
-  this.clydeCanvas.clearRect(this.clyde.getClearDimensions());
+  var canvasDimensions = {x: 0, y: 0, w: BOARD_WIDTH, h: BOARD_HEIGHT}
+  this.blinkyCanvas.clearRect(canvasDimensions);
+  this.inkyCanvas.clearRect(canvasDimensions);
+  this.pinkyCanvas.clearRect(canvasDimensions);
+  this.clydeCanvas.clearRect(canvasDimensions);
 
   this.pac.mouthPos = 0;
 
