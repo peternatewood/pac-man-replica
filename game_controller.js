@@ -416,6 +416,9 @@ GameController.prototype.handleKeyUp = function(event) {
     this.keyStates[keyPressed] = false;
   }
 };
+GameController.prototype.handlePowerPellet = function() {
+  this.ghostsMode = "frightened";
+};
 GameController.prototype.startPacDeath = function() {
   clearInterval(this.ghostMoveInterval);
   clearInterval(this.pacMoveInterval);
@@ -570,6 +573,9 @@ GameController.prototype.updatePellets = function() {
   this.updateScore();
 
   if(tile == "." || tile == "o") {
+    if(tile == "o") {
+      this.handlePowerPellet();
+    }
     this.gameBoard.setCell({
       x: coords.x,
       y: coords.y,
