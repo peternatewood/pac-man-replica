@@ -25,6 +25,15 @@ Board.prototype.setCell = function(args) {
 Board.prototype.find = function(value) {
   return this.board.find(value);
 };
+Board.prototype.count = function(value) {
+  var count = 0;
+  this.board.matrix.forEach(function(row) {
+    row.forEach(function(cell) {
+      if(cell == value) count++;
+    });
+  });
+  return count;
+};
 Board.prototype.predictCollision = function(coords, direction) {
   var yOffset = 0;
   var xOffset = 0;
