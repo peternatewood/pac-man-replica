@@ -89,3 +89,6 @@ Board.prototype.getClosestTile = function(args) {
   }
   return closestTile;
 };
+Board.prototype.getRandomTile = function(coords) {
+  return this.board.getRandomCoords();
+};

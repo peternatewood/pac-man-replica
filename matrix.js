@@ -25,3 +25,8 @@ Matrix.prototype.find = function(value) {
 
   return coordinates;
 };
+Matrix.prototype.getRandomCoords = function() {
+  var row = Math.floor(Math.random() * this.matrix.length);
+  var col = Math.floor(Math.random() * this.matrix[0].length);
+  return {x: col, y: row}
+};
