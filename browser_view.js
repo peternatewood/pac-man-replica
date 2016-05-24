@@ -304,32 +304,16 @@ BrowserView.prototype.renderGhostFrightened = function(args) {
   this.context.fillRect(x + 4, y, 2, 2);
 
   // Mouth
-  this.context.strokeStyle = NAME_TO_COLOR["p"];
-  x = args.x - 4.5;
-  y = args.y + 4.5;
+  x = args.x - 6;
+  y = args.y + 4;
 
-  switch(args.direction) {
-    case "up": y -= 2; break;
-    case "down": y += 1; break;
-    case "left": x--; break;
-    case "right": x++; break;
-  }
-
-  // Whites of eyes
-  this.context.beginPath();
-  this.context.moveTo(x, y);
-  this.context.lineTo(x += 1, y -= 1);
-  this.context.lineTo(x += 1, y);
-  this.context.lineTo(x += 1, y += 1);
-  this.context.lineTo(x += 1, y);
-  this.context.lineTo(x += 1, y -= 1);
-  this.context.lineTo(x += 1, y);
-  this.context.lineTo(x += 1, y += 1);
-  this.context.lineTo(x += 1, y);
-  this.context.lineTo(x += 1, y -= 1);
-  this.context.lineTo(x += 1, y);
-  this.context.lineTo(x += 1, y += 1);
-  this.context.stroke();
+  this.context.fillRect(x, y, 1, 1);
+  this.context.fillRect(x += 1, y -= 1, 2, 1);
+  this.context.fillRect(x += 2, y += 1, 2, 1);
+  this.context.fillRect(x += 2, y -= 1, 2, 1);
+  this.context.fillRect(x += 2, y += 1, 2, 1);
+  this.context.fillRect(x += 2, y -= 1, 2, 1);
+  this.context.fillRect(x += 2, y += 1, 1, 1);
 };
 BrowserView.prototype.drawText = function(args) {
   var text = args.text.toUpperCase().split("");
