@@ -184,7 +184,9 @@ BrowserView.prototype.renderGhost = function(args) {
   this.context.closePath();
   this.context.fill();
 
-  // Eyes
+  this.renderGhostEyes(args);
+};
+BrowserView.prototype.renderGhostEyes = function(args) {
   this.context.fillStyle = "#FFF";
   x = args.x - 3;
   y = args.y - 3;
@@ -241,7 +243,7 @@ BrowserView.prototype.renderGhost = function(args) {
   this.context.fillStyle = "#22F";
   this.context.fillRect(x, y, 2, 2);
   this.context.fillRect(x += 6, y, 2, 2);
-};
+}
 BrowserView.prototype.renderGhostFrightened = function(args) {
   this.context.fillStyle = args.color;
   var x = args.x;
