@@ -418,6 +418,12 @@ GameController.prototype.handleKeyUp = function(event) {
 };
 GameController.prototype.handlePowerPellet = function() {
   this.ghostsMode = "frightened";
+  setTimeout(function() {
+    this.ghostsMode = "chase";
+    ["blinky", "inky", "pinky", "clyde"].forEach(function(ghost) {
+      this[ghost].setMode("chase");
+    }.bind(this));
+  }.bind(this), GHOSTS_FRIGHTENED_DURATION);
 };
 GameController.prototype.startPacDeath = function() {
   clearInterval(this.ghostMoveInterval);
