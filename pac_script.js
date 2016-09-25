@@ -15,19 +15,6 @@ var ready = function(fun) {
 }
 
 ready(function() {
-  var centerBoards = function() {
-    var windowWidth = window.innerWidth;
-    var boardWidth = document.getElementById("board").offsetWidth;
-    var canvases = document.getElementsByTagName("canvas");
-
-    for(var i = 0; i < canvases.length; i++) {
-      canvases[i].style.left = (windowWidth / 2) - (boardWidth / 2) + "px";
-    }
-  }
-  centerBoards();
-
-  window.addEventListener("resize", centerBoards);
-
   var controller = new GameController({
     pacCanvas: new BrowserView("pac"),
     blinkyCanvas: new BrowserView("blinky"),
